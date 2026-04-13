@@ -1,0 +1,100 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Design System/Documentation/Tokens" />
+
+# Design Tokens: Elevation & Shape
+
+Semantic tokens for shadows, borders, and spacing that create visual hierarchy and spatial consistency across the portfolio.
+
+---
+
+## 🎨 Border Radius
+
+Controlled, intentional shape tokens that define the visual language of components.
+
+| Token | Value | Use Case |
+|-------|-------|----------|
+| **`rounded-card`** | `1rem` (16px) | Cards, containers, modal windows. The default elevation element. |
+| **`rounded-pill`** | `9999px` | Fully rounded buttons, badges, pills. Use for CTAs and UI controls. |
+| **`rounded-none`** | `0px` | Strict, neutral elements (disabled states, minimal-emphasis UI). |
+
+### Examples
+
+- **`rounded-card`**: Cards in portfolio sections, component containers, modal dialogs.
+- **`rounded-pill`**: Primary buttons (`<Button type="fill" />`), theme toggle buttons, badge elements.
+
+### Best Practice
+
+Default to `rounded-card` for most UI. Use `rounded-pill` sparingly for CTAs and interactive elements to signal interactivity.
+
+---
+
+## 💫 Shadows (Elevation)
+
+Shadows define depth and layering. Use consistently to guide visual hierarchy without overwhelming.
+
+| Token | CSS | Use Case | Force |
+|-------|-----|----------|-------|
+| **`shadow-soft`** | `0 2px 3px 0 rgba(brand, 0.1)` | Subtle elevation for cards, dividers | Default UI |
+| **`shadow-elevated`** | `0 6px 9px 0 rgba(brand, 0.15)` | Medium elevation for modals, popovers | Hover/focus states, overlays |
+| **`shadow-floating`** | `0 1px 4px 0 rgba(25, 33, 61, 0.06)` | Minimal elevation for hairline accents | Floating panels, widgets |
+
+### Elevation Strategy
+
+1. **No shadow** (shadow-none): Flat, non-interactive elements (text, dividers).
+2. **`shadow-soft`**: Default elevation for elevated surfaces (cards, sections).
+3. **`shadow-elevated`**: Strong emphasis (modals, dropdowns, important overlays).
+4. **`shadow-floating`**: Minimal distinction for subtle panels or floating UI.
+
+### Examples
+
+```html
+<!-- Card at rest -->
+<div class="rounded-card shadow-soft">...</div>
+
+<!-- Card on hover (elevated) -->
+<div class="rounded-card shadow-elevated hover:shadow-elevated">...</div>
+
+<!-- Floating header -->
+<header class="shadow-floating">...</header>
+```
+
+---
+
+## 🎯 Spacing Intent
+
+While not CSS token variables, our scale leverages Tailwind's default spacing (scale of 4px). Common semantic sizes:
+
+| Size | Value | Purpose |
+|------|-------|---------|
+| **`p-2`** | 8px | Tight internal padding (badges, small buttons) |
+| **`p-4`** | 16px | Standard padding (cards, containers) |
+| **`p-6`** | 24px | Generous padding (sections, modals) |
+| **`gap-2`** | 8px | Tight grouping (icon + text) |
+| **`gap-4`** | 16px | Standard grouping (form fields, button groups) |
+| **`gap-6`** | 24px | Spacious grouping (sections, hero) |
+
+---
+
+## ✅ Spatial Consistency Checklist
+
+- ✅ All elevated elements use one of: `shadow-soft`, `shadow-elevated`, `shadow-floating`.
+- ✅ Container corners default to `rounded-card`; interactive elements use `rounded-pill`.
+- ✅ Padding and gaps follow the 4px scale (8, 16, 24, 32, etc.).
+- ✅ Never mix shadow styles on the same element (no `shadow-soft` + `shadow-elevated`).
+- ✅ Shadow and border-radius work together to define component identity.
+
+---
+
+## 📐 Component Reference
+
+- **Buttons**: `rounded-pill`, `shadow-none` (at rest), `shadow-elevated` (hover)
+- **Cards**: `rounded-card`, `shadow-soft`
+- **Modals**: `rounded-card`, `shadow-elevated`
+- **Dropdowns/Popovers**: `rounded-card`, `shadow-elevated`
+- **Header**: `rounded-none`, `shadow-floating`
+- **Icons/Badges**: `rounded-pill`, `shadow-none`
+
+---
+
+*Design tokens ensure visual consistency and maintainability across all components. Respect them; they're the backbone of a cohesive design system.*

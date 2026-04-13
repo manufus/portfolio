@@ -1,0 +1,664 @@
+---
+import { Icon } from "astro-icon/components";
+import experiences from "@/collections/experiences.json";
+import AboutExperience from "@/components/elements/AboutExperience.astro";
+import Button from "@/components/ui/Button.astro";
+import Toc from "@/components/widgets/Toc.astro";
+import { siteConfig } from "@/config/site.js";
+import Layout from "@/layouts/Layout.astro";
+
+// --- DATA: EDUCATION ---
+const education = [
+  {
+    dates: "2024 - 2025",
+    role: "M.Sc. Human-Computer Interaction and Design (HCID)",
+    company: "Aalto University (Year 2)",
+    description:
+      "Second year of the EIT Digital double degree, specializing in advanced interaction design.",
+    logo: "/assets/aalto-logo.png",
+  },
+  {
+    dates: "2023 - 2024",
+    role: "M.Sc. Human-Computer Interaction and Design (HCID)",
+    company: "Universidad Politécnica de Madrid (Year 1)",
+    description:
+      "First year of the program establishing foundations in User-Centered Design and research.",
+    logo: "/assets/upm-logo.png",
+  },
+  {
+    dates: "2023 - 2025",
+    role: "Innovation & Entrepreneurship Minor",
+    company: "EIT Digital Master School",
+    description:
+      "Certificate in Digital Technologies and Entrepreneurship validating business creation skills.",
+    logo: "/assets/eit-logo.png",
+  },
+  {
+    dates: "2018 - 2022",
+    role: "B.Eng. Industrial Design Engineering & Product Development",
+    company: "Polytechnic University of Valencia",
+    description: "Bachelor's Degree graduated with honors (Best Academic Record of the promotion).",
+    logo: "/assets/upv-logo.png",
+  },
+];
+
+// --- DATA: AWARDS ---
+const awards = [
+  {
+    dates: "2025",
+    role: "Academic Excellence Award",
+    company: "Generalitat Valenciana",
+    description:
+      "Highest regional recognition for exceptional academic performance in the Bachelor's degree.",
+    logo: "/assets/gva-logo.png",
+  },
+  {
+    dates: "2022",
+    role: "Best Graduate Award",
+    company: "Polytechnic Univ. of Valencia",
+    description:
+      "Award for the Best Academic Record of the entire graduating promotion (Industrial Design).",
+    logo: "/assets/upv-logo.png",
+  },
+  {
+    dates: "2019",
+    role: "Winner - STARTUPV 2K19",
+    company: "IDEAS UPV (Entrepreneurship Contest)",
+    description:
+      "Winner in the 'Advanced Idea' category for an innovative business proposal at the VI edition.",
+    logo: "/assets/ideas-upv-logo.png",
+  },
+  {
+    dates: "2019",
+    role: "2nd Year Academic Award",
+    company: "Polytechnic Univ. of Valencia",
+    description: "Recognition for the best academic record during the second year of the degree.",
+    logo: "/assets/upv-logo.png",
+  },
+  {
+    dates: "2018",
+    role: "1st Year Academic Award",
+    company: "Polytechnic Univ. of Valencia",
+    description: "Recognition for the best academic record during the first year of the degree.",
+    logo: "/assets/upv-logo.png",
+  },
+];
+
+// Manually define page table of contents structure
+const headings = [
+  { depth: 2, slug: "about-me", text: "About Me" },
+  { depth: 2, slug: "expertise", text: "Expertise" },
+  { depth: 2, slug: "education", text: "Education" },
+  { depth: 2, slug: "experience", text: "Experience" },
+  { depth: 2, slug: "awards", text: "Honors & Awards" },
+  { depth: 2, slug: "lets-connect", text: "Let's Connect" },
+];
+
+const filtered = headings.filter((h) => h.depth <= 3);
+
+const title = "About | Manuel Hortelano - UX Engineer";
+const description =
+  "UX Engineer and HCID graduate blending interaction design, frontend engineering, and research-driven methods to build human-centered digital products.";
+---
+
+<Layout title={title} description={description} image="/og/about.jpg">
+  <div class="block lg:hidden px-7 pt-6">
+    <Toc headings={filtered} />
+  </div>
+
+  <div class="relative site-container mx-auto my-8">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-16">
+      <aside class="relative hidden lg:block lg:w-40 xl:w-50 shrink-0">
+        <div class="toc-sticky-wrapper">
+          <Toc headings={filtered} />
+        </div>
+      </aside>
+
+      <main class="relative flex-1 min-w-0 w-full lg:max-w-none">
+        <div
+          class="w-full"
+          data-aos="fade-up-xs"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          <h2
+            id="about-me"
+            class="text-2xl font-brand tracking-tight sm:text-3xl lg:text-4xl"
+          >
+            About Me
+          </h2>
+          <div
+            class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"
+          >
+          </div>
+        </div>
+
+        <div
+          class="flex items-center gap-3 mb-6"
+          data-aos="fade-up-xs"
+          data-aos-delay="100"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          <div class="flex items-center gap-3">
+            <a
+              href="https://www.manuelhortelano.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-brand text-[24px] text-neutral-700 dark:text-neutral-100"
+              >Manuel Hortelano Rodríguez</a
+            >
+            <span class="text-[0.75em] text-neutral-400">|</span>
+            <a
+              href="https://www.linkedin.com/in/manuel-hortelano-rodriguez"
+              class="flex items-center gap-1 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+                class="w-4.5 h-4.5 fill-current"
+              >
+                <path
+                  d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"
+                ></path>
+              </svg>
+              LinkedIn
+            </a>
+            <span class="text-[0.75em] text-neutral-400">|</span>
+            <a
+              href="https://github.com/manufus"
+              class="flex items-center gap-1 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                viewBox="0 0 1024 1024"
+                width="18"
+                height="18"
+                fill="currentColor"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M511.957333 21.333333C241.024 21.333333 21.333333 240.981333 21.333333 512c0 216.832 140.544 400.725333 335.573334 465.664 24.490667 4.394667 32.256-10.069333 32.256-23.082667 0-11.690667 0.256-44.245333 0-85.205333-136.448 29.610667-164.736-64.64-164.736-64.64-22.314667-56.704-54.4-71.765333-54.4-71.765333-44.586667-30.464 3.285333-29.824 3.285333-29.824 49.194667 3.413333 75.178667 50.517333 75.178667 50.517333 43.776 75.008 114.816 53.333333 142.762666 40.789333 4.522667-31.658667 17.152-53.376 31.189334-65.536-108.970667-12.458667-223.488-54.485333-223.488-242.602666 0-53.546667 19.114667-97.322667 50.517333-131.669334-5.034667-12.330667-21.930667-62.293333 4.778667-129.834666 0 0 41.258667-13.184 134.912 50.346666a469.802667 469.802667 0 0 1 122.88-16.554666c41.642667 0.213333 83.626667 5.632 122.88 16.554666 93.653333-63.488 134.784-50.346667 134.784-50.346666 26.752 67.541333 9.898667 117.504 4.864 129.834666 31.402667 34.346667 50.474667 78.122667 50.474666 131.669334 0 188.586667-114.730667 230.016-224.042666 242.090666 17.578667 15.232 33.578667 44.672 33.578666 90.453334v135.850666c0 13.141333 7.936 27.605333 32.853334 22.869334C862.250667 912.597333 1002.666667 728.746667 1002.666667 512 1002.666667 240.981333 783.018667 21.333333 511.957333 21.333333z"
+                ></path>
+              </svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="w-full mb-6 rounded-xl overflow-hidden"
+          data-aos="fade-up-xs"
+          data-aos-delay="150"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          <img
+            src="/assets/graduation.jpg"
+            alt="Manuel receiving a diploma"
+            class="w-full h-96 object-top object-cover"
+          />
+        </div>
+
+        <p
+          class="text-3xl mt-2 mb-2 font-brand italic text-center text-primary-strong dark:text-primary-light"
+          data-aos="fade-up-xs"
+          data-aos-delay="200"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          "The future is uncertain but promising."
+        </p>
+
+        <div
+          class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"
+        >
+        </div>
+
+        <p
+          class="text-xl font-medium text-left text-neutral-800 dark:text-neutral-100"
+          data-aos="fade-up-xs"
+          data-aos-delay="100"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          I'm Manuel, a UX Engineer & Interaction Designer.
+        </p>
+        <p
+          class="text-neutral-700 pb-4 pt-4 leading-[1.8] dark:text-neutral-200"
+          data-aos="fade-up-xs"
+          data-aos-delay="200"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          I'm passionate about designing interactions that matter. I recently graduated with honours with a double
+          degree Master's in Human Computer Interaction & Design (HCID) from UPM
+          and Aalto, where I was able to link my studies directly to industry by
+          completing a six-month research internship at Sisteplant, an industry
+          leader in industrial digital transformation.
+        </p>
+        <p
+          class="text-neutral-700 pb-4 leading-[1.8] dark:text-neutral-200"
+          data-aos="fade-up-xs"
+          data-aos-delay="300"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          After studying Industrial Design Engineering in Valencia and receiving
+          several awards for academic excellence, I had the opportunity to work
+          at Ford Motor Company, where I developed creative, communication, and
+          innovation skills.
+        </p>
+        <p
+          class="text-neutral-700 leading-[1.8] dark:text-neutral-200"
+          data-aos="fade-up-xs"
+          data-aos-delay="300"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          On a personal level, I see myself as empathetic with a good sense of
+          humor. My hobbies include sports, motorcycle rides, and reading (yes,
+          manga too). Motivated by curiosity, I am always ready to learn and
+          think in different ways to solve problems. One of my favourite quotes
+          is, "the future is uncertain but promising."
+        </p>
+
+        <div
+          class="mt-8 mb-16 flex items-center justify-start gap-3"
+          data-aos="fade-up-xs"
+          data-aos-delay="400"
+          data-aos-duration="500"
+          data-aos-once="true"
+        >
+          <Button
+            url="mailto:manuel.hortelano.rodriguez@gmail.com"
+            type="solid"
+          >
+            <Icon name="lucide:mail" width={16} height={16} /> Contact Me</Button
+          >
+          <Button url={siteConfig.resume} type="fill">
+            Download CV <Icon name="lucide:arrow-up-right" width={16} height={16} />
+          </Button>
+        </div>
+
+        <div
+          class="w-full border-b-1 border-dashed border-b-neutral-200 dark:border-b-neutral-700 mt-4 mb-8"
+        >
+        </div>
+        <section>
+          <h2
+            id="expertise"
+            class="mt-8 mb-2 text-[28px] text-neutral-800 dark:text-neutral-200 font-brand"
+            data-aos="fade-up-xs"
+            data-aos-duration="500"
+            data-aos-once="true"
+          >
+            Expertise
+          </h2>
+          <div
+            class="list flex flex-wrap gap-3 mt-4 mb-12 w-full items-center justify-start"
+            data-aos="fade-up-xs"
+            data-aos-delay="100"
+            data-aos-duration="600"
+            data-aos-once="true"
+          >
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:monitor" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Interaction Design
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:cpu" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  UX Engineering
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:user-check" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Accessibility Engineering
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:box" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Frontend Architecture
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:compass" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Human Factors
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:layers" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Design Systems
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:flask-conical" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  UX Research & Usability Testing
+                </div>
+              </div>
+            </div>
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:book-open" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Information Architecture
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:figma" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Prototyping (Figma)
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:bot" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Agentic AI Orchestration
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:rectangle-goggles" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  VR & Spatial Interaction
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="item flex justify-start items-start flex-grow-0 flex-shrink-0 overflow-hidden gap-2 px-5 py-4 rounded-xl bg-gradient-to-b from-[#f7f8f0] to-[#f1f2f9] dark:from-gray-900 dark:to-gray-800 dark:text-neutral-200"
+            >
+              <div
+                class="flex justify-center items-center flex-grow-0 flex-shrink-0 gap-2"
+              >
+                <Icon name="lucide:palette" width={22} height={22} />
+                <div
+                  class="flex-grow-0 flex-shrink-0 text-base font-medium text-left text-neutral-700 dark:text-neutral-200"
+                >
+                  Semantic Design Tokens
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div
+          class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"
+        >
+        </div>
+        <section class="experience">
+          <h2
+            id="experience"
+            class="mt-12 mb-4 text-[28px] text-neutral-800 dark:text-neutral-200 font-brand"
+            data-aos="fade-up-xs"
+            data-aos-duration="500"
+            data-aos-once="true"
+          >
+            Experience
+          </h2>
+          <div
+            class="px-5 py-10"
+            data-aos="fade-up-xs"
+            data-aos-delay="100"
+            data-aos-duration="600"
+            data-aos-once="true"
+          >
+            {
+              experiences.map((experience, index) => {
+                return (
+                  <div
+                    class="pb-10 border-l border-dashed border-gray-200 last:border-l-0 dark:border-neutral-500"
+                    data-aos="fade-up-xs"
+                    data-aos-delay={200 + index * 100}
+                    data-aos-duration="500"
+                    data-aos-once="true"
+                  >
+                    <AboutExperience
+                      dates={experience.dates}
+                      role={experience.role}
+                      company={experience.company}
+                      description={experience.description}
+                      logo={experience.logo}
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
+        </section>
+        <div
+          class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-12 mb-12"
+        >
+        </div>
+        <section class="education">
+          <h2
+            id="education"
+            class="mt-12 mb-4 text-[28px] text-neutral-800 dark:text-neutral-200 font-brand"
+            data-aos="fade-up-xs"
+            data-aos-duration="500"
+            data-aos-once="true"
+          >
+            Education
+          </h2>
+          <div
+            class="px-5 py-10"
+            data-aos="fade-up-xs"
+            data-aos-delay="100"
+            data-aos-duration="600"
+            data-aos-once="true"
+          >
+            {
+              education.map((item, index) => {
+                return (
+                  <div
+                    class="pb-10 border-l border-dashed border-gray-200 last:border-l-0 dark:border-neutral-500"
+                    data-aos="fade-up-xs"
+                    data-aos-delay={200 + index * 100}
+                    data-aos-duration="500"
+                    data-aos-once="true"
+                  >
+                    <AboutExperience
+                      dates={item.dates}
+                      role={item.role}
+                      company={item.company}
+                      description={item.description}
+                      logo={item.logo}
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
+        </section>
+        <div
+          class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-12 mb-12"
+        >
+        </div>
+        <section class="awards">
+          <h2
+            id="awards"
+            class="mt-12 mb-4 text-[28px] text-neutral-800 dark:text-neutral-200 font-brand"
+            data-aos="fade-up-xs"
+            data-aos-duration="500"
+            data-aos-once="true"
+          >
+            Honors & Awards
+          </h2>
+          <div
+            class="px-5 py-10"
+            data-aos="fade-up-xs"
+            data-aos-delay="100"
+            data-aos-duration="600"
+            data-aos-once="true"
+          >
+            {
+              awards.map((item, index) => {
+                return (
+                  <div
+                    class="pb-10 border-l border-dashed border-gray-200 last:border-l-0 dark:border-neutral-500"
+                    data-aos="fade-up-xs"
+                    data-aos-delay={200 + index * 100}
+                    data-aos-duration="500"
+                    data-aos-once="true"
+                  >
+                    <AboutExperience
+                      dates={item.dates}
+                      role={item.role}
+                      company={item.company}
+                      description={item.description}
+                      logo={item.logo}
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
+        </section>
+        <div
+          class="w-full border-b-1 border-dashed border-b-gray-200 dark:border-b-neutral-700 mt-4 mb-8"
+        >
+        </div>
+        <section class="mb-8">
+          <h2
+            id="lets-connect"
+            class="mt-12 mb-4 text-[28px] text-neutral-800 dark:text-neutral-200 font-brand"
+            data-aos="fade-up-xs"
+            data-aos-duration="500"
+            data-aos-once="true"
+          >
+            Let's Connect
+          </h2>
+          <p
+            class="text-sm leading-6 text-neutral-700 dark:text-neutral-300"
+            data-aos="fade-up-xs"
+            data-aos-delay="100"
+            data-aos-duration="500"
+            data-aos-once="true"
+          >
+            If you want to stay up to date with my work be sure to <a
+              href="https://www.linkedin.com/in/manuel-hortelano-rodriguez"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-indigo-500 underline">connect with me on LinkedIn</a
+            >, or you can send me an <a
+              href="mailto:manuel.hortelano.rodriguez@gmail.com"
+              class="underline">email</a
+            > and I'll try to get back to you!
+          </p>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <style>
+    .toc-sticky-wrapper {
+      position: sticky;
+      top: 8rem;
+    }
+  </style>
+</Layout>

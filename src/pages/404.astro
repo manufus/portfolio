@@ -1,0 +1,33 @@
+---
+import PageHeader from "@/components/elements/PageHeader.astro";
+import Button from "@/components/ui/Button.astro";
+import { siteConfig } from "@/config/site";
+import PageLayout from "@/layouts/PageLayout.astro";
+
+const title = "404 Page Not Found | Manuel Hortelano - UX Engineer";
+const description =
+  "The page you requested was not found. Explore Manuel Hortelano's UX engineering and frontend architecture portfolio from the homepage.";
+---
+
+<PageLayout title={title} description={description}>
+  <section
+    class="site-container m-auto min-h-[50vh] flex flex-col items-center justify-center"
+  >
+    <PageHeader
+      title="404 - Page Not Found"
+    />
+    <p class="mt-3 text-sm leading-6 sm:mt-4 sm:leading-7 sm:text-base text-content-secondary text-center max-w-xl">
+      It looks like this page doesn't exist :(
+    </p>
+    <div class="mt-0 flex justify-center">
+      <Button
+        url={siteConfig.url}
+        target="_blank"
+        type="fill"
+        className="justify-center w-full sm:w-auto min-w-40 flex items-center gap-2"
+      >
+        Go Home
+      </Button>
+    </div>
+  </section>
+</PageLayout>

@@ -1,0 +1,17 @@
+---
+import LayoutMeta from "@/layouts/Meta.astro";
+import type { BaseLayoutProps } from "@/types/layout";
+
+export interface Props extends BaseLayoutProps {
+	keywords?: string | undefined;
+	url?: string;
+	twitterHandle?: string;
+}
+
+const props = Astro.props as Props;
+---
+
+<LayoutMeta {...props} />
+
+
+

@@ -1,0 +1,26 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { siteConfig } from "@/config/site.js";
+import type { BaseLayoutProps } from "@/types/layout";
+
+export interface Props extends BaseLayoutProps {
+  keywords?: string | undefined;
+}
+const {
+  title = siteConfig.meta.title,
+  description = siteConfig.meta.description,
+  keywords = siteConfig.meta.keywords,
+  image = siteConfig.meta.image,
+} = Astro.props as Props;
+---
+
+<Layout
+  title={title}
+  description={description}
+  keywords={keywords}
+  image={image}
+>
+  <main class="post-wrapper">
+      <slot />
+  </main>
+</Layout>

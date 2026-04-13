@@ -1,0 +1,75 @@
+{
+  "name": "manuel-portfolio",
+  "type": "module",
+  "version": "2.0.0",
+  "description": "A highly optimized, accessible, and scalable portfolio for an Interaction Designer & UX Engineer. Built with Astro, Preact Islands, and Storybook, featuring strict A11y compliance, a zero-JS baseline, and a custom Design System.",
+  "keywords": [
+    "astro",
+    "portfolio",
+    "ux-engineering",
+    "hcid",
+    "interaction-design",
+    "preact-islands",
+    "storybook",
+    "a11y",
+    "typescript",
+    "tailwindcss"
+  ],
+  "author": {
+    "name": "Manuel",
+    "email": "manuel.hortelano.rodriguez@gmail.com",
+    "url": "https://manuelhortelano.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manufus/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manufus/portfolio.git/issues"
+  },
+  "homepage": "https://github.com/manufus/portfolio.git",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run",
+    "check": "biome check --write .",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@biomejs/biome": "^2.4.10",
+    "@storybook/addon-a11y": "^8.6.18",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/preact-vite": "^8.6.18",
+    "@tailwindcss/typography": "^0.5.13",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/preact": "^3.2.4",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/aos": "^3.0.7",
+    "astro": "^6.1.5",
+    "jsdom": "^29.0.2",
+    "storybook": "^8.6.18",
+    "tailwindcss": "^4.1.14",
+    "typescript": "^5.4.5",
+    "vite": "^7.2.6",
+    "vitest": "^4.1.3"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/preact": "^5.1.1",
+    "@astrojs/sitemap": "^3.7.2",
+    "@iconify-json/lucide": "^1.2.101",
+    "@tailwindcss/vite": "^4.1.14",
+    "aos": "^2.3.4",
+    "astro-icon": "^1.1.5",
+    "lucide-preact": "^1.8.0",
+    "motion": "^12.23.24",
+    "preact": "^10.29.1",
+    "sharp": "^0.34.4"
+  }
+}

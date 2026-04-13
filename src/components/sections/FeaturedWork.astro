@@ -1,0 +1,132 @@
+---
+import projects from "@/collections/featuredwork.json";
+import WorkCard from "@/components/cards/WorkCard.astro";
+import SectionHeader from "@/components/elements/SectionHeader.astro";
+import Button from "@/components/ui/Button.astro";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  showAll?: boolean;
+  limit?: number;
+}
+
+interface Project {
+  name: string;
+  description?: string;
+  image: string;
+  url: string;
+  tags?: string[];
+  isShow?: boolean;
+}
+
+const {
+  title = "Key Projects",
+  description = "A selection of projects I've worked on, ranging from mobile applications to physical products.",
+  showAll = false,
+  limit,
+} = Astro.props as Props;
+
+let allProjects = projects as Project[];
+
+if (limit !== undefined) {
+  allProjects = projects.slice(0, limit) as Project[];
+} else if (!showAll) {
+  allProjects = projects.slice(0, 6) as Project[];
+}
+
+const featuredProjects = allProjects.slice(0, 3);
+
+const gridProjects = allProjects.slice(3);
+
+const shouldShowViewAll =
+  limit !== undefined ? limit < projects.length : !showAll && projects.length > 6;
+---
+
+<section class="py-16 md:py-16 md:pb-12">
+  <div class="site-container space-y-8 md:space-y-8">
+    <SectionHeader title={title} description={description} />
+
+    {
+      featuredProjects.length > 0 && (
+        <div
+          class="space-y-8 md:space-y-10"
+          data-aos-delay="750"
+          data-aos="fade-up-sm"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
+          {featuredProjects
+            .filter((project) => project.isShow !== false)
+            .map((project, index) => (
+              <WorkCard
+                name={project.name}
+                description={project.description}
+                image={project.image}
+                url={project.url}
+                tags={project.tags}
+                isShow={project.isShow}
+                layout="featured"
+                index={index}
+              />
+            ))}
+        </div>
+      )
+    }
+
+    {
+      gridProjects.length > 0 && (
+        <div
+          class="grid gap-6 md:gap-8 md:grid-cols-2"
+          data-aos-delay="150"
+          data-aos="fade-up-sm"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
+          {gridProjects
+            .filter((project) => project.isShow !== false)
+            .map((project, index) => (
+              <WorkCard
+                name={project.name}
+                description={project.description}
+                image={project.image}
+                url={project.url}
+                tags={project.tags}
+                isShow={project.isShow}
+                layout="grid"
+                index={index}
+              />
+            ))}
+        </div>
+      )
+    }
+
+    {
+      shouldShowViewAll && (
+        <div class="flex items-center justify-center pt-8">
+          <Button
+            url="/projects"
+            type="fill"
+            className="justify-center w-full sm:w-auto min-w-40 flex items-center gap-2"
+          >
+            See all projects
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </Button>
+        </div>
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,65 @@
+import { Meta, Typeset } from "@storybook/blocks";
+
+<Meta title="Design System/Documentation/Typography" />
+
+# Typography System
+
+A carefully curated typography system built on **Instrument Serif** for headlines and **Inter** for body text. Designed for clarity, legibility, and a premium aesthetic across all portfolio contexts.
+
+## Font Families
+
+- **Brand** (Headlines, Logo): *Instrument Serif* — Elegant, distinctive serif for primary messaging
+- **Sans** (UI, Body): *Inter* — Modern, highly legible sans-serif for content and interface text
+- **Body** (Extended Content): *Inter* — Consistent with sans for article text and long-form content
+
+## Type Scale
+
+Our semantic scale ensures visual hierarchy and responsive readability from XS (captions) to Display (hero text).
+
+<Typeset
+  fontSizes={[
+    Number(14),       // xs
+    Number(16),       // sm
+    Number(18),       // base
+    Number(20),       // lg
+    Number(24),       // xl
+    Number(30),       // 2xl
+    Number(36),       // 3xl
+    Number(48),       // 4xl
+    Number(60),       // 5xl
+    Number(72),       // 6xl
+  ]}
+  fontFamily={'"Instrument Serif", ui-sans-serif, system-ui, sans-serif'}
+  fontWeights={{
+    "Regular (400)": 400,
+    "Semibold (600)": 600,
+    "Bold (700)": 700,
+  }}
+  sampleText="Designing ethical, accessible, and performant user experiences."
+/>
+
+## Sizing Reference
+
+| Token | Size | Use Case |
+|-------|------|----------|
+| `text-xs` | 14px | Captions, hints, metadata |
+| `text-sm` | 16px | Labels, secondary content |
+| `text-base` | 18px | Body text, default |
+| `text-lg` | 20px | Emphasis, subheadings |
+| `text-xl` | 24px | Section headings |
+| `text-2xl` | 30px | Page headings |
+| `text-3xl` | 36px | Large headings |
+| `text-4xl` | 48px | Hero text |
+| `text-5xl` | 60px | Display (featured) |
+| `text-6xl` | 72px | Display (hero) |
+
+## Best Practices
+
+- **Primary Content:** Use `font-sans` for body text and UI. Inter's metrics ensure excellent legibility at all sizes.
+- **Headlines & Branding:** Use `font-brand` (Instrument Serif) for h1, h2, featured quotes, and logo contexts to establish visual identity.
+- **Responsive:** Font sizes scale appropriately across breakpoints (sm, md, lg, xl). Never reduce below `text-xs` for accessibility.
+- **Weight:** Default to 400 (Regular). Use 600 for emphasis, 700 for strong statements. Avoid unnecessary boldness.
+
+---
+
+*Built with a portfolio-first mentality: clarity, elegance, and respect for readers' time.*

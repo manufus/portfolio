@@ -1,0 +1,97 @@
+---
+export interface Props {
+  url: string; // Button link URL
+  type?: "solid" | "fill" | "disabled"; // Button type, optional, default is "solid"
+  className?: string; // Custom CSS classes
+  target?: "_blank" | "_self" | "_parent" | "_top"; // Link target, default is "_self"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"; // Button size, optional, default is "md"
+}
+
+const { url, type = "solid", className = "", target = "_self", size = "md" } = Astro.props as Props;
+
+// Define padding and font size for different button sizes
+const sizeClasses = {
+  xs: {
+    padding: "px-3 py-1.5",
+    fontSize: "text-xs",
+    borderRadius: "rounded-lg",
+  },
+  sm: {
+    padding: "px-4 py-2",
+    fontSize: "text-sm",
+    borderRadius: "rounded-lg",
+  },
+  md: {
+    padding: "px-5 py-[12px]",
+    fontSize: "text-base",
+    borderRadius: "rounded-xl",
+  },
+  lg: {
+    padding: "px-6 py-3.5",
+    fontSize: "text-lg",
+    borderRadius: "rounded-xl",
+  },
+  xl: {
+    padding: "px-8 py-4",
+    fontSize: "text-xl",
+    borderRadius: "rounded-2xl",
+  },
+};
+
+// Get classes for current size
+const currentSizeClasses = sizeClasses[size];
+---
+
+{type === "disabled" ? (
+  <button
+    type="button"
+    disabled
+    class={`${
+      `flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1.5 ${currentSizeClasses.padding} rounded-xl bg-surface-subtle border border-border-subtle max-w-60 cursor-not-allowed opacity-70`
+    } ${className}`}
+    aria-disabled="true"
+  >
+    <div
+      class={`flex gap-1 items-center justify-center ${currentSizeClasses.fontSize} font-medium text-center text-content-tertiary`}
+    >
+      <slot />
+    </div>
+  </button>
+) : (
+  <a
+    href={url}
+    target={target}
+    rel={target === "_blank" ? "noopener noreferrer" : undefined}
+    class={`${
+    type === "solid"
+      ? `flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1.5 ${currentSizeClasses.padding} rounded-xl bg-surface-elevated border border-border-subtle max-w-60 transition duration-400 ease-in-out hover:translate-y-[-2px] hover:shadow-elevated`
+      : type === "fill"
+        ? `flex justify-center items-center flex-grow-0 flex-shrink-0 relative gap-1.5 ${currentSizeClasses.padding} rounded-xl bg-action-primary border border-border-subtle shadow-soft max-w-60 transition duration-400 ease-in-out hover:bg-action-primary-hover hover:translate-y-[-2px] hover:shadow-elevated`
+        : `inline-flex w-auto ${currentSizeClasses.padding} mt-5 ${currentSizeClasses.fontSize} font-medium duration-400 ease-out border rounded-full bg-brand text-brand-on border-border-strong hover:border-border-strong hover:bg-surface-canvas hover:text-content-primary max-w-60`
+  } ${className}`}
+  >
+    {type === "solid" ? (
+      <div
+        class={`flex gap-1 items-center justify-center text-sm font-medium text-center text-content-secondary`}
+      >
+        <slot />
+      </div>
+    ) : type === "fill" ? (
+      <span
+        class={`flex gap-1 items-center justify-center text-sm font-medium text-center text-brand-on`}
+      >
+        <slot />
+      </span>
+    ) : type === "disabled" ? (
+      <div
+        class={`flex gap-1 items-center justify-center ${currentSizeClasses.fontSize} font-medium text-center text-content-tertiary`}
+      >
+        <slot />
+      </div>
+    ) : (
+      <span class={currentSizeClasses.fontSize}>
+        <slot />
+      </span>
+    )}
+  </a>
+)}

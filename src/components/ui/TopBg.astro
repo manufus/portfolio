@@ -1,0 +1,22 @@
+
+  
+  {/* 
+    Subtle grid background pattern for top section
+    - Fill/Stroke: black/70 in light mode, white/70 in dark mode (opacity values)
+    - Tip: Change /x to adjust opacity (e.g., /50, /30, /10 for more/less visible)
+    - Mask: Gradient that fades from opaque top to transparent bottom
+    - z-2 & opacity-[.30]: Overall subtle layering to avoid overwhelming content
+  */}
+  <svg 
+    aria-hidden="true" 
+    class="pointer-events-none absolute top-[-20%] inset-0 size-full h-[50%] fill-black/70 stroke-black/70 dark:fill-white/70 dark:stroke-white/70 mask-[linear-gradient(to_bottom,#ffffffad,transparent)] z-2 opacity-[.30]"
+  >
+    {/* Grid pattern definition: 12x12 diagonal line grid */}
+    <defs>
+      <pattern id=":S1:" width="12" height="12" patternUnits="userSpaceOnUse" x="-1" y="-1">
+        <path d="M.5 12V.5H12" fill="none" stroke-dasharray="0"></path>
+      </pattern>
+    </defs>
+    {/* Fill entire SVG with the grid pattern */}
+    <rect width="100%" height="100%" stroke-width="0" fill="url(#:S1:)"></rect>
+  </svg>

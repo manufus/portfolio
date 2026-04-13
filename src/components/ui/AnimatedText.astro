@@ -1,0 +1,95 @@
+---
+export interface Props {
+  class?: string;
+  content: string | Promise<string>;
+  duration?: number;
+  delay?: number;
+  stagger?: number;
+}
+
+const {
+  class: className = "",
+  content,
+  duration = 0.6,
+  delay = 0,
+  stagger = 0.1,
+  ...rest
+} = Astro.props as Props;
+
+const resolvedContent = await Promise.resolve(content);
+const words = resolvedContent.split(" "); // Split text into words
+const processedContent = words
+  .map(
+    (word) =>
+      `<span class="word" style="display: inline-block; will-change: transform; transform: translateY(10px); opacity: 0; filter: blur(10px);">${word}</span>`,
+  )
+  .join(" ");
+---
+
+<div
+  class:list={["animated-text", className]}
+  set:html={processedContent}
+  data-duration={duration}
+  data-delay={delay}
+  data-stagger={stagger}
+  {...rest}
+/>
+
+<script>
+  import { animate, stagger, inView } from "motion";
+
+  const animatedTexts = document.querySelectorAll<HTMLElement>(
+    ".animated-text:not([data-animated-init])",
+  );
+
+  if (animatedTexts.length > 0) {
+    animatedTexts.forEach((animatedText) => {
+      animatedText.dataset.animatedInit = "true";
+      const duration = parseFloat(
+        animatedText.getAttribute("data-duration") as string,
+      );
+      const delay = parseFloat(animatedText.getAttribute("data-delay") as string);
+      const dataStagger = parseFloat(
+        animatedText.getAttribute("data-stagger") as string,
+      );
+
+      // Get all words
+      const words = animatedText.querySelectorAll<HTMLElement>(".word");
+
+      // Set initial state (text remains visible with slight displacement and blur)
+      words.forEach((word) => {
+        word.style.opacity = "0";
+        word.style.transform = "translateY(10px)";
+        word.style.filter = "blur(10px)";
+      });
+
+      inView(animatedText, (element) => {
+        const words = element.querySelectorAll<HTMLElement>(".word");
+        const animationTarget = {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        } as unknown as Parameters<typeof animate>[1];
+        animate(
+          words,
+          animationTarget,
+          {
+            duration: duration,
+            delay: stagger(dataStagger, { startDelay: delay }), // Fixed here
+            ease: "easeOut",
+          },
+        );
+
+        // This will fire when the element leaves the viewport
+        return () => {
+          // animation.stop();
+          // animate(element.querySelectorAll(".word"), {
+          //   opacity: 0,
+          //   y: 20,
+          //   filter: "blur(10px)",
+          // });
+        };
+      });
+    });
+  }
+</script>

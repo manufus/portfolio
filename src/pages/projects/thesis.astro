@@ -1,0 +1,247 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import SeparatorLine from "@/components/elements/SeparatorLine.astro";
+import ActionBar from "@/components/widgets/ActionBar.astro";
+import PostLayout from "@/layouts/PostLayout.astro";
+
+const allImagesModules = import.meta.glob("../../assets/projects/thesis/*.{jpg,png,webp}", {
+  eager: true,
+});
+const allImages = Object.values(allImagesModules) as Array<{
+  default: ImageMetadata;
+}>;
+---
+
+<PostLayout
+  title="HCID Thesis: CMMS UX Redesign | Manuel Hortelano - UX Engineer"
+  description="HCID thesis for Sisteplant: CMMS redesign with interviews, Dovetail coding, and usability tests that reached SUS 72 and 100% critical task completion."
+  keywords="Design Systems, HCID Master's Thesis, UX Research, Industrial B2B UX, Usability Optimization"
+  image="/og/projects-thesis.jpg"
+>
+  <div class="work article">
+    <main class="work-wrapper">
+      <PageHeader
+        title="HCID Industrial Thesis: Design Systems for Usability Optimization"
+        tags={["UX Research", "Design Systems", "UCD"]}
+        className="mb-6 md:mb-8"
+      />
+    </main>
+    <div class="site-container m-auto">
+      <SeparatorLine />
+    </div>
+    <section class="article-content">
+      <div class="site-container mx-auto my-8 md:my-16">
+        <div class="mb-12">
+          <h3>Overview: Digital Transformation in Maintenance</h3>
+          <p>
+            This project represents my <strong>30 ECTS Master's Thesis</strong> for
+            the HCID (Human-Computer Interaction and Design) Double Degree program.
+            Collaborating with an industrial partner, <strong>Sisteplant</strong
+            >, I executed the end-to-end redesign of the mobile module for their
+            Computerized Maintenance Management System (CMMS). The goal was to
+            improve the User Experience (UX) by providing an user-centred
+            digital tool that empowers field technicians in complex industrial
+            environments.
+          </p>
+
+          {
+            allImages[0] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[0].default}
+                    alt="Thesis process overview"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Thesis process overview
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>The Challenge: Information Obesity</h3>
+          <p>
+            Maintenance operators work in high-pressure environments constantly
+            interacting physically with different elements. The previous
+            desktop-centric system resulted in:
+          </p>
+          <ul class="list-disc space-y-2 mt-4 text-base">
+            <li>
+              <strong>High Cognitive Load:</strong> Small screens cluttered with irrelevant
+              administrative data.
+            </li>
+            <li>
+              <strong>Inefficiency:</strong> Critical tasks buried under multiple
+              navigation layers.
+            </li>
+            <li>
+              <strong>Low Adoption:</strong> Steep learning curve for non-digital
+              native technicians.
+            </li>
+          </ul>
+          <p class="mt-4">
+            The challenge was to transform complex technical data into a <strong
+              >Task-Oriented UI</strong
+            > that presents exactly what the technician needs, when they need it.
+          </p>
+        </div>
+
+        <div class="mb-12">
+          <h3>Methodology: Rigorous User-Centered Design</h3>
+          <p>
+            I applied a structured UCD process to ensure the solution was
+            grounded in real user needs:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+            <li>
+              <strong>Discovery:</strong> Conducted semi-structured interviews with
+              stakeholders and end-users to understand the "Field Technician" persona.
+            </li>
+            <li>
+              <strong>Analysis:</strong> Used <em>Dovetail</em> for inductive/deductive
+              coding to identify critical pain points in current workflows.
+            </li>
+            <li>
+              <strong>Definition:</strong> Extracted the most critical tasks and prioritized
+              them for the redesign.
+            </li>
+          </ul>
+
+          {
+            allImages[1] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[1].default}
+                    alt="Coding of the semi-structured interviews in Dovetail"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Coding of the semi-structured interviews in Dovetail
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>Solution: Adapting Carbon Design System</h3>
+          <p>
+            To ensure scalability and consistency across the system, I adapted
+            the <strong>Carbon Native Mobile</strong> design system focusing on three
+            pillars:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+            <li>
+              <strong>Progressive Disclosure:</strong> Utilizing accordion patterns
+              to hide secondary information until needed.
+            </li>
+            <li>
+              <strong>Actionability:</strong> Floating Action Buttons (FAB) for primary
+              tasks like "Create Request" or "Report Failure".
+            </li>
+            <li>
+              <strong>Consistency:</strong> Providing with the same behaviour and
+              unifying interactions to reduce mental effort.
+            </li>
+          </ul>
+        </div>
+
+        {
+          allImages[2] && (
+            <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+              <picture class="picture rounded-2xl overflow-hidden block">
+                <Image
+                  src={allImages[2].default}
+                  alt="High Fidelity prototype in Figma"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  quality={100}
+                />
+              </picture>
+              <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                High Fidelity prototype in Figma
+              </figcaption>
+            </figure>
+          )
+        }
+
+        <div class="mb-12">
+          <h3>Validation & Impact</h3>
+          <p>
+            The prototype was validated through on-site <strong
+              >usability testing</strong
+            > with maintenance professionals, resulting in:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-4xl font-bold text-primary mb-2">72</h4>
+              <p class="font-medium">SUS Score</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                Rated as "Good Usability" (Grade B), ranking in the <strong
+                  >75th percentile</strong
+                > of evaluated systems.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-4xl font-bold text-primary mb-2">100%</h4>
+              <p class="font-medium">Completion Rate</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                All participants successfully completed the critical "Work Order
+                Execution" task without critical errors.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {
+          allImages[3] && (
+            <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+              <picture class="picture rounded-2xl overflow-hidden block">
+                <Image
+                  src={allImages[3].default}
+                  alt="Interpretation of the SUS Score"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  quality={100}
+                />
+              </picture>
+              <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                Interpretation of the SUS Score. Image Source:
+                <a href="https://www.uxables.com/investigacion-ux/medir-con-el-sistema-de-escala-de-usabilidad-sus/">
+                  UXABLES
+                </a>
+              </figcaption>
+            </figure>
+          )
+        }
+      </div>
+    </section>
+  </div>
+</PostLayout>
+
+<ActionBar
+  tags={[]}
+  visitLabel="See Thesis"
+  url="https://urn.fi/URN:NBN:fi:aalto-202510208321"
+  figma="https://www.figma.com/proto/ZAtd9QoyQshJb1s22aeh7u/Prisma-Mobile?node-id=298-15194&viewport=154%2C321%2C0.1&t=u5ZcQIFabVyS1XYl-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=298%3A15194"
+/>

@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "name": "LinkedIn",
+    "username": "manuel-hortelano-rodriguez",
+    "image": "/assets/social/social-linkedin.jpg",
+    "url": "https://www.linkedin.com/in/manuel-hortelano-rodriguez/"
+  },
+
+  {
+    "id": 2,
+    "name": "Github",
+    "username": "manufus",
+    "image": "/assets/social/social-github.jpg",
+    "url": "https://github.com/manufus"
+  },
+
+  {
+    "id": 3,
+    "name": "Email",
+    "username": "manuel.hortelano.rodriguez",
+    "image": "/assets/social/social-email.jpg",
+    "url": "mailto:manuel.hortelano.rodriguez@gmail.com"
+  }
+]

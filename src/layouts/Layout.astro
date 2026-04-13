@@ -1,0 +1,72 @@
+---
+import Analytics from "@/components/widgets/Analytics.astro";
+import CookieConsent from "@/components/ds/CookieConsent/CookieConsent";
+import Toast from "@/components/ds/Toast/Toast";
+import Footer from "@/components/sections/Footer.astro";
+import Header from "@/components/sections/Header.astro";
+import TopBg from "@/components/ui/TopBg.astro";
+import { siteConfig } from "@/config/site.js";
+import Meta from "./Meta.astro";
+import type { BaseLayoutProps } from "@/types/layout";
+export interface Props extends BaseLayoutProps {
+  keywords?: string | undefined;
+}
+
+const {
+  title = siteConfig.meta.title,
+  description = siteConfig.meta.description,
+  keywords = siteConfig.meta.keywords,
+  image = siteConfig.meta.image,
+} = Astro.props as Props;
+
+import "../styles/global.css";
+import "aos/dist/aos.css";
+import "../styles/aos-custom.css";
+import "../styles/article.css";
+import "../styles/article-enhancements.css";
+---
+
+<html lang="en">
+  <head>
+    <Meta
+      title={title}
+      description={description}
+      keywords={keywords}
+      image={image}
+    />
+    <Analytics />
+    <!-- Render-blocking FOUC prevention -->
+    <script is:inline>
+      (function() {
+        const storageKey = 'dark_mode';
+        const darkClass = 'dark';
+        
+        // 1. Check localStorage first
+        const stored = localStorage.getItem(storageKey);
+        if (stored === 'true') {
+          document.documentElement.classList.add(darkClass);
+          return;
+        }
+        if (stored === 'false') {
+          document.documentElement.classList.remove(darkClass);
+          return;
+        }
+        
+        // 2. Fall back to prefers-color-scheme
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add(darkClass);
+        }
+      })();
+    </script>
+
+  </head>
+  <body class="antialiased bg-bg-primary dark:bg-bg-primary-dark max-w-full overflow-x-hidden">
+    <TopBg />
+    <Header />
+    <slot />
+    <Footer />
+    <CookieConsent client:idle />
+    <Toast client:idle />
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

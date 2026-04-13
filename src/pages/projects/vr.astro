@@ -1,0 +1,315 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import SeparatorLine from "@/components/elements/SeparatorLine.astro";
+import ActionBar from "@/components/widgets/ActionBar.astro";
+import PostLayout from "@/layouts/PostLayout.astro";
+
+const allImagesModules = import.meta.glob("../../assets/projects/vr/*.{jpg,png,webp}", {
+  eager: true,
+});
+const allImages = Object.values(allImagesModules) as Array<{
+  default: ImageMetadata;
+}>;
+---
+
+<PostLayout
+  title="VR Interaction Design | Manuel Hortelano - UX Engineer"
+  description="VR UX redesign for automotive training: contextual inquiry and operator testing replaced wrist-watch UI with touch interaction, driving 94% positive feedback."
+  keywords="Virtual Reality, Interaction Design, Immersive UX, Ergonomics, Digital Transformation"
+  image="/og/projects-vr.jpg"
+>
+  <div class="work article">
+    <main class="work-wrapper">
+      <PageHeader
+        title="VR Interaction Design: Immersive UX"
+        tags={["Virtual Reality", "Interaction Design", "Industry 4.0"]}
+        className="mb-6 md:mb-8"
+      />
+    </main>
+    <div class="site-container m-auto">
+      <SeparatorLine />
+    </div>
+    <section class="article-content">
+      <div class="site-container mx-auto my-8 md:my-16">
+        <div class="mb-12">
+          <h3>Overview: The Industrial Metaverse</h3>
+          <p>
+            During my job at a <strong>Global Automotive OEM</strong>, I served
+            as the sole Designer responsible for the UX strategy for their
+            immersive training ecosystem. The main goal was to use <strong
+              >Virtual Reality (VR)</strong
+            > to train assembly line operators on unreleased vehicle models using
+            simulations. This approach advanced the training timeline by months, allowing
+            operators to learn assembly processes before the first physical prototype
+            was built, drastically reducing time-to-market.
+          </p>
+
+          {
+            allImages[0] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[0].default}
+                    alt="Diagram of Industrial Evolution from Industry 1.0 to Industrial Metaverse"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Industrial Metaverse current paradigm. Image Source:
+                  <a href="https://www.adlittle.com/en/insights/report/industrial-metaverse">
+                    Arthur D. Little
+                  </a>
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>The Challenge: The Digital Gap</h3>
+          <p>
+            Implementing VR in a factory setting presented a unique friction
+            point: the target users were specialized operators, often with <strong
+              >low digital affinity</strong
+            > and limited gaming experience. The main area to improve was usability,
+            since the existing system used resulted in:
+          </p>
+          <ul class="list-disc space-y-2 mt-4 text-base">
+            <li>
+              <strong>Cognitive Overload:</strong> Complex inputs led to frustration
+              where the existing gaming interaction models failed to align with the
+              operators' industrial mental models.
+            </li>
+            <li>
+              <strong>Physical Strain:</strong> The existing interaction method often
+              required operators to hold their arms up for extended periods to read
+              instructions, leading to fatigue.
+            </li>
+            <li>
+              <strong>Perception:</strong> The exisiting design was perceived as unpleasant,
+              which, combined with poor interaction ergonomics, resulted in low perceived
+              quality.
+            </li>
+          </ul>
+        </div>
+
+        <div class="mb-12">
+          <h3>Methodology: Contextual Research in the Immersive Environment</h3>
+          <p>
+            To build a tool that operators would actually adopt, I applied
+            rigorous UX methodologies adapted for 3D environments, grounding the
+            redesign in observed operator behavior and ergonomic realities:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+            <li>
+              <strong>Contextual Inquiry:</strong> Conducted ethnographic studies
+              by observing operator behavior during VR training sessions. This allowed
+              me to understand the ergonomic constrains and mental models as they
+              interacted with the digital prototypes.
+            </li>
+            <li>
+              <strong>Prototyping Strategy:</strong> Moved from paper sketches to
+              Adobe XD for creating spatial mockups and defining the UI logic/flow.
+              This was essential for visualizing the layout and testing UI placement
+              and readability in 2D before being implemented in the VR engine.
+            </li>
+            <li>
+              <strong>Dev Collaboration:</strong> Worked daily with Game Developers
+              (Unity) to ensure design feasibility and accurate implementation of
+              the interaction logic.
+            </li>
+          </ul>
+        </div>
+
+        <div class="mb-12">
+          <h3>
+            Solution: Spatial UX Redesign and Touch Environment Interaction
+          </h3>
+          <p>
+            The core of the solution was the redesign of the fundamental
+            interaction model to eliminate physical strain and cognitive
+            friction while improving visual aesthetics using:
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+            <li>
+              <strong>UI Design Simplification:</strong> The design prioritized a
+              Task-Oriented visual approach that maintained corporate seriousness
+              while eliminating a "gaming" aesthetic. This involved removing superfluous
+              elements, utilizing a simple and clear font, and enabling a larger interactable
+              area to ensure better precision and overall usability in the virtual
+              environment.
+            </li>
+            <li>
+              <strong>Touch Environment Interaction:</strong> We replaced the demanding
+              "Wrist Watch Interaction" with a new system where the information poster
+              became a static element of the environment. This allows the user to
+              simply reach out to interact, mirroring real-world behaviour and eliminating
+              the need to hold their arm up for extended periods to read assembly
+              instructions.
+            </li>
+            <li>
+              <strong>Development Guidance (Unity):</strong> Created clear development
+              guidelines for Unity developers to ensure accurate and consistent implementation
+              of the new interaction and design across the system, unifiying styles.
+            </li>
+            <li>
+              <strong>New Movement System (Teleportation):</strong> A new in-game
+              movement system (teleportation) was designed and introduced to mitigate
+              motion sickness and improve overall user comfort within the virtual
+              environment.
+            </li>
+          </ul>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-12 mb-12">
+          {/* Image 1: Interaction Method */}
+          {
+            allImages[1] && (
+              <figure>
+                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                  <Image
+                    src={allImages[1].default}
+                    alt="Moving from Wrist Watch to Touch Environment Interaction"
+                    class="w-full h-auto object-contain "
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  UI Simplification: Removing superfluous elements
+                </figcaption>
+              </figure>
+            )
+          }
+
+          {/* Image 2: UI Change */}
+          {
+            allImages[2] && (
+              <figure>
+                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                  <Image
+                    src={allImages[2].default}
+                    alt="UI Simplification and Larger Interactable Area"
+                    class="w-full h-auto object-contain "
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Evolution: From "Wrist Watch" to "Touch Environment"
+                </figcaption>
+              </figure>
+            )
+          }
+
+          {/* Image 3: Unity Guide */}
+          {
+            allImages[3] && (
+              <figure>
+                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                  <Image
+                    src={allImages[3].default}
+                    alt="Development documentation for Unity implementation"
+                    class="w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Standardized UI Guidelines for Unity Developers
+                </figcaption>
+              </figure>
+            )
+          }
+
+          {/* Image 4: Teleport Guide */}
+          {
+            allImages[4] && (
+              <figure>
+                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                  <Image
+                    src={allImages[4].default}
+                    alt="In-game movement mechanics design (Teleportation)"
+                    class="w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  In-game movement mechanics design (Teleportation)
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>Validation & Impact</h3>
+          <p>
+            The new interaction system was validated through rigorous testing
+            sessions. The new interface significantly reduced the learning curve
+            for new operators as well as being welcomed by existing users.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-4xl font-bold text-primary mb-2">94%</h4>
+              <p class="font-medium">Positive Feedback</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                Combining "Excellent" (67%) and "Very Good" (27%) ratings
+                regarding the new interaction system and button design.
+              </p>
+            </div>
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-4xl font-bold text-primary mb-2">~100</h4>
+              <p class="font-medium">Operators Surveyed</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                Validation data collected from factory employees across
+                different shifts and experience levels.
+              </p>
+            </div>
+          </div>
+
+          {
+            allImages[5] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[5].default}
+                    alt="Survey results showing 94% positive feedback"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  User feedback results: 67% Excellent, 27% Very Good
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+</PostLayout>
+
+<ActionBar
+  tags={[]}
+  visitLabel="View Demo"
+  url="https://youtu.be/cWiwj5zPlao"
+  secondaryUrl="https://www.fdiformacion.com/elevando-la-seguridad-en-el-trabajo-con-formacion-inmersiva-en-realidad-virtual/"
+/>

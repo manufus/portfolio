@@ -1,0 +1,40 @@
+---
+import AnimatedText from "@/components/ui/AnimatedText.astro";
+export interface Props {
+  title: string;
+  tags?: string[];
+  className?: string;
+  as?: string;
+}
+
+const {
+  title,
+  tags = [],
+  className = "",
+  as,
+} = Astro.props as Props;
+
+const Element = (as || "h1") as any;
+---
+
+<div
+  class={`relative z-20 w-full mx-auto mt-16 mb-16 text-center ${className}`}
+>
+  <Element
+    class="text-4xl font-brand text-center tracking-normal text-content-primary sm:text-4xl lg:text-5xl"
+  >
+    {title && <AnimatedText delay={0.2} stagger={0.08} content={title} />}
+  </Element>
+
+  {
+    tags && tags.length > 0 && (
+      <div class="flex flex-wrap justify-center gap-2 mt-8 mb-2 ">
+        {tags.map((tag) => (
+          <span class="inline-flex items-center rounded-full bg-brand/10 px-2.5 py-0.5 text-sm font-medium text-brand border border-border-subtle">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )
+  }
+</div>

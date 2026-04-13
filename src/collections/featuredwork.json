@@ -1,0 +1,26 @@
+[
+  {
+    "name": "HCID Industrial Thesis: Design Systems for Usability Optimization",
+    "description": "End-to-end UCD redesign of a CMMS mobile application in a industrial research environment (30 ECTS Master's Thesis). Developed through user research, Figma prototyping, and usability testing, achieving 'Good Usability' (SUS score 72).",
+    "image": "/assets/projects/thesis.jpg",
+    "url": "/projects/thesis",
+    "tags": ["UX Research", "Design Systems", "UCD"],
+    "isShow": true
+  },
+  {
+    "name": "VR Interaction Design: Immersive UX",
+    "description": "Redesign of Virtual Reality user interfaces for vehicle assembly line training. Focused on reducing cognitive load and improving usability by creating intuitive, integrated interaction systems, resulting in a 94% positive user survey feedback.",
+    "image": "/assets/projects/vr.jpg",
+    "url": "/projects/vr",
+    "tags": ["Virtual Reality", "Interaction Design", "Industry 4.0"],
+    "isShow": true
+  },
+  {
+    "name": "Industrial Design Engineering: Bluetooth Speaker Prototype",
+    "description": "Physical product development project: from acoustic research and conceptual sketching to an early foam model to validate ergonomics, 3D modeling, and final physical prototyping and studio photography.",
+    "image": "/assets/projects/speaker.jpg",
+    "url": "/projects/speaker",
+    "tags": ["Industrial Design", "3D Modeling", "Prototyping"],
+    "isShow": true
+  }
+]

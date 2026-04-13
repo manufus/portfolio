@@ -1,0 +1,95 @@
+---
+/**
+ * Analytics.astro
+ * * Manages consent-gated analytics injection for GA4 and ContentSquare (formerly Hotjar).
+ * Listens for the 'cookie-consent:decision' CustomEvent from CookieConsent.tsx
+ * and conditionally injects tracking scripts only after user consent.
+ * * This component ensures:
+ * - Zero tracking scripts loaded on initial page load (perfect Lighthouse score)
+ * - Scripts injected dynamically only after explicit user consent
+ * - Respects previously cached consent choice via localStorage
+ */
+
+import { COOKIE_CONSENT_STORAGE_KEY } from "@/components/ds/CookieConsent/constants";
+
+// Analytics IDs
+const GA4_ID = import.meta.env.PUBLIC_GA4_ID;
+const CS_ID = import.meta.env.PUBLIC_CS_ID;
+---
+
+<script is:inline define:vars={{ GA4_ID, CS_ID, COOKIE_CONSENT_STORAGE_KEY }}>
+  {
+    const storageKey = COOKIE_CONSENT_STORAGE_KEY;
+
+    // Helper function to inject GA4 script
+    function injectGA4(gaId) {
+      if (!gaId) return;
+
+      // Prevent duplicate injection
+      if (document.querySelector('script[data-analytics="ga4"]')) {
+        return;
+      }
+
+      // Create and append the GA4 script
+      const script = document.createElement("script");
+      script.async = true;
+      script.setAttribute("data-analytics", "ga4");
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+      document.head.appendChild(script);
+
+      // Initialize gtag
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", gaId);
+    }
+
+    // Helper function to inject ContentSquare
+    function injectContentSquare(csId) {
+      if (!csId) return;
+
+      // Prevent duplicate injection
+      if (document.querySelector('script[data-analytics="contentsquare"]')) {
+        return;
+      }
+
+      // Create and append the ContentSquare script
+      const script = document.createElement("script");
+      script.async = true;
+      script.setAttribute("data-analytics", "contentsquare");
+      script.src = `https://t.contentsquare.net/uxa/${csId}.js`;
+      document.head.appendChild(script);
+    }
+
+    function injectAnalytics() {
+      injectGA4(GA4_ID);
+      injectContentSquare(CS_ID);
+    }
+
+    // Listen for cookie consent decision event
+    window.addEventListener("cookie-consent:decision", (event) => {
+      const choice = event.detail?.choice;
+
+      if (choice === "accepted") {
+        injectAnalytics();
+      }
+      // If "rejected", do nothing (no scripts injected)
+    });
+
+    // On mount, check if user previously accepted
+    if (typeof window !== "undefined") {
+      try {
+        const cachedDecision = localStorage.getItem(storageKey);
+        if (cachedDecision === "accepted") {
+          injectAnalytics();
+        }
+      } catch (e) {
+        // Fallback for strict browser privacy settings
+        console.warn("Analytics: localStorage access denied");
+      }
+    }
+  }
+</script>

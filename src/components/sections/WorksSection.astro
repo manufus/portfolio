@@ -1,0 +1,48 @@
+---
+import works from "@/collections/works.json";
+import WorkCard from "@/components/cards/WorkCard.astro";
+
+export interface Props {
+  limit?: number; // Limit the number of visible projects
+}
+
+interface Work {
+  name: string;
+  description?: string;
+  image: string;
+  url: string;
+  tags?: string[];
+  isShow?: boolean;
+}
+
+const { limit } = Astro.props as Props;
+
+// Get the project list
+let allWorks = works as Work[];
+
+// If a limit is specified, apply it
+if (limit !== undefined) {
+  allWorks = works.slice(0, limit) as Work[];
+}
+---
+
+<section class="py-8 md:py-8">
+  <div class="space-y-8 md:space-y-10">
+    <!-- Display all projects full width -->
+    {allWorks
+      .filter(work => work.isShow !== false)
+      .map((work, index) => (
+        <WorkCard
+          name={work.name}
+          description={work.description}
+          image={work.image}
+          url={work.url}
+          tags={work.tags}
+          isShow={work.isShow}
+          layout="featured"
+          index={index}
+        />
+      ))}
+  </div>
+</section>
+

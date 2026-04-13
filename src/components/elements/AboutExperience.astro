@@ -1,0 +1,30 @@
+---
+export interface Props {
+  logo: string;
+  dates: string;
+  role: string;
+  company: string;
+  description: string;
+}
+
+const { logo, dates, role, company, description } = Astro.props as Props;
+---
+
+<div class="relative flex flex-col justify-start pl-12">
+  <div
+    class="absolute top-0 left-0 z-40 flex items-center justify-center -translate-x-1/2 bg-surface-canvas border rounded-full w-16 h-16 border-border-subtle"
+  >
+    <img src={logo} alt={company} class="w-10 h-10 object-contain" />
+  </div>
+
+  <p
+    class="text-xs uppercase text-content-tertiary tracking-widest"
+  >
+    {dates}
+  </p>
+  <h3 class="my-1 text-lg font-semibold text-content-primary">{role}</h3>
+  <p class="mb-1 text-sm font-medium text-content-secondary">{company}</p>
+  <p class="text-sm font-light text-content-secondary">
+    {description}
+  </p>
+</div>

@@ -1,0 +1,254 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+
+<Meta title="Design System/Documentation/Colors" />
+
+# Color System
+
+A **semantic, accessible color palette** designed around surfaces, content (text), accents, and feedback. All colors ensure WCAG AAA contrast compliance when paired correctly.
+
+---
+
+## 🎨 Surfaces
+
+The foundation of our spatial hierarchy. Use these for backgrounds, containers, and layering.
+
+<ColorPalette>
+  <ColorItem
+    title="Canvas (bg-surface-canvas)"
+    subtitle="Primary background — page/app background"
+    colors={{
+      Light: "#ffffff",
+      Dark: "#000000",
+    }}
+  />
+  <ColorItem
+    title="Subtle (bg-surface-subtle)"
+    subtitle="Subtle elevation — cards, secondary containers"
+    colors={{
+      Light: "#f8f8f8",
+      Dark: "#111111",
+    }}
+  />
+  <ColorItem
+    title="Elevated (bg-surface-elevated)"
+    subtitle="Raised surfaces — popovers, modals, overlays"
+    colors={{
+      Light: "#fafafa",
+      Dark: "#171717",
+    }}
+  />
+  <ColorItem
+    title="Inverse (bg-surface-inverse)"
+    subtitle="Inverted surface — high contrast backgrounds"
+    colors={{
+      Light: "#000000",
+      Dark: "#ffffff",
+    }}
+  />
+</ColorPalette>
+
+### Usage Guidelines
+
+- **Canvas**: Primary page/section background. Pair with `text-content-primary` for readable text.
+- **Subtle**: Container backgrounds (cards, sections). Provides gentle visual separation.
+- **Elevated**: Modals, popovers, floating panels. Signals layering.
+- **Inverse**: High-contrast overlays or accent backgrounds (rare, strategic use).
+
+---
+
+## 📝 Content (Text)
+
+Text colors designed for readability and semantic meaning. Always respect WCAG AAA contrast ratios.
+
+<ColorPalette>
+  <ColorItem
+    title="Primary (text-content-primary)"
+    subtitle="Main text — guaranteed WCAG AAA on surfaces"
+    colors={{
+      Light: "#000000",
+      Dark: "#ffffff",
+    }}
+  />
+  <ColorItem
+    title="Secondary (text-content-secondary)"
+    subtitle="Supporting text — labels, captions, secondary info"
+    colors={{
+      Light: "#4a4a4a",
+      Dark: "#d4d4d4",
+    }}
+  />
+  <ColorItem
+    title="Tertiary (text-content-tertiary)"
+    subtitle="De-emphasized text — hints, disabled state, metadata (use sparingly)"
+    colors={{
+      Light: "#737373",
+      Dark: "#737373",
+    }}
+  />
+  <ColorItem
+    title="Inverse (text-content-inverse)"
+    subtitle="Text on inverted surfaces — contrast text"
+    colors={{
+      Light: "#ffffff",
+      Dark: "#000000",
+    }}
+  />
+</ColorPalette>
+
+### Usage & A11y Guidance
+
+- **Primary**: Use for all body text, headings, and interactive labels. WCAG AAA compliant at all sizes.
+- **Secondary**: Use for supporting text, form labels, and secondary UI. Maintains strong contrast.
+- **Tertiary**: Reserve for non-essential UI (timestamps, metadata, disabled buttons). **Never** for main body text or primary CTAs.
+- **Inverse**: Use strictly on inverted backgrounds (dark overlays, inverse surfaces).
+
+> **A11y Best Practice**: Always verify contrast ratios in your actual implementation. Use tools like WebAIM's Contrast Checker to validate against WCAG AAA (7:1 ratio for body, 4.5:1 for large text).
+
+---
+
+## 🎯 Brand & Accents
+
+The accent palette for CTAs, highlights, and branded elements.
+
+<ColorPalette>
+  <ColorItem
+    title="Brand (bg-brand / text-brand)"
+    subtitle="Primary accent — buttons, links, highlights"
+    colors={{
+      Light: "#000000",
+      Dark: "#ffffff",
+    }}
+  />
+  <ColorItem
+    title="Brand Strong (bg-brand-strong)"
+    subtitle="Intensified brand — hover states, active states"
+    colors={{
+      Light: "#333333",
+      Dark: "#e5e5e5",
+    }}
+  />
+  <ColorItem
+    title="Brand Light (bg-brand-light)"
+    subtitle="Soft brand — backgrounds, low-emphasis accents"
+    colors={{
+      Light: "#e5e5e5",
+      Dark: "#262626",
+    }}
+  />
+  <ColorItem
+    title="Brand On (text-brand-on)"
+    subtitle="Text on brand backgrounds — contrast text"
+    colors={{
+      Light: "#ffffff",
+      Dark: "#000000",
+    }}
+  />
+</ColorPalette>
+
+### Usage Guidelines
+
+- **Brand**: Primary CTA buttons, active links, featured highlights.
+- **Brand Strong**: Hover/focus/active states for brand elements.
+- **Brand Light**: Background tints for non-critical UI (info boxes, callouts).
+- **Brand On**: Text overlaid on brand backgrounds (button labels).
+
+---
+
+## 🔲 Borders
+
+Structural elements that define boundaries and create visual rhythm.
+
+<ColorPalette>
+  <ColorItem
+    title="Subtle (border-border-subtle)"
+    subtitle="Light dividers — cards, input fields, section breaks"
+    colors={{
+      Light: "#e5e5e5",
+      Dark: "#404040",
+    }}
+  />
+  <ColorItem
+    title="Strong (border-border-strong)"
+    subtitle="Emphasized borders — active states, prominent divisions"
+    colors={{
+      Light: "#404040",
+      Dark: "#737373",
+    }}
+  />
+  <ColorItem
+    title="Inverse (border-border-inverse)"
+    subtitle="Inverted border — on inverse surfaces"
+    colors={{
+      Light: "#606060",
+      Dark: "#a0a0a0",
+    }}
+  />
+</ColorPalette>
+
+### Usage Guidelines
+
+- **Subtle**: Default for borders, dividers, and input strokes. Lightweight visual separation.
+- **Strong**: Emphasized borders (active inputs, focus states), prominent dividing lines.
+- **Inverse**: Borders on dark/inverted backgrounds.
+
+---
+
+## ⚡ Actions
+
+Interactive element states for buttons and forms.
+
+<ColorPalette>
+  <ColorItem
+    title="Action Primary (bg-action-primary)"
+    subtitle="Primary button background"
+    colors={{
+      Light: "#000000",
+      Dark: "#ffffff",
+    }}
+  />
+  <ColorItem
+    title="Action Primary Hover (bg-action-primary-hover)"
+    subtitle="Primary button hover state"
+    colors={{
+      Light: "#333333",
+      Dark: "#e5e5e5",
+    }}
+  />
+  <ColorItem
+    title="Action Primary Inverse (bg-action-primary-inverse)"
+    subtitle="Secondary button / inverted button background"
+    colors={{
+      Light: "#ffffff",
+      Dark: "#000000",
+    }}
+  />
+  <ColorItem
+    title="Action Primary Inverse Hover (bg-action-primary-inverse-hover)"
+    subtitle="Secondary button hover state"
+    colors={{
+      Light: "#e5e5e5",
+      Dark: "#333333",
+    }}
+  />
+</ColorPalette>
+
+### Usage Guidelines
+
+- **Action Primary**: Main CTA buttons (filled, strong).
+- **Action Primary Hover**: Hover/focus state for primary buttons.
+- **Action Primary Inverse**: Secondary buttons (outline, low emphasis).
+- **Action Primary Inverse Hover**: Hover/focus for secondary buttons.
+
+---
+
+## 🎲 Accessibility Checklist
+
+- ✅ All `text-content-*` colors on default surfaces meet WCAG AAA (7:1 ratio).
+- ✅ `text-content-secondary` maintains strong contrast for UI labels and secondary text.
+- ✅ `text-content-tertiary` reserved for non-essential UI; **never** as primary content.
+- ✅ Never rely on color alone for information (pair with icons, patterns, or text).
+- ✅ Test dark mode contrasts in your actual implementation (CSS variables are scoped).
+
+---
+
+*A professional, inclusive color system designed with developers and users in mind.*

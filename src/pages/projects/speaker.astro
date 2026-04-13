@@ -1,0 +1,409 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import SeparatorLine from "@/components/elements/SeparatorLine.astro";
+import ActionBar from "@/components/widgets/ActionBar.astro";
+import PostLayout from "@/layouts/PostLayout.astro";
+
+const allImagesModules = import.meta.glob(
+  "../../assets/projects/speaker/*.{jpg,JPG,png,PNG,webp,WEBP}",
+  { eager: true },
+);
+const allImages = Object.entries(allImagesModules)
+  .sort((a, b) => a[0].localeCompare(b[0]))
+  .map(([_, module]) => module) as Array<{ default: ImageMetadata }>;
+---
+
+<PostLayout
+  title="Bluetooth Speaker Prototype | Manuel Hortelano - UX Engineer"
+  description="Industrial design case study: Bluetooth speaker prototyping from concept sketching to CMF and functional assembly, validating ergonomics and internal capacity."
+  keywords="Physical Product Design, Bluetooth Speaker Design, Industrial Design, Hardware UX, Physical Interaction Design, Product Ergonomics, CMF (Color, Material, Finish), Design Process"
+  image="/og/projects-speaker.jpg"
+>
+  <div class="work article">
+    <main class="work-wrapper">
+      <PageHeader
+        title="Industrial Design Engineering: Bluetooth Speaker Prototype"
+        tags={["Industrial Design", "3D Modelling", "Prototyping"]}
+        className="mb-6 md:mb-8"
+      />
+    </main>
+    <div class="site-container m-auto">
+      <SeparatorLine />
+    </div>
+    <section class="article-content">
+      <div class="site-container mx-auto my-8 md:my-16">
+        <div class="mb-12">
+          <h3>Overview: Integral Product Design Process</h3>
+          <p>
+            This academic case study showcases the end-to-end development of a
+            functional
+            <strong>Physical Product</strong>, a functional Bluetooth speaker
+            prototype. The process involved all stages, from sketching to
+            prototyping, including creating an early-stage foam model to
+            validate product <strong> ergonomics</strong> and component capacity,
+            ensuring manufacturing feasibility before production. The resulting design
+            includes a distinct two-part enclosure: a matte black base housing the
+            connectivity and controls, and a conical silver aluminum enclosure, focusing
+            on minimalist aesthetics.
+          </p>
+          <div class="mb-12">
+            <h4>The Process: A Systemic Development Approach</h4>
+            <ul class="list-disc space-y-2 mt-4">
+              <li><strong>Research & Concept Ideation</strong></li>
+              <li><strong>Ergonomics & Capacity Validation</strong></li>
+              <li><strong>Detail Design & 3D Modelling</strong></li>
+              <li><strong>Functional Prototyping & CMF Application</strong></li>
+            </ul>
+          </div>
+          {
+            allImages[0] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[0].default}
+                    alt="Industrial design process overview"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Industrial design process overview. Image Source:
+                  <a href="https://think360studio.com/blog/industrial-design">
+                    Think 360
+                  </a>
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>1. Research & Concept Ideation</h3>
+          <p>
+            Market landscape and <strong>moodboard</strong> ideation were used to
+            define the aesthetic and functional design. This was followed by an <strong
+              >intensive exploration of geometries</strong
+            > via sketching to establish the product's foundational form factor.
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-12 mb-12"
+          >
+            {
+              allImages[1] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                    <Image
+                      src={allImages[1].default}
+                      alt="Initial brainstorming sketches"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Brainstorming: Exploring geometric variations
+                  </figcaption>
+                </figure>
+              )
+            }
+
+            {
+              allImages[2] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                    <Image
+                      src={allImages[2].default}
+                      alt="Refined Concept Sketches"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Refining the interaction
+                  </figcaption>
+                </figure>
+              )
+            }
+
+            {
+              allImages[3] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                    <Image
+                      src={allImages[3].default}
+                      alt="Moodboard: Market Inspiration"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Moodboard: Market Insipiration
+                  </figcaption>
+                </figure>
+              )
+            }
+
+            {
+              allImages[4] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
+                    <Image
+                      src={allImages[4].default}
+                      alt="Final Design Proposal"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Final proposal with acoustic layout
+                  </figcaption>
+                </figure>
+              )
+            }
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3>2. Ergonomics & Capacity Validation</h3>
+          <p>
+            Creation of a <strong>low-fidelity prototype (foam model)</strong> for
+            the tangible validation of <strong>ergonomics</strong> (size, grip, stability)
+            and <strong>internal component capacity</strong> prior to detailed 3D
+            design.
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 md:mt-12 mb-12"
+          >
+            {
+              allImages[5] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-80 md:h-80">
+                    <Image
+                      src={allImages[5].default}
+                      alt="Foam model initial volume"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Defining the base volume
+                  </figcaption>
+                </figure>
+              )
+            }
+
+            {/* Imagen 2.2: Cutting/Shaping */}
+            {
+              allImages[6] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-80 md:h-80">
+                    <Image
+                      src={allImages[6].default}
+                      alt="Shaping the foam model"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Validating internal capacity
+                  </figcaption>
+                </figure>
+              )
+            }
+
+            {/* Imagen 2.3: Final Foam Shape */}
+            {
+              allImages[7] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-80 md:h-80">
+                    <Image
+                      src={allImages[7].default}
+                      alt="Final foam ergonomic model"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Ergonomic validation
+                  </figcaption>
+                </figure>
+              )
+            }
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3>3. Detail Design & 3D Modelling</h3>
+          <p>
+            <strong>Definition of engineering specifications</strong> and internal
+            structure, including 3D modeling of complex parts (e.g., battery placement
+            and air intakes) and the creation of <strong
+              >assembly drawings</strong
+            > to ensure a feasable assembly.
+          </p>
+
+          <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 md:mt-12 mb-12"
+          >
+            {
+              allImages[8] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-64">
+                    <Image
+                      src={allImages[8].default}
+                      alt="Assembly technical sketch 1"
+                      class="w-full h-full  object-contain bg-white"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Assembly scheme 1
+                  </figcaption>
+                </figure>
+              )
+            }
+
+            {
+              allImages[9] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-64">
+                    <Image
+                      src={allImages[9].default}
+                      alt="Speaker Render 3D CAD Model"
+                      class="w-full h-full object-top object-contain bg-white"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Speaker render to simulate colours
+                  </figcaption>
+                </figure>
+              )
+            }
+
+            {
+              allImages[10] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-64">
+                    <Image
+                      src={allImages[10].default}
+                      alt="Assembly technical sketch 2"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Assembly scheme 2
+                  </figcaption>
+                </figure>
+              )
+            }
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h3>4. Functional Prototyping & CMF Application</h3>
+          <p>
+            <strong>3D printing</strong> of final parts, surface <strong
+              >preparation and finishing (CMF Application)</strong
+            > for realistic presentation, and final assembly of all components to
+            validate <strong>functionality and technical viability</strong>.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
+            {
+              allImages[11] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-80">
+                    <Image
+                      src={allImages[11].default}
+                      alt="Workshop assembly process"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Assembly and fitting of printed parts
+                  </figcaption>
+                </figure>
+              )
+            }
+            {
+              allImages[12] && (
+                <figure>
+                  <picture class="picture rounded-2xl overflow-hidden block h-80">
+                    <Image
+                      src={allImages[12].default}
+                      alt="Sanding and painting process"
+                      class="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      quality={100}
+                    />
+                  </picture>
+                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                    Surface finishing (Sanding & Painting)
+                  </figcaption>
+                </figure>
+              )
+            }
+          </div>
+
+          {
+            allImages[13] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[13].default}
+                    alt="Final High-Fidelity Prototype"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  The final result: A fully assembled, functional prototype.
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+</PostLayout>
+
+<ActionBar
+  tags={[]}
+  visitLabel="Watch Testing"
+  url="https://youtube.com/shorts/8PASm5wKtmo"
+  secondaryUrl="https://dibujo.webs.upv.es/taller-de-modelos-y-prototipos/"
+/>

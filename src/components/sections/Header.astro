@@ -1,0 +1,264 @@
+---
+import { Icon } from "astro-icon/components";
+import menus from "@/collections/menu.json";
+import Button from "@/components/ui/Button.astro";
+import Logo from "@/components/ui/Logo.astro";
+import ThemeToggle from "@/components/ds/ThemeToggle/ThemeToggle";
+import { siteConfig } from "@/config/site";
+---
+
+<div class="relative w-full h-16 sm:h-20 opacity-0 pointer-events-none"></div>
+
+<header
+  id="header"
+  class="fixed top-2 sm:top-4 z-50 w-full px-3 sm:px-4 lg:px-6"
+>
+  <div
+    id="site-container"
+    class="flex items-center justify-between h-14 sm:h-15 site-container mx-auto px-4 sm:px-6 py-2.5 border-transparent border-[0.5px] transition-all duration-300"
+  >
+    <div class="flex-shrink-0 z-50">
+      <Logo />
+    </div>
+
+    <div
+      id="mobileMenuBackground"
+      class="fixed inset-0 z-20 hidden w-screen h-screen duration-300 ease-out bg-surface-canvas/90 backdrop-blur-sm"
+    >
+    </div>
+
+    <nav
+      class="relative z-30 flex flex-row-reverse justify-start w-full text-sm sm:justify-end text-content-secondary sm:flex-row sm:items-center"
+    >
+      <div class="flex items-center gap-2 sm:hidden">
+        <button
+          type="button"
+          id="openMenu"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="menu"
+          class="flex items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90"
+        >
+          <svg
+            class="w-7 h-7 text-content-primary"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"><path d="M4 8h16M4 16h16"></path></svg
+          >
+        </button>
+
+        <button
+          type="button"
+          id="closeMenu"
+          aria-label="Close menu"
+          aria-expanded="true"
+          aria-controls="menu"
+          class="hidden items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90"
+        >
+          <svg
+            class="w-6 h-6 text-content-secondary"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg
+          >
+        </button>
+
+        <ThemeToggle client:load />
+      </div>
+
+      <div
+        id="menu"
+        class="fixed top-[68px] sm:top-0 left-3 right-3 sm:left-0 sm:right-0 ease-out duration-300 z-40 flex-col items-center justify-start hidden w-auto h-auto text-sm pt-6 pb-5 sm:py-0 sm:relative sm:flex-row sm:flex"
+      >
+        <div
+          class="absolute inset-0 top-0 right-0 block w-full h-full sm:hidden"
+        >
+          <div
+            class="relative w-full h-full bg-surface-canvas/95 border border-dashed border-border-subtle backdrop-blur-md rounded-2xl shadow-lg"
+          >
+          </div>
+        </div>
+
+        <div
+          class="relative z-10 flex flex-col sm:flex-row items-center w-full sm:w-auto gap-1 sm:gap-0"
+        >
+          {
+            menus.map((menu) => {
+              return (
+                <a
+                  href={menu.url}
+                  class="relative flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 sm:px-3 md:px-4 font-medium tracking-wide text-center duration-200 ease-out rounded-lg sm:rounded-none text-content-primary hover:text-brand sm:hover:bg-transparent hover:bg-surface-subtle/50 active:scale-[0.98] sm:active:scale-100 transition-all"
+                >
+                  {menu.name}
+                </a>
+              );
+            })
+          }
+        </div>
+
+        <div class="relative z-10 w-full px-5 mt-3 sm:hidden">
+          <Button
+            url={siteConfig.resume}
+            type="fill"
+            className="m-auto w-full justify-center "
+          >
+            Resume <Icon name="lucide:download" width={16} height={16} />
+          </Button>
+        </div>
+      </div>
+
+      <div class="relative hidden sm:flex items-center gap-2 ml-4 lg:ml-6">
+        <Button url={siteConfig.resume} type="fill" className="md:flex mx-1">
+          Resume <Icon name="lucide:download" width={16} height={16} />
+        </Button>
+
+        <span
+          class="hidden separator-line bg-border-subtle mt-[20px] -translate-y-1/2 w-px h-[20px]"
+        ></span>
+
+        <ThemeToggle client:load />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Header container spacing optimization */
+  #header {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Ensure mobile menu doesn't stick to edges */
+  @media (max-width: 639px) {
+    #menu {
+      max-width: calc(100vw - 24px); /* 12px margin on each side */
+    }
+  }
+
+  /* Mobile menu animation */
+  @media (max-width: 639px) {
+    #menu {
+      transform: translateY(-10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #menu:not(.hidden) {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  /* Menu item hover effect optimization */
+  nav a {
+    position: relative;
+  }
+
+  /* Desktop underline animation */
+  @media (min-width: 640px) {
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 70%;
+      height: 2px;
+      background: var(--color-brand);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 2px;
+    }
+
+    nav a:hover::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+  }
+
+  /* Mobile menu item click feedback */
+  @media (max-width: 639px) {
+    nav a:active {
+      background-color: var(--color-surface-subtle);
+    }
+  }
+
+  /* Dark mode toggle button optimization */
+  #darkToggle,
+  #darkToggleMobile {
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Mobile menu background blur effect enhancement */
+  @supports (backdrop-filter: blur(12px)) {
+    #mobileMenuBackground {
+      backdrop-filter: blur(12px);
+    }
+
+    @media (max-width: 639px) {
+      #menu > div > div {
+        backdrop-filter: blur(16px);
+      }
+    }
+  }
+
+  /* Ensure Logo doesn't shrink on mobile */
+  .flex-shrink-0 {
+    min-width: fit-content;
+  }
+
+  /* Tablet compact layout */
+  @media (min-width: 640px) and (max-width: 767px) {
+    nav a {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      font-size: 0.8125rem;
+    }
+  }
+
+  /* Prevent horizontal scrolling on mobile */
+  @media (max-width: 639px) {
+    body {
+      overflow-x: hidden;
+    }
+  }
+
+  /* Optimize mobile touch feedback */
+  @media (max-width: 639px) {
+    button,
+    a,
+    [role="button"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+
+  /* Menu background on small screens */
+  @media (max-width: 639px) {
+    #mobileMenuBackground {
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+
+    #mobileMenuBackground:not(.hidden) {
+      opacity: 1;
+    }
+  }
+
+  /* Ensure mobile menu has good shadow */
+  @media (max-width: 639px) {
+    #menu > div > div {
+      box-shadow:
+        0 10px 25px -5px rgba(var(--color-brand-rgb), 0.18),
+        0 8px 10px -6px rgba(var(--color-brand-rgb), 0.12);
+    }
+  }
+</style>
+
+

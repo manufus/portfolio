@@ -1,0 +1,48 @@
+---
+import { siteConfig } from "@/config/site.js";
+import type { BaseLayoutProps } from "@/types/layout";
+export interface Props extends BaseLayoutProps {
+  keywords?: string | undefined;
+  url?: string;
+  twitterHandle?: string;
+}
+
+const {
+  title = siteConfig.meta.title,
+  description = siteConfig.meta.description,
+  keywords = siteConfig.meta.keywords,
+  url,
+  image = siteConfig.meta.image,
+  twitterHandle = "",
+} = Astro.props as Props;
+
+const canonicalUrl = url || new URL(Astro.url.pathname, siteConfig.url).toString();
+const resolvedImage = new URL(image, siteConfig.url).toString();
+---
+
+<!-- Meta Tags -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/favicon.png" />
+<title>{title}</title>
+<link rel="canonical" href={canonicalUrl} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={siteConfig.author} />
+<meta name="robots" content="index,follow" />
+
+<!-- Open Graph Tags -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={resolvedImage} />
+<meta property="og:site_name" content={siteConfig.title} />
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedImage} />
+{twitterHandle && <meta name="twitter:site" content={twitterHandle} />}
+{twitterHandle && <meta name="twitter:creator" content={twitterHandle} />}

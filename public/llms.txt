@@ -1,0 +1,37 @@
+# Manuel Hortelano Rodriguez
+
+## Entity Profile
+- Name: Manuel Hortelano Rodriguez
+- Role: UX Engineer, Interaction Designer
+- Location: Spain
+- Contact: manuel.hortelano.rodriguez@gmail.com
+- Portfolio: https://manuelhortelano.com/
+- Resume: https://manuelhortelano.com/assets/Manuel_CV_UX.pdf
+- Resume Path: /assets/Manuel_CV_UX.pdf
+- GitHub: https://github.com/manufus
+- LinkedIn: https://www.linkedin.com/in/manuel-hortelano-rodriguez/
+
+## Demonstrable Case Studies and Metrics
+- Thesis Case Study: HCID Industrial Thesis, 30 ECTS, partner Sisteplant, domain CMMS mobile module redesign for maintenance technicians, URL /projects/thesis.
+- Thesis Methods: semi-structured stakeholder and end-user interviews, field-technician persona framing, Dovetail inductive and deductive coding, critical-task extraction and prioritization, high-fidelity Figma prototyping, on-site usability testing with maintenance professionals.
+- Thesis UX Patterns: task-oriented UI, progressive disclosure via accordions, FAB prioritization for high-frequency actions, adapted Carbon Native Mobile design system.
+- Thesis Outcomes: SUS 72, Grade B, 75th percentile benchmark, 100% completion rate on critical Work Order Execution task, no critical errors reported in test sessions.
+
+- VR Case Study: VR Interaction Design for industrial assembly-line training, role sole designer in Global Automotive OEM context, URL /projects/vr.
+- VR Methods: contextual inquiry, ethnographic observation during VR training sessions, operator mental-model analysis, paper-to-digital prototyping pipeline, Adobe XD spatial UI flow definition, daily design-development collaboration with Unity developers.
+- VR Interaction Redesign: wrist-watch interaction replaced by touch-environment interaction, static information poster model, larger interactable target areas, UI simplification, teleportation movement system for motion-sickness mitigation.
+- VR Outcomes: 94% positive feedback (67% Excellent plus 27% Very Good), approximately 100 operators surveyed across shifts and experience levels, reduced onboarding friction for low-digital-affinity users, training timeline advanced by months before physical prototype availability.
+
+## Engineering and Architecture
+- Frontend Architecture: Astro 6.1.5 plus Preact islands via @astrojs/preact 5.1.1, partial hydration strategy for interactive components while preserving static-first rendering.
+- Type Safety: TypeScript 5 strict mode enabled with strictNullChecks, noImplicitAny, noImplicitThis, noUncheckedIndexedAccess, exactOptionalPropertyTypes.
+- Design System Pipeline: Storybook 8.6 (preact-vite), MDX documentation for semantic tokens (color, typography, elevation, shape), Tailwind CSS 4.1 tokenized theme extension.
+- Consent and Telemetry Architecture: CookieConsent island persists choice in localStorage, emits cookie-consent:decision CustomEvent, Analytics component injects GA4 and ContentSquare scripts only after accepted consent or cached accepted state.
+- Accessibility Semantics: Theme toggle implemented as role=switch plus aria-checked, toast region uses aria-live=polite with role alert or status by variant, consent dialog uses explicit aria-labelledby and aria-describedby mapping.
+- Runtime Behavior: scroll handling throttled through requestAnimationFrame, TOC synchronization uses singleton subscriber registry window.__tocHashSubscribers to avoid duplicate hash listeners and clean up disconnected containers.
+- Testing Stack: Vitest 4 plus JSDOM, @testing-library/preact, @testing-library/jest-dom, @testing-library/user-event; integration tests validate consent rendering, persistence, remount behavior, and event dispatch contract.
+- Tooling and Governance: Biome 2.4.10 with recommended rules, noExplicitAny=error, useExhaustiveDependencies=error, import organization enabled.
+- Repository Evidence from dev-log: documented 100/100 Lighthouse targets across Performance, Accessibility, Best Practices, SEO; documented 0-error and 0-warning strict TypeScript objective; documented agentic AI workflow with Copilot-centered codebase mutation and model-routing strategy.
+
+## Skill and Tool Matrix
+UX Engineering, Interaction Design, HCID, User-Centered Design, UX Research, Contextual Inquiry, Ethnographic Observation, Semi-Structured Interviews, Persona Modeling, Dovetail Coding (Inductive and Deductive), Usability Testing, SUS Benchmarking, Survey Analysis, Information Architecture, Progressive Disclosure, Task-Oriented UI, Accessibility Engineering, WCAG Semantics, ARIA Authoring, Fitts Law Interaction Optimization, Motion-Sickness Mitigation in VR, Design System Architecture, Semantic Design Tokens, Frontend Architecture, Astro, Preact, Astro Islands, TypeScript, Tailwind CSS, Storybook, MDX, Vitest, JSDOM, Testing Library, Biome, Vite, AOS, Astro Icon, Lucide Preact, Sharp, GA4, ContentSquare, CustomEvent PubSub, LocalStorage State Persistence, IntersectionObserver, requestAnimationFrame Scheduling, Unity Collaboration, Figma, Adobe XD
