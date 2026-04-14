@@ -106,6 +106,16 @@ Avoided the anti-pattern of writing brittle unit tests for static `.astro` files
 * **Metadata Cascade & SERP Optimization:** Bridged the gap between Generative AI Optimization and traditional human-centric SEO. Leveraged the high-density metrics from the `llms.txt` payload to systematically rewrite `<title>` and `<meta description>` tags across all routes, maintaining strict SERP character limits.
 * **Dynamic Social Previews:** Engineered a per-route Open Graph (`og:image`) architecture. Replaced the static global fallback with targeted visual assets for high-value case studies (Thesis, VR), optimizing social media Click-Through Rates (CTR). Additionally, patched a silent layout bug where undefined page-level props were previously erasing global SEO defaults.
 
+## 🏗️ Phase VII: DevSecOps & Decoupled Deployment
+
+### Decoupled Infrastructure Strategy
+* **Micro-Service Deployment:** Successfully isolated the production lifecycles of the main Astro application and the Storybook Design System. Deployed both as independent static instances via Render, mapping the design system to a dedicated sub-domain (`ds.manuelhortelano.com`). This ensures the main site remains lightweight while providing a fully functional, public UI showcase.
+* **Environment Variable Management:** Handled domain-specific routing and analytics injections (`PUBLIC_SITE_URL`, GA4) cleanly at the PaaS level.
+
+### Repository Hardening & Privacy
+* **Git History Sanitization:** Prior to transitioning the repository to public visibility (Open Source), executed a complete Git history purge (orphan branch strategy). This guaranteed absolute zero leakage of Personally Identifiable Information (PII) or legacy environment variables from previous commits.
+* **Passive Security Maintenance:** Configured GitHub's Advanced Security for a "showcase" state. Enabled *Dependabot Alerts* and *Security Updates* to ensure automatic vulnerability patching, while intentionally disabling routine *Version Updates* to maintain a stable, noise-free, and maintenance-free environment.
+
 ---
 
 ## 🏁 Final Status & Architectural Horizon
