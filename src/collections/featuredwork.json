@@ -1,10 +1,10 @@
 [
   {
-    "name": "Portfolio Architecture Redesign: UX + Frontend Engineering",
+    "name": "UX Engineering: Frontend Architecture & Design Systems",
     "description": "Architecture and UX redesign of this Astro portfolio: Preact Islands for interactive components, strict TypeScript contracts, ethical UX patterns, and build hardening that reached 0-error checks and 100/100 Lighthouse categories.",
     "image": "/assets/projects/portfolio-architecture.jpg",
-    "url": "/projects/portfolio-architecture",
-    "tags": ["Astro", "Preact Islands", "TypeScript", "A11y", "DevSecOps"],
+    "url": "/projects/portfolio-architecture,jpg",
+    "tags": ["Design Systems", "Agentic AI", "Data Analytics"],
     "isShow": true
   },
   {

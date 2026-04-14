@@ -36,19 +36,17 @@ const allImages = Object.entries(allImagesModules)
 
     <section class="article-content">
       <div class="site-container mx-auto my-8 md:my-16">
-        <div class="mb-12">
-          <h3>Context: From Portfolio Site to UX Engineering Platform</h3>
-          <p>
+        <div >
+          <h3>Overview: From Portfolio Site to UX Engineering Platform</h3>
+          <p class="my-0">
             This redesign started as technical debt remediation and became a practical
             UX engineering program. The site was stable, but weak type contracts,
             fragmented interaction standards, and limited governance reduced delivery
-            reliability.
-          </p>
-          <p class="mt-4">
-            The target state was clear: preserve Astro performance, formalize quality
+            reliability. The target state was clear: preserve Astro performance, formalize quality
             controls, and make UX, accessibility, security, and analytics behavior
             auditable in production.
           </p>
+          
 
           {
             allImages[0] && (
@@ -64,22 +62,22 @@ const allImages = Object.entries(allImagesModules)
                   />
                 </picture>
                 <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Baseline before architecture hardening and UX engineering refactor.
+                  Baseline before architecture hardening and UX engineering refactor. <a href="https://pagespeed.web.dev/analysis/https-manuelhortelano-com-about/8mlgosqpl8?form_factor=mobile">Link to the Lighthouse report</a>
                 </figcaption>
               </figure>
             )
           }
         </div>
 
-        <div class="mb-12">
+        <div class="my-12">
           <h3>Modern Engineering Workflows: Agentic AI</h3>
-          <p>
+          <p class="my-0">
             The project uses a <strong>Dual-Agent</strong> orchestration model as an
             industry-standard lifecycle for analysis, implementation, verification, and
             secure release. The objective is execution efficiency with measurable quality,
             not prompt-level code generation.
           </p>
-          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+          <ul class="list-disc pl-5 mt-4 space-y-2 text-base">
             <li>
               <strong>Execution Agent:</strong> accelerates dependency mapping,
               repetitive refactors, and implementation throughput.
@@ -92,7 +90,7 @@ const allImages = Object.entries(allImagesModules)
               <strong>Lifecycle orchestration:</strong> planning, mutation, auditing,
               and release checks are coordinated as one workflow.
             </li>
-            <li>
+            <li class="mt-0">
               <strong>Governance outcome:</strong> AI contributes to DevSecOps and A11y
               audit discipline while maintaining architectural quality.
             </li>
@@ -125,13 +123,11 @@ const allImages = Object.entries(allImagesModules)
             Storybook marked the transition from traditional design deliverables to
             production-level UX engineering ownership. I moved beyond Figma UI kits and
             implemented a practical single source of truth with MDX documentation and
-            Preact components.
-          </p>
-          <p class="mt-4">
-            The Design System is currently an MVP tailored for this portfolio, but it is
+            Preact components.  The Design System is currently an MVP tailored for this portfolio, but it is
             intentionally managed as a <strong>living ecosystem</strong> under
             continuous development and refinement.
           </p>
+          
           <p class="mt-4">
             This is a solo project, but Storybook already functions as a
             <strong>DesignOps Sandbox</strong>. In a scaled corporate context, the same
@@ -147,7 +143,7 @@ const allImages = Object.entries(allImagesModules)
               <strong>Preact states:</strong> interaction behavior is tested in
               executable components rather than static visuals.
             </li>
-            <li>
+            <li class="mt-0">
               <strong>Design and development alignment:</strong>
               shared component behavior that can potentially scale to different teams.
             </li>
@@ -178,13 +174,11 @@ const allImages = Object.entries(allImagesModules)
           <h3>Frontend Architecture: Enforced Quality Controls</h3>
           <p>
             Hard technical and DevSecOps outputs were consolidated under one architecture
-            layer to improve reliability and release predictability:
-          </p>
-          <p class="mt-4">
-            Choosing <strong>Preact</strong> over React or heavier alternatives was a
+            layer to improve reliability and release predictability. Choosing <strong>Preact</strong> over React or heavier alternatives was a
             core UX engineering decision. Preact keeps bundle weight minimal, which
             protects UX performance, while also providing native compatibility with the official <strong>@storybook/preact</strong>
             ecosystem for better developer experience.
+                      
           </p>
           <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
             <li>
@@ -204,31 +198,109 @@ const allImages = Object.entries(allImagesModules)
               <strong>Accessibility enforcement:</strong> ARIA semantics and interaction
               behavior were treated as release criteria.
             </li>
-            <li>
+            <li class="mt-0">
               <strong>DevSecOps hardening:</strong> security attributes, clean build
               boundaries, and git-history PII purge were applied before publication.
             </li>
           </ul>
 
-          {
-            allImages[3] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-8 mb-10">
+            {
+              allImages[3] && (
+                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
                   <Image
                     src={allImages[3].default}
-                    alt="[Insert Frontend Architecture Hardening Evidence here] Composite of strict TypeScript checks, Vitest contracts, decoupled deployment setup, and DevSecOps privacy controls."
-                    class="w-full h-full object-cover"
+                    alt="Astro framework logo"
+                    class="w-16 h-16 object-contain"
                     loading="lazy"
                     decoding="async"
                     quality={100}
                   />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Technical governance layer across code quality, deployment, and security.
-                </figcaption>
-              </figure>
-            )
-          }
+                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Astro</p>
+                </div>
+              )
+            }
+
+            {
+              allImages[4] && (
+                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+                  <Image
+                    src={allImages[4].default}
+                    alt="Preact library logo"
+                    class="w-16 h-16 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Preact</p>
+                </div>
+              )
+            }
+
+            {
+              allImages[5] && (
+                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+                  <Image
+                    src={allImages[5].default}
+                    alt="TypeScript language logo"
+                    class="w-16 h-16 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">TypeScript</p>
+                </div>
+              )
+            }
+
+            {
+              allImages[6] && (
+                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+                  <Image
+                    src={allImages[6].default}
+                    alt="Vite build tool logo"
+                    class="w-16 h-16 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Vite</p>
+                </div>
+              )
+            }
+
+            {
+              allImages[7] && (
+                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+                  <Image
+                    src={allImages[7].default}
+                    alt="Vitest testing framework logo"
+                    class="w-16 h-16 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Vitest</p>
+                </div>
+              )
+            }
+
+            {
+              allImages[8] && (
+                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+                  <Image
+                    src={allImages[8].default}
+                    alt="Render deployment platform logo"
+                    class="w-16 h-16 object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Render</p>
+                </div>
+              )
+            }
+          </div>
         </div>
 
         <div class="mb-12">
@@ -236,21 +308,19 @@ const allImages = Object.entries(allImagesModules)
           <p>
             Industry-standard analytics infrastructure was integrated successfully,
             including <strong>GA4</strong> and <strong>Hotjar</strong>, with consent-aware
-            event flow for behavior tracking.
-          </p>
-          <p class="mt-4">
-            The current traffic volume is still below the threshold required for strong
+            event flow for behavior tracking. The current traffic volume is still below the threshold required for strong
             statistical significance, so iteration decisions are not yet driven by these
             signals. The infrastructure is in place as a future-proof foundation for
             evidence-based UX optimization.
           </p>
+          
 
           {
-            allImages[4] && (
+            allImages[9] && (
               <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
                 <picture class="picture rounded-2xl overflow-hidden block">
                   <Image
-                    src={allImages[4].default}
+                    src={allImages[9].default}
                     alt="[Insert Analytics Instrumentation and Funnel Tracking Screenshot here] GA4 and Hotjar setup evidence showing event tracking readiness and future data-driven optimization pipeline."
                     class="w-full h-full object-cover"
                     loading="lazy"
@@ -321,11 +391,11 @@ const allImages = Object.entries(allImagesModules)
           </div>
 
           {
-            allImages[5] && (
+            allImages[10] && (
               <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
                 <picture class="picture rounded-2xl overflow-hidden block">
                   <Image
-                    src={allImages[5].default}
+                    src={allImages[10].default}
                     alt="[Insert Final Validation Dashboard Screenshot here] Composite proof of Lighthouse quality scores, strict build gates, contract tests, ethical consent architecture, and analytics readiness."
                     class="w-full h-full object-cover"
                     loading="lazy"
