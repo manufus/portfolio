@@ -1,0 +1,354 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import PageHeader from "@/components/elements/PageHeader.astro";
+import SeparatorLine from "@/components/elements/SeparatorLine.astro";
+import ActionBar from "@/components/widgets/ActionBar.astro";
+import PostLayout from "@/layouts/PostLayout.astro";
+
+const allImagesModules = import.meta.glob(
+  "../../assets/projects/portfolio-architecture/*.{jpg,JPG,png,PNG,webp,WEBP}",
+  { eager: true },
+);
+const allImages = Object.entries(allImagesModules)
+  .sort((a, b) => a[0].localeCompare(b[0]))
+  .map(([_, module]) => module) as Array<{ default: ImageMetadata }>;
+---
+
+<PostLayout
+  title="UX Engineering: Frontend Architecture & Design Systems"
+  description="A pragmatic UX engineering case study on rebuilding this portfolio with Dual-Agent orchestration, Storybook in production, strict TypeScript, and measurable quality controls."
+  keywords="UX Engineering, Frontend Architecture, Design Systems, Agentic AI, Data Analytics, Accessibility, DevSecOps"
+  image="/og/projects-portfolio-architecture.jpg"
+>
+  <div class="work article">
+    <main class="work-wrapper">
+      <PageHeader
+        title="UX Engineering: Frontend Architecture & Design Systems"
+        tags={["Design Systems", "Agentic AI", "Data Analytics"]}
+        className="mb-6 md:mb-8"
+      />
+    </main>
+
+    <div class="site-container m-auto">
+      <SeparatorLine />
+    </div>
+
+    <section class="article-content">
+      <div class="site-container mx-auto my-8 md:my-16">
+        <div class="mb-12">
+          <h3>Context: From Portfolio Site to UX Engineering Platform</h3>
+          <p>
+            This redesign started as technical debt remediation and became a practical
+            UX engineering program. The site was stable, but weak type contracts,
+            fragmented interaction standards, and limited governance reduced delivery
+            reliability.
+          </p>
+          <p class="mt-4">
+            The target state was clear: preserve Astro performance, formalize quality
+            controls, and make UX, accessibility, security, and analytics behavior
+            auditable in production.
+          </p>
+
+          {
+            allImages[0] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[0].default}
+                    alt="[Insert Baseline Architecture Audit Screenshot here] Snapshot of the original portfolio stack highlighting contract inconsistency, fragmented interaction rules, and missing delivery guardrails."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Baseline before architecture hardening and UX engineering refactor.
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>Modern Engineering Workflows: Agentic AI</h3>
+          <p>
+            The project uses a <strong>Dual-Agent</strong> orchestration model as an
+            industry-standard lifecycle for analysis, implementation, verification, and
+            secure release. The objective is execution efficiency with measurable quality,
+            not prompt-level code generation.
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+            <li>
+              <strong>Execution Agent:</strong> accelerates dependency mapping,
+              repetitive refactors, and implementation throughput.
+            </li>
+            <li>
+              <strong>Reasoning Agent:</strong> validates architecture trade-offs,
+              reviews risk, and challenges implementation strategy.
+            </li>
+            <li>
+              <strong>Lifecycle orchestration:</strong> planning, mutation, auditing,
+              and release checks are coordinated as one workflow.
+            </li>
+            <li>
+              <strong>Governance outcome:</strong> AI contributes to DevSecOps and A11y
+              audit discipline while maintaining architectural quality.
+            </li>
+          </ul>
+
+          {
+            allImages[1] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[1].default}
+                    alt="[Insert Dual-Agent Workflow Diagram here] Diagram showing execution and reasoning agents coordinating implementation, quality review, and release governance."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Dual-Agent workflow used as an engineering governance model.
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>Storybook as the Gap Bridger: Designer to UX Engineer</h3>
+          <p>
+            Storybook marked the transition from traditional design deliverables to
+            production-level UX engineering ownership. I moved beyond Figma UI kits and
+            implemented a practical single source of truth with MDX documentation and
+            Preact components.
+          </p>
+          <p class="mt-4">
+            The Design System is currently an MVP tailored for this portfolio, but it is
+            intentionally managed as a <strong>living ecosystem</strong> under
+            continuous development and refinement.
+          </p>
+          <p class="mt-4">
+            This is a solo project, but Storybook already functions as a
+            <strong>DesignOps Sandbox</strong>. In a scaled corporate context, the same
+            structure would reduce interpretation drift by keeping design decisions and
+            implementation behavior in one source of truth.
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+            <li>
+              <strong>MDX contracts:</strong> rationale, usage constraints, and edge
+              cases remain attached to component implementation.
+            </li>
+            <li>
+              <strong>Preact states:</strong> interaction behavior is tested in
+              executable components rather than static visuals.
+            </li>
+            <li>
+              <strong>Design and development alignment:</strong>
+              shared component behavior that can potentially scale to different teams.
+            </li>
+          </ul>
+
+          {
+            allImages[2] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[2].default}
+                    alt="[Insert Storybook MDX and Preact Single Source of Truth Diagram here] Visual mapping of design documentation, component behavior, and production implementation in one governance layer."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Storybook used as delivery infrastructure, not only as a showcase.
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>Frontend Architecture: Enforced Quality Controls</h3>
+          <p>
+            Hard technical and DevSecOps outputs were consolidated under one architecture
+            layer to improve reliability and release predictability:
+          </p>
+          <p class="mt-4">
+            Choosing <strong>Preact</strong> over React or heavier alternatives was a
+            core UX engineering decision. Preact keeps bundle weight minimal, which
+            protects UX performance, while also providing native compatibility with the official <strong>@storybook/preact</strong>
+            ecosystem for better developer experience.
+          </p>
+          <ul class="list-disc pl-5 space-y-2 mt-4 text-base">
+            <li>
+              <strong>Strict TypeScript contracts:</strong> reduced silent regressions
+              and stabilized refactor cycles.
+            </li>
+            <li>
+              <strong>Vitest contract validation:</strong> critical interaction logic
+              was validated in isolated tests to protect behavior integrity.
+            </li>
+            <li>
+              <strong>Decoupled static deployment (Render):</strong> production site and
+              Storybook were deployed as separate static services with independent
+              lifecycle control.
+            </li>
+            <li>
+              <strong>Accessibility enforcement:</strong> ARIA semantics and interaction
+              behavior were treated as release criteria.
+            </li>
+            <li>
+              <strong>DevSecOps hardening:</strong> security attributes, clean build
+              boundaries, and git-history PII purge were applied before publication.
+            </li>
+          </ul>
+
+          {
+            allImages[3] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[3].default}
+                    alt="[Insert Frontend Architecture Hardening Evidence here] Composite of strict TypeScript checks, Vitest contracts, decoupled deployment setup, and DevSecOps privacy controls."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Technical governance layer across code quality, deployment, and security.
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>Data Analytics: Preparing for Data-Driven UX</h3>
+          <p>
+            Industry-standard analytics infrastructure was integrated successfully,
+            including <strong>GA4</strong> and <strong>Hotjar</strong>, with consent-aware
+            event flow for behavior tracking.
+          </p>
+          <p class="mt-4">
+            The current traffic volume is still below the threshold required for strong
+            statistical significance, so iteration decisions are not yet driven by these
+            signals. The infrastructure is in place as a future-proof foundation for
+            evidence-based UX optimization.
+          </p>
+
+          {
+            allImages[4] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[4].default}
+                    alt="[Insert Analytics Instrumentation and Funnel Tracking Screenshot here] GA4 and Hotjar setup evidence showing event tracking readiness and future data-driven optimization pipeline."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Analytics stack deployed and ready for statistically valid iteration.
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+
+        <div class="mb-12">
+          <h3>Validation & Impact</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-10">
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-3xl font-bold text-primary mb-2">Ethical by Design</h4>
+              <p class="font-medium">Ethical UX</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                Zero dark-patterns consent architecture, mobile interactions optimized
+                for Fitts's Law, and respectful analytics instrumentation.
+              </p>
+            </div>
+
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-3xl font-bold text-primary mb-2">Accessibility by Design</h4>
+              <p class="font-medium">100 / 100</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                Semantic HTML and ARIA architecture maintain a consistent 100/100
+                Accessibility score. Dark mode contrast fluctuations are tracked as
+                controlled technical debt.
+              </p>
+            </div>
+            
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-3xl font-bold text-primary mb-2">100 / 100</h4>
+              <p class="font-medium">Performance & Quality</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                Lighthouse reached 100/100 in SEO and Best Practices, confirming strong
+                performance governance and production quality controls.
+              </p>
+            </div>
+
+            <div
+              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
+            >
+              <h4 class="text-3xl font-bold text-primary mb-2">0 Errors</h4>
+              <p class="font-medium">Engineering & Security</p>
+              <p class="text-sm text-neutral-500 mt-2">
+                Zero-error strict TypeScript build, Vitest contract validation, and
+                DevSecOps git-history PII purge were enforced as release gates.
+              </p>
+            </div>
+
+            
+
+            
+          </div>
+
+          {
+            allImages[5] && (
+              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
+                <picture class="picture rounded-2xl overflow-hidden block">
+                  <Image
+                    src={allImages[5].default}
+                    alt="[Insert Final Validation Dashboard Screenshot here] Composite proof of Lighthouse quality scores, strict build gates, contract tests, ethical consent architecture, and analytics readiness."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    quality={100}
+                  />
+                </picture>
+                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+                  Consolidated evidence of quality, engineering rigor, and ethical UX.
+                </figcaption>
+              </figure>
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+</PostLayout>
+
+<ActionBar
+  tags={[]}
+  visitLabel="View Repository"
+  url="https://github.com/manufus/portfolio"
+  secondaryUrl="https://ds.manuelhortelano.com"
+  secondaryLabel="Open Design System"
+/>

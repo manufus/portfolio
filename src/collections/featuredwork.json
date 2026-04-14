@@ -1,5 +1,13 @@
 [
   {
+    "name": "Portfolio Architecture Redesign: UX + Frontend Engineering",
+    "description": "Architecture and UX redesign of this Astro portfolio: Preact Islands for interactive components, strict TypeScript contracts, ethical UX patterns, and build hardening that reached 0-error checks and 100/100 Lighthouse categories.",
+    "image": "/assets/projects/portfolio-architecture.jpg",
+    "url": "/projects/portfolio-architecture",
+    "tags": ["Astro", "Preact Islands", "TypeScript", "A11y", "DevSecOps"],
+    "isShow": true
+  },
+  {
     "name": "HCID Industrial Thesis: Design Systems for Usability Optimization",
     "description": "End-to-end UCD redesign of a CMMS mobile application in a industrial research environment (30 ECTS Master's Thesis). Developed through user research, Figma prototyping, and usability testing, achieving 'Good Usability' (SUS score 72).",
     "image": "/assets/projects/thesis.jpg",
@@ -13,14 +21,6 @@
     "image": "/assets/projects/vr.jpg",
     "url": "/projects/vr",
     "tags": ["Virtual Reality", "Interaction Design", "Industry 4.0"],
-    "isShow": true
-  },
-  {
-    "name": "Industrial Design Engineering: Bluetooth Speaker Prototype",
-    "description": "Physical product development project: from acoustic research and conceptual sketching to an early foam model to validate ergonomics, 3D modeling, and final physical prototyping and studio photography.",
-    "image": "/assets/projects/speaker.jpg",
-    "url": "/projects/speaker",
-    "tags": ["Industrial Design", "3D Modeling", "Prototyping"],
     "isShow": true
   }
 ]
