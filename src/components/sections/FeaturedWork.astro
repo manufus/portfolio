@@ -30,17 +30,15 @@ const projectImages = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true },
 );
 
-const resolveProjectImage = (publicPath: string): ImageMetadata => {
-  const fileName = publicPath.split("/").pop();
-
-  if (!fileName) {
-    throw new Error(`Invalid project image path: ${publicPath}`);
+const resolveProjectImage = (imageFileName: string): ImageMetadata => {
+  if (!imageFileName) {
+    throw new Error("Invalid project image filename.");
   }
 
-  const assetModule = projectImages[`/src/assets/projects/${fileName}`];
+  const assetModule = projectImages[`/src/assets/projects/${imageFileName}`];
 
   if (!assetModule) {
-    throw new Error(`Missing project image file for: ${publicPath}`);
+    throw new Error(`Missing project image file for: ${imageFileName}`);
   }
 
   return assetModule.default;
