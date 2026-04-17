@@ -1,13 +1,16 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 // Define properties accepted by the component
 export interface Props {
-  imageUrl: string; // Required
+  image: ImageMetadata; // Required
   title?: string; // Optional, default "Home"
   link?: string; // Optional, can be empty
 }
 
 // Set default values and receive incoming properties
-const { imageUrl, title = "Home", link = "" } = Astro.props as Props;
+const { image, title = "Home", link = "" } = Astro.props as Props;
 const hasLink = Boolean(link);
 const Element = hasLink ? "a" : "div";
 ---
@@ -41,8 +44,8 @@ const Element = hasLink ? "a" : "div";
       aria-label={hasLink ? title : undefined}
       class="relative top-0 left-0 w-full aspect-square overflow-hidden rounded-xl case-go block"
     >
-      <img
-        src={imageUrl}
+      <Image
+        src={image}
         loading="eager"
         decoding="auto"
         class="absolute top-0 left-0 right-0 z-30 w-full h-full mx-auto object-cover"

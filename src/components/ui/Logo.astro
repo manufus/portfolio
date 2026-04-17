@@ -1,16 +1,26 @@
+---
+import { Image } from "astro:assets";
+import logoDark from "@/assets/logo-dark.png";
+import logoDefault from "@/assets/logo-default.png";
+---
+
 <a
   href="/"
   class="h-10 text-base group relative z-30 flex items-center"
 >
-  <img 
-    src="/assets/logo-default.png" 
-    alt="Logo" 
-    class="w-auto h-10  block dark:hidden" 
+  <Image
+    src={logoDefault}
+    alt="Logo"
+    class="w-auto h-10 block dark:hidden"
+    loading="eager"
+    decoding="async"
   />
 
-  <img 
-    src="/assets/logo-dark.png" 
-    alt="Logo" 
-    class="w-auto h-10  hidden dark:block" 
+  <Image
+    src={logoDark}
+    alt="Logo"
+    class="w-auto h-10 hidden dark:block"
+    loading="eager"
+    decoding="async"
   />
 </a>

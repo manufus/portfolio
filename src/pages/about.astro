@@ -1,11 +1,40 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import { Icon } from "astro-icon/components";
+import aaltoLogo from "@/assets/aalto-logo.png";
+import eitLogo from "@/assets/eit-logo.png";
+import fordLogo from "@/assets/ford-logo.png";
+import graduationImg from "@/assets/graduation.jpg";
+import gvaLogo from "@/assets/gva-logo.png";
+import ideasUpvLogo from "@/assets/ideas-upv-logo.png";
+import sisteplantLogo from "@/assets/sisteplant-logo.png";
+import upmLogo from "@/assets/upm-logo.png";
+import upvLogo from "@/assets/upv-logo.png";
 import experiences from "@/collections/experiences.json";
 import AboutExperience from "@/components/elements/AboutExperience.astro";
 import Button from "@/components/ui/Button.astro";
 import Toc from "@/components/widgets/Toc.astro";
 import { siteConfig } from "@/config/site.js";
 import Layout from "@/layouts/Layout.astro";
+
+const experienceLogoMap: Record<string, ImageMetadata> = {
+  "/assets/sisteplant-logo.png": sisteplantLogo,
+  "/assets/ford-logo.png": fordLogo,
+};
+
+const experiencesWithLocalLogos = experiences.map((experience) => {
+  const logo = experienceLogoMap[experience.logo];
+
+  if (!logo) {
+    throw new Error(`Missing logo mapping for: ${experience.logo}`);
+  }
+
+  return {
+    ...experience,
+    logo,
+  };
+});
 
 // --- DATA: EDUCATION ---
 const education = [
@@ -15,7 +44,7 @@ const education = [
     company: "Aalto University (Year 2)",
     description:
       "Second year of the EIT Digital double degree, specializing in advanced interaction design.",
-    logo: "/assets/aalto-logo.png",
+    logo: aaltoLogo,
   },
   {
     dates: "2023 - 2024",
@@ -23,7 +52,7 @@ const education = [
     company: "Universidad Politécnica de Madrid (Year 1)",
     description:
       "First year of the program establishing foundations in User-Centered Design and research.",
-    logo: "/assets/upm-logo.png",
+    logo: upmLogo,
   },
   {
     dates: "2023 - 2025",
@@ -31,14 +60,14 @@ const education = [
     company: "EIT Digital Master School",
     description:
       "Certificate in Digital Technologies and Entrepreneurship validating business creation skills.",
-    logo: "/assets/eit-logo.png",
+    logo: eitLogo,
   },
   {
     dates: "2018 - 2022",
     role: "B.Eng. Industrial Design Engineering & Product Development",
     company: "Polytechnic University of Valencia",
     description: "Bachelor's Degree graduated with honors (Best Academic Record of the promotion).",
-    logo: "/assets/upv-logo.png",
+    logo: upvLogo,
   },
 ];
 
@@ -50,7 +79,7 @@ const awards = [
     company: "Generalitat Valenciana",
     description:
       "Highest regional recognition for exceptional academic performance in the Bachelor's degree.",
-    logo: "/assets/gva-logo.png",
+    logo: gvaLogo,
   },
   {
     dates: "2022",
@@ -58,7 +87,7 @@ const awards = [
     company: "Polytechnic Univ. of Valencia",
     description:
       "Award for the Best Academic Record of the entire graduating promotion (Industrial Design).",
-    logo: "/assets/upv-logo.png",
+    logo: upvLogo,
   },
   {
     dates: "2019",
@@ -66,21 +95,21 @@ const awards = [
     company: "IDEAS UPV (Entrepreneurship Contest)",
     description:
       "Winner in the 'Advanced Idea' category for an innovative business proposal at the VI edition.",
-    logo: "/assets/ideas-upv-logo.png",
+    logo: ideasUpvLogo,
   },
   {
     dates: "2019",
     role: "2nd Year Academic Award",
     company: "Polytechnic Univ. of Valencia",
     description: "Recognition for the best academic record during the second year of the degree.",
-    logo: "/assets/upv-logo.png",
+    logo: upvLogo,
   },
   {
     dates: "2018",
     role: "1st Year Academic Award",
     company: "Polytechnic Univ. of Valencia",
     description: "Recognition for the best academic record during the first year of the degree.",
-    logo: "/assets/upv-logo.png",
+    logo: upvLogo,
   },
 ];
 
@@ -197,10 +226,12 @@ const description =
           data-aos-duration="500"
           data-aos-once="true"
         >
-          <img
-            src="/assets/graduation.jpg"
+          <Image
+            src={graduationImg}
             alt="Manuel receiving a diploma"
             class="w-full h-96 object-top object-cover"
+            loading="eager"
+            decoding="async"
           />
         </div>
 
@@ -509,7 +540,7 @@ const description =
             data-aos-once="true"
           >
             {
-              experiences.map((experience, index) => {
+              experiencesWithLocalLogos.map((experience, index) => {
                 return (
                   <div
                     class="pb-10 border-l border-dashed border-gray-200 last:border-l-0 dark:border-neutral-500"
