@@ -106,6 +106,7 @@ import { siteConfig } from "@/config/site";
           <Button
             url={siteConfig.resume}
             type="fill"
+            target="_blank"
             className="m-auto w-full justify-center "
           >
             Resume <Icon name="lucide:download" width={16} height={16} />
@@ -114,7 +115,7 @@ import { siteConfig } from "@/config/site";
       </div>
 
       <div class="relative hidden sm:flex items-center gap-2 ml-4 lg:ml-6">
-        <Button url={siteConfig.resume} type="fill" className="md:flex mx-1">
+        <Button url={siteConfig.resume} type="fill" target="_blank" className="md:flex mx-1">
           Resume <Icon name="lucide:download" width={16} height={16} />
         </Button>
 
