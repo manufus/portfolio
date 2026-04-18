@@ -11,7 +11,7 @@ export interface Props {
   isShow?: boolean | undefined; // Optional, default true
   layout?: "featured" | "grid"; // featured is full width, grid is two columns
   index?: number;
-  target?: string; // Optional, default "_blank"
+  target?: string; // Optional, default "_self"
 }
 
 const {
@@ -22,7 +22,7 @@ const {
   tags = [],
   layout = "grid",
   index = 0,
-  target = "_blank",
+  target = "_self",
 } = Astro.props as Props;
 ---
 
