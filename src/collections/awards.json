@@ -1,0 +1,37 @@
+[
+  {
+    "dates": "2025",
+    "role": "Academic Excellence Award",
+    "company": "Generalitat Valenciana",
+    "description": "Highest regional recognition for exceptional academic performance in the Bachelor's degree.",
+    "logo": "gva"
+  },
+  {
+    "dates": "2022",
+    "role": "Best Graduate Award",
+    "company": "Polytechnic Univ. of Valencia",
+    "description": "Award for the Best Academic Record of the entire graduating promotion (Industrial Design).",
+    "logo": "upv"
+  },
+  {
+    "dates": "2019",
+    "role": "Winner - STARTUPV 2K19",
+    "company": "IDEAS UPV (Entrepreneurship Contest)",
+    "description": "Winner in the 'Advanced Idea' category for an innovative business proposal at the VI edition.",
+    "logo": "ideas-upv"
+  },
+  {
+    "dates": "2019",
+    "role": "2nd Year Academic Award",
+    "company": "Polytechnic Univ. of Valencia",
+    "description": "Recognition for the best academic record during the second year of the degree.",
+    "logo": "upv"
+  },
+  {
+    "dates": "2018",
+    "role": "1st Year Academic Award",
+    "company": "Polytechnic Univ. of Valencia",
+    "description": "Recognition for the best academic record during the first year of the degree.",
+    "logo": "upv"
+  }
+]

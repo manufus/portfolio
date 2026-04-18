@@ -3,88 +3,13 @@ import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import graduationImg from "@/assets/graduation.jpg";
 import experiences from "@/collections/experiences.json";
+import education from "@/collections/education.json";
+import awards from "@/collections/awards.json";
 import AboutExperience from "@/components/elements/AboutExperience.astro";
 import Button from "@/components/ui/Button.astro";
 import Toc from "@/components/widgets/Toc.astro";
 import { siteConfig } from "@/config/site.js";
 import Layout from "@/layouts/Layout.astro";
-
-// --- DATA: EDUCATION ---
-const education = [
-  {
-    dates: "2024 - 2025",
-    role: "M.Sc. Human-Computer Interaction and Design (HCID)",
-    company: "Aalto University (Year 2)",
-    description:
-      "Second year of the EIT Digital double degree, specializing in advanced interaction design.",
-    logo: "aalto",
-  },
-  {
-    dates: "2023 - 2024",
-    role: "M.Sc. Human-Computer Interaction and Design (HCID)",
-    company: "Universidad Politécnica de Madrid (Year 1)",
-    description:
-      "First year of the program establishing foundations in User-Centered Design and research.",
-    logo: "upm",
-  },
-  {
-    dates: "2023 - 2025",
-    role: "Innovation & Entrepreneurship Minor",
-    company: "EIT Digital Master School",
-    description:
-      "Certificate in Digital Technologies and Entrepreneurship validating business creation skills.",
-    logo: "28dgtl",
-  },
-  {
-    dates: "2018 - 2022",
-    role: "B.Eng. Industrial Design Engineering & Product Development",
-    company: "Polytechnic University of Valencia",
-    description: "Bachelor's Degree graduated with honors (Best Academic Record of the promotion).",
-    logo: "upv",
-  },
-];
-
-// --- DATA: AWARDS ---
-const awards = [
-  {
-    dates: "2025",
-    role: "Academic Excellence Award",
-    company: "Generalitat Valenciana",
-    description:
-      "Highest regional recognition for exceptional academic performance in the Bachelor's degree.",
-    logo: "gva",
-  },
-  {
-    dates: "2022",
-    role: "Best Graduate Award",
-    company: "Polytechnic Univ. of Valencia",
-    description:
-      "Award for the Best Academic Record of the entire graduating promotion (Industrial Design).",
-    logo: "upv",
-  },
-  {
-    dates: "2019",
-    role: "Winner - STARTUPV 2K19",
-    company: "IDEAS UPV (Entrepreneurship Contest)",
-    description:
-      "Winner in the 'Advanced Idea' category for an innovative business proposal at the VI edition.",
-    logo: "ideas-upv",
-  },
-  {
-    dates: "2019",
-    role: "2nd Year Academic Award",
-    company: "Polytechnic Univ. of Valencia",
-    description: "Recognition for the best academic record during the second year of the degree.",
-    logo: "upv",
-  },
-  {
-    dates: "2018",
-    role: "1st Year Academic Award",
-    company: "Polytechnic Univ. of Valencia",
-    description: "Recognition for the best academic record during the first year of the degree.",
-    logo: "upv",
-  },
-];
 
 // Manually define page table of contents structure
 const headings = [

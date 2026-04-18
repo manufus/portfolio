@@ -1,0 +1,30 @@
+[
+  {
+    "dates": "2024 - 2025",
+    "role": "M.Sc. Human-Computer Interaction and Design (HCID)",
+    "company": "Aalto University (Year 2)",
+    "description": "Second year of the EIT Digital double degree, specializing in advanced interaction design.",
+    "logo": "aalto"
+  },
+  {
+    "dates": "2023 - 2024",
+    "role": "M.Sc. Human-Computer Interaction and Design (HCID)",
+    "company": "Universidad Politécnica de Madrid (Year 1)",
+    "description": "First year of the program establishing foundations in User-Centered Design and research.",
+    "logo": "upm"
+  },
+  {
+    "dates": "2023 - 2025",
+    "role": "Innovation & Entrepreneurship Minor",
+    "company": "EIT Digital Master School",
+    "description": "Certificate in Digital Technologies and Entrepreneurship validating business creation skills.",
+    "logo": "28dgtl"
+  },
+  {
+    "dates": "2018 - 2022",
+    "role": "B.Eng. Industrial Design Engineering & Product Development",
+    "company": "Polytechnic University of Valencia",
+    "description": "Bachelor's Degree graduated with honors (Best Academic Record of the promotion).",
+    "logo": "upv"
+  }
+]
