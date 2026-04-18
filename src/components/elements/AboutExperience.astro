@@ -1,9 +1,8 @@
 ---
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
 
 export interface Props {
-  logo: ImageMetadata;
+  logo: string;
   dates: string;
   role: string;
   company: string;
@@ -17,14 +16,10 @@ const { logo, dates, role, company, description } = Astro.props as Props;
   <div
     class="absolute top-0 left-0 z-40 flex items-center justify-center -translate-x-1/2 bg-surface-canvas border rounded-full w-16 h-16 border-border-subtle"
   >
-    <Image
-      src={logo}
-      alt={company}
-      width={40}
-      height={40}
-      class="w-10 h-10 object-contain"
-      loading="lazy"
-      decoding="async"
+    <Icon
+      name={logo}
+      class="w-10 h-10 object-contain text-neutral-800 dark:text-neutral-200"
+      aria-hidden="true"
     />
   </div>
 
