@@ -2,7 +2,43 @@
 // Note: Please set the correct PUBLIC_SITE_URL in .env file after first deployment
 const SITE_URL = (import.meta.env.PUBLIC_SITE_URL || "https://manuelhortelano.com/").replace(/\/+$/, "");
 
-export const siteConfig = {
+interface UTMConfig {
+  source: string;
+  medium: string;
+  campaign: string;
+}
+
+interface MetaConfig {
+  title: string;
+  description: string;
+  keywords: string;
+  image: string;
+}
+
+interface SocialConfig {
+  github: string;
+  linkedin: string;
+  email: string;
+}
+
+export interface SiteConfig {
+  title: string;
+  author: string;
+  url: string;
+  mail: string;
+  resume: string;
+  utm: UTMConfig;
+  meta: MetaConfig;
+  social: SocialConfig;
+}
+
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: string;
+}
+
+export const siteConfig: SiteConfig = {
   title: "Manuel Hortelano",
   author: "Manuel Hortelano Rodriguez",
   url: SITE_URL,
@@ -31,7 +67,7 @@ export const siteConfig = {
 };
 
 // Footer
-export const socialLinks = [
+export const socialLinks: SocialLink[] = [
   {
     name: "Github",
     url: siteConfig.social.github,

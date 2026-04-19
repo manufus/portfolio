@@ -6,7 +6,7 @@ import Footer from "@/components/sections/Footer.astro";
 import Header from "@/components/sections/Header.astro";
 import TopBg from "@/components/primitives/TopBg.astro";
 import Meta from "@/components/system/Meta.astro";
-import { siteConfig } from "@/config/site.js";
+import { siteConfig } from "@/config/site";
 import type { BaseLayoutProps } from "@/types/layout";
 export interface Props extends BaseLayoutProps {
   keywords?: string | undefined;
@@ -67,6 +67,6 @@ import "../styles/article-enhancements.css";
     <Footer />
     <CookieConsent client:idle />
     <Toast client:idle />
-    <script src="../assets/js/main.js"></script>
+    <script src="../assets/scripts/main.ts"></script>
   </body>
 </html>
