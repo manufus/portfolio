@@ -5,7 +5,8 @@
     "tags": ["Design Systems", "Agentic AI", "Data Analytics"],
     "image": "portfolio-architecture.jpg",
     "url": "/projects/portfolio-architecture",
-    "isShow": true
+    "isShow": true,
+    "featured": true
   },
   {
     "name": "HCID Industrial Thesis: Design Systems for Usability Optimization",
@@ -13,7 +14,8 @@
     "tags": ["UX Research", "Design Systems", "UCD"],
     "image": "thesis.jpg",
     "url": "/projects/thesis",
-    "isShow": true
+    "isShow": true,
+    "featured": true
   },
   {
     "name": "VR Interaction Design: Immersive UX",
@@ -21,7 +23,8 @@
     "tags": ["Virtual Reality", "Interaction Design", "Industry 4.0"],
     "image": "vr.jpg",
     "url": "/projects/vr",
-    "isShow": true
+    "isShow": true,
+    "featured": true
   },
   {
     "name": "Industrial Design Engineering: Bluetooth Speaker Prototype",
@@ -29,6 +32,7 @@
     "tags": ["Industrial Design", "3D Modeling", "Prototyping"],
     "image": "speaker.jpg",
     "url": "/projects/speaker",
-    "isShow": true
+    "isShow": true,
+    "featured": false
   }
 ]
