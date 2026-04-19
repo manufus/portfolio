@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/preact";
 import { ThemeToggle } from "./ThemeToggle";
 
 const meta: Meta<typeof ThemeToggle> = {
-  title: "Design System/ThemeToggle",
+  title: "Islands/ThemeToggle",
   component: ThemeToggle,
   parameters: {
     layout: "centered",

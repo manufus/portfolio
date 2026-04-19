@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/preact";
 import CookieConsent from "./CookieConsent";
 
 const meta: Meta<typeof CookieConsent> = {
-  title: "DS/CookieConsent",
+  title: "Islands/CookieConsent",
   component: CookieConsent,
   tags: ["autodocs"],
   parameters: {

@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
-import PageHeader from "@/components/elements/PageHeader.astro";
-import SeparatorLine from "@/components/elements/SeparatorLine.astro";
-import ActionBar from "@/components/widgets/ActionBar.astro";
+import PageHeader from "@/components/composites/PageHeader.astro";
+import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
+import ActionBar from "@/components/features/ActionBar.astro";
 import PostLayout from "@/layouts/PostLayout.astro";
 
 const allImagesModules = import.meta.glob(

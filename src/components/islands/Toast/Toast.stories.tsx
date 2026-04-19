@@ -3,7 +3,7 @@ import { useState } from "preact/hooks";
 import Toast, { type ToastItem } from "./Toast";
 
 const meta: Meta<typeof Toast> = {
-  title: "DS/Toast",
+  title: "Islands/Toast",
   component: Toast,
   tags: ["autodocs"],
   parameters: {
