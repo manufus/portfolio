@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import type { ImageMetadata } from "astro";
 import PageHeader from "@/components/elements/PageHeader.astro";
 import SeparatorLine from "@/components/elements/SeparatorLine.astro";
@@ -204,102 +205,42 @@ const allImages = Object.entries(allImagesModules)
             </li>
           </ul>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mt-8 mb-10">
-            {
-              allImages[3] && (
-                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-                  <Image
-                    src={allImages[3].default}
-                    alt="Astro framework logo"
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Astro</p>
-                </div>
-              )
-            }
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 mb-10">
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+              <Icon
+                name="astro"
+                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
+                aria-hidden="true"
+              />
+              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Astro</p>
+            </div>
 
-            {
-              allImages[4] && (
-                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-                  <Image
-                    src={allImages[4].default}
-                    alt="Preact library logo"
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Preact</p>
-                </div>
-              )
-            }
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+              <Icon
+                name="preact"
+                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
+                aria-hidden="true"
+              />
+              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Preact</p>
+            </div>
 
-            {
-              allImages[5] && (
-                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-                  <Image
-                    src={allImages[5].default}
-                    alt="TypeScript language logo"
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">TypeScript</p>
-                </div>
-              )
-            }
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+              <Icon
+                name="typescript"
+                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
+                aria-hidden="true"
+              />
+              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">TypeScript</p>
+            </div>
 
-            {
-              allImages[6] && (
-                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-                  <Image
-                    src={allImages[6].default}
-                    alt="Vite build tool logo"
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Vite</p>
-                </div>
-              )
-            }
-
-            {
-              allImages[7] && (
-                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-                  <Image
-                    src={allImages[7].default}
-                    alt="Vitest testing framework logo"
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Vitest</p>
-                </div>
-              )
-            }
-
-            {
-              allImages[8] && (
-                <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-                  <Image
-                    src={allImages[8].default}
-                    alt="Render deployment platform logo"
-                    class="w-16 h-16 object-contain"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                  <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Render</p>
-                </div>
-              )
-            }
+            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
+              <Icon
+                name="vitest"
+                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
+                aria-hidden="true"
+              />
+              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Vitest</p>
+            </div>
           </div>
         </div>
 
@@ -316,11 +257,11 @@ const allImages = Object.entries(allImagesModules)
           
 
           {
-            allImages[9] && (
+            allImages[3] && (
               <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
                 <picture class="picture rounded-2xl overflow-hidden block">
                   <Image
-                    src={allImages[9].default}
+                    src={allImages[3].default}
                     alt="[Insert Analytics Instrumentation and Funnel Tracking Screenshot here] GA4 and Hotjar setup evidence showing event tracking readiness and future data-driven optimization pipeline."
                     class="w-full h-full object-cover"
                     loading="lazy"
@@ -391,11 +332,11 @@ const allImages = Object.entries(allImagesModules)
           </div>
 
           {
-            allImages[10] && (
+            allImages[4] && (
               <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
                 <picture class="picture rounded-2xl overflow-hidden block">
                   <Image
-                    src={allImages[10].default}
+                    src={allImages[4].default}
                     alt="[Insert Final Validation Dashboard Screenshot here] Composite proof of Lighthouse quality scores, strict build gates, contract tests, ethical consent architecture, and analytics readiness."
                     class="w-full h-full object-cover"
                     loading="lazy"
