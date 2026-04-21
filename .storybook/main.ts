@@ -8,6 +8,9 @@ const config: StorybookConfig = {
 		name: "@storybook/preact-vite",
 		options: {},
 	},
+	core: {
+    disableTelemetry: true,
+  },
 	viteFinal: async (config) => {
 		config.plugins = config.plugins || [];
 		config.plugins.push(tailwindcss());
