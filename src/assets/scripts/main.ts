@@ -43,7 +43,7 @@ const stickyHeaderFuncionality = (): void => {
 };
 
 const evaluateHeaderPosition = (): void => {
-  if (!headerElement || !headerElement.firstElementChild) {
+  if (!headerElement?.firstElementChild) {
     return;
   }
 
@@ -142,7 +142,7 @@ window.closeMobileMenu = closeMobileMenu;
 document.addEventListener("DOMContentLoaded", () => {
   headerElement = document.getElementById("header") as HTMLElement | null;
 
-  if (!headerElement || !headerElement.firstElementChild) {
+  if (!headerElement?.firstElementChild) {
     return;
   }
 

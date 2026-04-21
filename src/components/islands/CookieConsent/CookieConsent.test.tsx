@@ -2,7 +2,7 @@ import { cleanup, render, screen, waitFor } from "@testing-library/preact";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/vitest";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { CookieConsent, type CookieChoice } from "./CookieConsent";
+import { type CookieChoice, CookieConsent } from "./CookieConsent";
 
 const TEST_STORAGE_KEY = "ds.cookie-consent.test";
 
@@ -30,9 +30,7 @@ describe("CookieConsent", () => {
   it("renders the consent dialog by default when no decision is stored", async () => {
     render(<CookieConsent storageKey={TEST_STORAGE_KEY} />);
 
-    expect(
-      await screen.findByRole("dialog", { name: /cookie preferences/i }),
-    ).toBeInTheDocument();
+    expect(await screen.findByRole("dialog", { name: /cookie preferences/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Accept" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Decline" })).toBeInTheDocument();
   });

@@ -3,18 +3,18 @@ import { siteConfig } from "@/config/site";
 import type { BaseLayoutProps } from "@/types/layout";
 
 export interface Props extends BaseLayoutProps {
-	keywords?: string | undefined;
-	url?: string;
-	twitterHandle?: string;
+  keywords?: string | undefined;
+  url?: string;
+  twitterHandle?: string;
 }
 
 const {
-	title = siteConfig.meta.title,
-	description = siteConfig.meta.description,
-	keywords = siteConfig.meta.keywords,
-	url,
-	image = siteConfig.meta.image,
-	twitterHandle = "",
+  title = siteConfig.meta.title,
+  description = siteConfig.meta.description,
+  keywords = siteConfig.meta.keywords,
+  url,
+  image = siteConfig.meta.image,
+  twitterHandle = "",
 } = Astro.props as Props;
 
 const canonicalUrl = url || new URL(Astro.url.pathname, siteConfig.url).toString();

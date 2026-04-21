@@ -37,7 +37,7 @@ export function CookieConsent({
       setIsOpen(false);
       // Dispatch event for previously cached decision
       window.dispatchEvent(
-        new CustomEvent("cookie-consent:decision", { detail: { choice: saved } })
+        new CustomEvent("cookie-consent:decision", { detail: { choice: saved } }),
       );
       return;
     }
@@ -50,9 +50,7 @@ export function CookieConsent({
     setDecision(choice);
     setIsOpen(false);
     // Dispatch event to listeners (e.g., Analytics component)
-    window.dispatchEvent(
-      new CustomEvent("cookie-consent:decision", { detail: { choice } })
-    );
+    window.dispatchEvent(new CustomEvent("cookie-consent:decision", { detail: { choice } }));
     onDecision?.(choice);
   };
 

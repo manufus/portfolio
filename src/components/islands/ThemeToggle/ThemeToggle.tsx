@@ -1,5 +1,5 @@
+import { Moon, Sun } from "lucide-preact";
 import { useEffect, useState } from "preact/hooks";
-import { Sun, Moon } from "lucide-preact";
 
 export interface ThemeToggleProps {
   className?: string;
@@ -31,9 +31,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
     localStorage.setItem("dark_mode", newState ? "true" : "false");
 
     // Dispatch event for other components to react (optional)
-    window.dispatchEvent(
-      new CustomEvent("theme-toggle:change", { detail: { isDark: newState } })
-    );
+    window.dispatchEvent(new CustomEvent("theme-toggle:change", { detail: { isDark: newState } }));
   };
 
   if (!mounted) return null;

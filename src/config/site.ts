@@ -1,6 +1,9 @@
 // Get site URL from environment variable, use default value if not set
 // Note: Please set the correct PUBLIC_SITE_URL in .env file after first deployment
-const SITE_URL = (import.meta.env.PUBLIC_SITE_URL || "https://manuelhortelano.com/").replace(/\/+$/, "");
+const SITE_URL = (import.meta.env.PUBLIC_SITE_URL || "https://manuelhortelano.com/").replace(
+  /\/+$/,
+  "",
+);
 
 interface UTMConfig {
   source: string;

@@ -1,8 +1,8 @@
 ---
 import type { ImageMetadata } from "astro";
 import projects from "@/collections/projects.json";
-import WorkCard from "@/components/composites/WorkCard.astro";
 import SectionHeader from "@/components/composites/SectionHeader.astro";
+import WorkCard from "@/components/composites/WorkCard.astro";
 import Button from "@/components/primitives/Button.astro";
 
 export interface Props {
@@ -52,9 +52,7 @@ const {
   limit,
 } = Astro.props as Props;
 
-const featuredSourceProjects = (projects as RawProject[]).filter(
-  (project) => project.featured,
-);
+const featuredSourceProjects = (projects as RawProject[]).filter((project) => project.featured);
 
 let allProjects = featuredSourceProjects.map((project) => ({
   ...project,
@@ -72,7 +70,9 @@ const featuredProjects = allProjects.slice(0, 3);
 const gridProjects = allProjects.slice(3);
 
 const shouldShowViewAll =
-  limit !== undefined ? limit < featuredSourceProjects.length : !showAll && featuredSourceProjects.length > 6;
+  limit !== undefined
+    ? limit < featuredSourceProjects.length
+    : !showAll && featuredSourceProjects.length > 6;
 ---
 
 <section class="py-16 md:py-16 md:pb-12">

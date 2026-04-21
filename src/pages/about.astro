@@ -1,13 +1,13 @@
 ---
-import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import graduationImg from "@/assets/graduation.jpg";
-import experiences from "@/collections/experiences.json";
-import education from "@/collections/education.json";
 import awards from "@/collections/awards.json";
+import education from "@/collections/education.json";
+import experiences from "@/collections/experiences.json";
 import AboutExperience from "@/components/composites/AboutExperience.astro";
-import Button from "@/components/primitives/Button.astro";
 import Toc from "@/components/features/Toc.astro";
+import Button from "@/components/primitives/Button.astro";
 import { siteConfig } from "@/config/site";
 import Layout from "@/layouts/Layout.astro";
 
@@ -18,7 +18,6 @@ const headings = [
   { depth: 2, slug: "education", text: "Education" },
   { depth: 2, slug: "experience", text: "Experience" },
   { depth: 2, slug: "awards", text: "Honors & Awards" },
-  
 ];
 
 const filtered = headings.filter((h) => h.depth <= 3);

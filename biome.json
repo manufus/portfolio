@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.10/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
   "files": {
     "ignoreUnknown": false
   },
@@ -42,9 +42,26 @@
   },
   "overrides": [
     {
-      "includes": ["dist/**", "node_modules/**", ".astro/**", ".storybook/**", "storybook-static/**"],
+      "includes": [
+        "dist/**",
+        "node_modules/**",
+        ".astro/**",
+        ".storybook/**",
+        "storybook-static/**"
+      ],
       "linter": { "enabled": false },
       "formatter": { "enabled": false }
+    },
+    {
+      "includes": ["**/*.astro"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          }
+        }
+      }
     }
   ]
 }

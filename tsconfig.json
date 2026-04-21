@@ -16,10 +16,5 @@
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".astro",
-    "storybook-static"
-  ]
+  "exclude": ["node_modules", "dist", ".astro", "storybook-static"]
 }

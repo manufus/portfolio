@@ -1,20 +1,16 @@
 ---
 import AnimatedText from "@/components/primitives/AnimatedText.astro";
+import type { HTMLTag } from "astro/types";
 export interface Props {
   title: string;
   tags?: string[];
   className?: string;
-  as?: string;
+  as?: HTMLTag;
 }
 
-const {
-  title,
-  tags = [],
-  className = "",
-  as,
-} = Astro.props as Props;
+const { title, tags = [], className = "", as } = Astro.props as Props;
 
-const Element = (as || "h1") as any;
+const Element = as || "h1";
 ---
 
 <div
