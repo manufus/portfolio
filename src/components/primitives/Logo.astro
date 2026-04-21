@@ -2,10 +2,16 @@
 import { Image } from "astro:assets";
 import logoDark from "@/assets/logo-dark.png";
 import logoDefault from "@/assets/logo-default.png";
+
+export interface Props {
+  href?: string;
+}
+
+const { href = "/" } = Astro.props as Props;
 ---
 
 <a
-  href="/"
+  href={href}
   class="h-10 text-base group relative z-30 flex items-center"
 >
   <Image
