@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { type CookieChoice, CookieConsent } from "./CookieConsent";
 
 const TEST_STORAGE_KEY = "ds.cookie-consent.test";
+const TEST_SESSION_KEY = "ds.cookie-consent.pending.test";
 
 function captureConsentEvents() {
   const events: Array<CustomEvent<{ choice: CookieChoice }>> = [];
@@ -23,12 +24,14 @@ function captureConsentEvents() {
 afterEach(() => {
   cleanup();
   window.localStorage.clear();
+  window.sessionStorage.clear();
+  window.history.replaceState({}, "", "/");
   vi.restoreAllMocks();
 });
 
 describe("CookieConsent", () => {
   it("renders the consent dialog by default when no decision is stored", async () => {
-    render(<CookieConsent storageKey={TEST_STORAGE_KEY} />);
+    render(<CookieConsent storageKey={TEST_STORAGE_KEY} sessionKey={TEST_SESSION_KEY} />);
 
     expect(await screen.findByRole("dialog", { name: /cookie preferences/i })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Accept" })).toBeInTheDocument();
@@ -39,7 +42,13 @@ describe("CookieConsent", () => {
     const { events, detach } = captureConsentEvents();
     const onDecision = vi.fn();
 
-    render(<CookieConsent storageKey={TEST_STORAGE_KEY} onDecision={onDecision} />);
+    render(
+      <CookieConsent
+        storageKey={TEST_STORAGE_KEY}
+        sessionKey={TEST_SESSION_KEY}
+        onDecision={onDecision}
+      />,
+    );
 
     await userEvent.click(await screen.findByRole("button", { name: "Accept" }));
 
@@ -60,7 +69,7 @@ describe("CookieConsent", () => {
     window.localStorage.setItem(TEST_STORAGE_KEY, "accepted");
     const { events, detach } = captureConsentEvents();
 
-    render(<CookieConsent storageKey={TEST_STORAGE_KEY} />);
+    render(<CookieConsent storageKey={TEST_STORAGE_KEY} sessionKey={TEST_SESSION_KEY} />);
 
     await waitFor(() => {
       expect(events.length).toBeGreaterThan(0);
@@ -72,5 +81,42 @@ describe("CookieConsent", () => {
     expect(screen.getByText(/cookie choice saved: accepted\./i)).toBeInTheDocument();
 
     detach();
+  });
+
+  it("implies rejection on a second internal page when the first banner was ignored", async () => {
+    window.sessionStorage.setItem(TEST_SESSION_KEY, "/first-page");
+    window.history.replaceState({}, "", "/second-page");
+    const { events, detach } = captureConsentEvents();
+    const onDecision = vi.fn();
+
+    render(
+      <CookieConsent
+        storageKey={TEST_STORAGE_KEY}
+        sessionKey={TEST_SESSION_KEY}
+        onDecision={onDecision}
+      />,
+    );
+
+    await waitFor(() => {
+      expect(window.localStorage.getItem(TEST_STORAGE_KEY)).toBe("rejected");
+      expect(events.length).toBeGreaterThan(0);
+    });
+
+    expect(onDecision).toHaveBeenCalledWith("rejected");
+    expect(events.at(-1)?.detail).toEqual({ choice: "rejected" });
+    expect(window.sessionStorage.getItem(TEST_SESSION_KEY)).toBeNull();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    detach();
+  });
+
+  it("does not imply rejection on same-page reload", async () => {
+    window.history.replaceState({}, "", "/same-page");
+    window.sessionStorage.setItem(TEST_SESSION_KEY, "/same-page");
+
+    render(<CookieConsent storageKey={TEST_STORAGE_KEY} sessionKey={TEST_SESSION_KEY} />);
+
+    expect(await screen.findByRole("dialog", { name: /cookie preferences/i })).toBeInTheDocument();
+    expect(window.localStorage.getItem(TEST_STORAGE_KEY)).toBeNull();
   });
 });

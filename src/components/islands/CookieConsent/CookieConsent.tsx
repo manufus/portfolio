@@ -1,11 +1,15 @@
 import { Fragment } from "preact";
 import { useEffect, useId, useState } from "preact/hooks";
-import { COOKIE_CONSENT_STORAGE_KEY } from "./constants";
+import {
+  COOKIE_CONSENT_PENDING_PATH_SESSION_KEY,
+  COOKIE_CONSENT_STORAGE_KEY,
+} from "./constants";
 
 export type CookieChoice = "accepted" | "rejected";
 
 export interface CookieConsentProps {
   storageKey?: string;
+  sessionKey?: string;
   title?: string;
   description?: string;
   acceptLabel?: string;
@@ -16,6 +20,7 @@ export interface CookieConsentProps {
 
 export function CookieConsent({
   storageKey = COOKIE_CONSENT_STORAGE_KEY,
+  sessionKey = COOKIE_CONSENT_PENDING_PATH_SESSION_KEY,
   title = "Cookie preferences",
   description = "I use Google Analytics and Hotjar to see which projects catch your eye. It helps me improve this portfolio. You can keep browsing normally even if you decline—no pressure!",
   acceptLabel = "Accept",
@@ -29,23 +34,13 @@ export function CookieConsent({
   const titleId = useId();
   const descId = useId();
 
-  useEffect(() => {
-    if (!isBrowser) return;
-    const saved = window.localStorage.getItem(storageKey) as CookieChoice | null;
-    if (saved === "accepted" || saved === "rejected") {
-      setDecision(saved);
-      setIsOpen(false);
-      // Dispatch event for previously cached decision
-      window.dispatchEvent(
-        new CustomEvent("cookie-consent:decision", { detail: { choice: saved } }),
-      );
-      return;
-    }
-    setIsOpen(true);
-  }, [isBrowser, storageKey]);
-
   const saveDecision = (choice: CookieChoice) => {
     if (!isBrowser) return;
+    try {
+      window.sessionStorage.removeItem(sessionKey);
+    } catch {
+      // Ignore restricted sessionStorage environments.
+    }
     window.localStorage.setItem(storageKey, choice);
     setDecision(choice);
     setIsOpen(false);
@@ -53,6 +48,50 @@ export function CookieConsent({
     window.dispatchEvent(new CustomEvent("cookie-consent:decision", { detail: { choice } }));
     onDecision?.(choice);
   };
+
+  useEffect(() => {
+    if (!isBrowser) return;
+
+    const saved = window.localStorage.getItem(storageKey) as CookieChoice | null;
+
+    if (saved === "accepted" || saved === "rejected") {
+      setDecision(saved);
+      setIsOpen(false);
+      try {
+        window.sessionStorage.removeItem(sessionKey);
+      } catch {
+        // Ignore restricted sessionStorage environments.
+      }
+      // Dispatch event for previously cached decision
+      window.dispatchEvent(
+        new CustomEvent("cookie-consent:decision", { detail: { choice: saved } }),
+      );
+      return;
+    }
+
+    const currentPath = window.location.pathname;
+    let pendingPath: string | null = null;
+
+    try {
+      pendingPath = window.sessionStorage.getItem(sessionKey);
+    } catch {
+      setIsOpen(true);
+      return;
+    }
+
+    if (pendingPath && pendingPath !== currentPath) {
+      saveDecision("rejected");
+      return;
+    }
+
+    try {
+      window.sessionStorage.setItem(sessionKey, currentPath);
+    } catch {
+      // Ignore restricted sessionStorage environments.
+    }
+
+    setIsOpen(true);
+  }, [isBrowser, sessionKey, storageKey]);
 
   if (!isOpen) {
     return (
