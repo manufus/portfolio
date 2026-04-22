@@ -129,5 +129,29 @@ The portfolio repository has been successfully transformed from a standard stati
 * 🧪 **Validated Contracts:** A lean, pure `Vitest + JSDOM` testing environment successfully verifying critical state and PubSub business logic without repository bloat.
 * 🚀 **Highly Optimized Runtime:** Main-thread scroll throttling and PubSub observer patterns ensure a completely memory-leak-free user experience.
 
+---
+
+## 🚀 Version 2.0: Architectural Scalability & SSOT Enforcement
+
+Following the successful initial modernization (Phase I-VII), the repository underwent a massive structural refactoring to treat the codebase as an enterprise-grade product, ensuring long-term scalability and preventing taxonomy drift.
+
+### 1. Unified Component Taxonomy
+Eliminated ambiguous legacy folders (`ui`, `elements`, `widgets`) in favor of a strict, responsibility-driven directory structure: `primitives`, `composites`, `sections`, `features`, `system`, and `islands`. This maps the architectural mental model directly to the file system, removing friction for future component creation.
+
+### 2. Single Source of Truth (SSOT) & Data Consolidation
+* **Metadata & SEO:** Consolidated all layout-level `<head>` tags into a single `system/Meta.astro` component. This preserved the 100/100 Lighthouse SEO score while eradicating duplicate HTML logic.
+* **Data Layer Prep:** Merged disjointed JSON arrays (`works.json`, `featuredwork.json`) into a single unified `projects.json` leveraging boolean flags, severely reducing the risk of data drift.
+* **Global Config:** Established a strictly typed `site.ts` as the absolute SSOT for social links and author metadata, purging hardcoded values from individual `.astro` pages.
+
+### 3. Strict TypeScript & Quality Gates (The "Zero-Warning" Baseline)
+* **Zero-JS Source Code:** Migrated legacy client scripts (`main.js`, `site.js`) to strict TypeScript, implementing global `Window` augmentation and strict DOM null-checks.
+* **Polymorphic Typing:** Secured dynamic HTML tag rendering in components (e.g., `PageHeader`) using Astro's native `HTMLTag` types, removing all `any` escapes.
+* **Linter Hardening:** Fine-tuned the Biome configuration with Astro-specific template overrides, achieving a verifiable **0-Error, 0-Warning** build state.
+
+### 4. The Engineering Manifesto
+Authored `ARCHITECTURE.md` to serve as a pragmatic, living rulebook. It documents the project's laws for taxonomy, asset management, and quality gates, acting as an automated "Tech Lead" to guide future development and AI Agent interventions.
+
+---
+
 ### Next Steps (Version 2.1 Roadmap)
-* **Data Layer Refactor:** Migrate from manual JSON data structures to Astro's official **Content Collections API** (with Zod schema validation) to establish a perfectly typed, Single-Source-of-Truth for portfolio content, further enabling seamless Agentic AI data manipulation.
+* **Content Collections Migration (Zod):** With the data layer now unified into a single SSOT (`projects.json`), the next step is to migrate this data into Astro's official **Content Collections API**. Implementing strict Zod schema validation will create a perfectly typed data pipeline from the backend to the UI, fully unlocking robust Agentic AI content manipulation.
