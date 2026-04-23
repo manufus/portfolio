@@ -134,6 +134,7 @@ export function CookieConsent({
 
       try {
         window.sessionStorage.removeItem(sessionKey);
+        window.sessionStorage.setItem(sessionKey, window.location.pathname);
       } catch {
         // Ignore restricted sessionStorage environments.
       }
