@@ -58,3 +58,14 @@ Before any code is merged, it must pass these strict quality gates:
 2. **Build Integrity:** `npm run build` must exit with code 0.
 3. **Design System:** `npm run build-storybook` must bundle successfully.
 4. **Contract Testing:** `Vitest + JSDOM` must validate core component logic.
+
+---
+
+## 8. State Management & Event-Driven Architecture (PubSub)
+To maintain a lightweight footprint and avoid React-ecosystem bloat, **external state management libraries (e.g., Redux, Zustand, NanoStores) are strictly forbidden.**
+
+Cross-component communication, especially across the Static-to-Reactive boundary (e.g., an Astro Footer triggering a Preact Island), must be handled via a **Native Browser PubSub Architecture**:
+* **The Event Bus:** Use the global `window` object to dispatch and listen to standard `CustomEvent` APIs.
+* **Event Naming Convention:** Use domain-prefixed, colon-separated strings (e.g., `cookie-consent:reset`, `ds:toast`).
+* **Payloads:** Pass state data cleanly through the event's `detail` property.
+* **Hygiene:** All Preact islands must rigorously clean up their event listeners (`window.removeEventListener`) within the `useEffect` cleanup return function to prevent memory leaks.
