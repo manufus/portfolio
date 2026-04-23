@@ -1,0 +1,45 @@
+---
+import type { ImageMetadata } from "astro";
+import CaptionImage from "@/components/composites/CaptionImage.astro";
+
+export interface FigureGalleryItem {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+  pictureClassName?: string;
+  imageClassName?: string;
+  figureClassName?: string;
+}
+
+export interface Props {
+  items: FigureGalleryItem[];
+  columns?: 2 | 3 | 4;
+  gridClassName?: string;
+}
+
+const { items, columns = 2, gridClassName = "mt-8 md:mt-12 mb-12" } = Astro.props as Props;
+
+const columnsClass =
+  columns === 3
+    ? "grid-cols-1 md:grid-cols-3"
+    : columns === 4
+      ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+      : "grid-cols-1 md:grid-cols-2";
+---
+
+<div class={`grid ${columnsClass} gap-6 ${gridClassName}`.trim()}>
+  {
+    items.map((item) => (
+      <CaptionImage
+        src={item.src}
+        alt={item.alt}
+        {...(item.caption !== undefined ? { caption: item.caption } : {})}
+        figureClassName={item.figureClassName ?? ""}
+        {...(item.pictureClassName !== undefined
+          ? { pictureClassName: item.pictureClassName }
+          : {})}
+        {...(item.imageClassName !== undefined ? { imageClassName: item.imageClassName } : {})}
+      />
+    ))
+  }
+</div>

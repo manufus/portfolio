@@ -1,0 +1,42 @@
+---
+import MetricCard from "@/components/primitives/MetricCard.astro";
+
+export interface MetricGridItem {
+  value: string;
+  label: string;
+  description: string;
+  valueSize?: "lg" | "xl";
+  descriptionHtml?: string;
+}
+
+export interface Props {
+  items: MetricGridItem[];
+  columns?: 1 | 2 | 4;
+  className?: string;
+}
+
+const { items, columns = 2, className = "" } = Astro.props as Props;
+
+const columnsClass =
+  columns === 1
+    ? "grid-cols-1"
+    : columns === 4
+      ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+      : "grid-cols-1 md:grid-cols-2";
+---
+
+<div class={`grid ${columnsClass} gap-6 ${className}`.trim()}>
+  {
+    items.map((item) => (
+      <MetricCard
+        value={item.value}
+        label={item.label}
+        description={item.description}
+        {...(item.valueSize !== undefined ? { valueSize: item.valueSize } : {})}
+        {...(item.descriptionHtml !== undefined
+          ? { descriptionHtml: item.descriptionHtml }
+          : {})}
+      />
+    ))
+  }
+</div>

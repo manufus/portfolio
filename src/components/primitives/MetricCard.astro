@@ -1,0 +1,35 @@
+---
+export interface Props {
+  value: string;
+  label: string;
+  description: string;
+  valueSize?: "lg" | "xl";
+  className?: string;
+  descriptionHtml?: string;
+}
+
+const {
+  value,
+  label,
+  description,
+  valueSize = "xl",
+  className = "",
+  descriptionHtml,
+} = Astro.props as Props;
+
+const valueClass = valueSize === "lg" ? "text-3xl" : "text-4xl";
+---
+
+<div
+  class={`p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800 ${className}`.trim()}
+>
+  <h4 class={`${valueClass} font-bold text-primary dark:text-accent-light mb-2`}>{value}</h4>
+  <p class="font-medium">{label}</p>
+  {
+    descriptionHtml ? (
+      <p class="text-sm text-neutral-500 mt-2" set:html={descriptionHtml} />
+    ) : (
+      <p class="text-sm text-neutral-500 mt-2">{description}</p>
+    )
+  }
+</div>

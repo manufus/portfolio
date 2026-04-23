@@ -1,8 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import { Icon } from "astro-icon/components";
 import PageHeader from "@/components/composites/PageHeader.astro";
+import CaptionImage from "@/components/composites/CaptionImage.astro";
+import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
 import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
 import PostLayout from "@/layouts/PostLayout.astro";
@@ -51,21 +52,14 @@ const allImages = Object.entries(allImagesModules)
 
           {
             allImages[0] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[0].default}
-                    alt="Snapshot of the original portfolio stack highlighting bad Lighthouse performance and accessibility issues."
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+              <CaptionImage
+                src={allImages[0].default}
+                alt="Snapshot of the original portfolio stack highlighting bad Lighthouse performance and accessibility issues."
+              >
+                <span slot="caption">
                   Baseline before architecture hardening and UX engineering refactor. <a href="https://pagespeed.web.dev/analysis/https-manuelhortelano-com-about/8mlgosqpl8?form_factor=mobile">Link to the Lighthouse report</a>
-                </figcaption>
-              </figure>
+                </span>
+              </CaptionImage>
             )
           }
         </div>
@@ -99,21 +93,11 @@ const allImages = Object.entries(allImagesModules)
 
           {
             allImages[1] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[1].default}
-                    alt="Diagram showing execution and reasoning agents coordinating implementation, quality review, and release governance."
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Dual-Agent workflow used as an engineering governance model.
-                </figcaption>
-              </figure>
+              <CaptionImage
+                src={allImages[1].default}
+                alt="Diagram showing execution and reasoning agents coordinating implementation, quality review, and release governance."
+                caption="Dual-Agent workflow used as an engineering governance model."
+              />
             )
           }
         </div>
@@ -152,21 +136,11 @@ const allImages = Object.entries(allImagesModules)
 
           {
             allImages[2] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[2].default}
-                    alt="Visual mapping of design documentation, component behavior, and production implementation in Storybook."
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Storybook used as delivery infrastructure, not only as a showcase.
-                </figcaption>
-              </figure>
+              <CaptionImage
+                src={allImages[2].default}
+                alt="Visual mapping of design documentation, component behavior, and production implementation in Storybook."
+                caption="Storybook used as delivery infrastructure, not only as a showcase."
+              />
             )
           }
         </div>
@@ -258,21 +232,11 @@ const allImages = Object.entries(allImagesModules)
 
           {
             allImages[3] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[3].default}
-                    alt="GA4 and Hotjar setup evidence showing event tracking readiness and future data-driven optimization pipeline."
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Analytics stack deployed and ready for statistically valid iteration.
-                </figcaption>
-              </figure>
+              <CaptionImage
+                src={allImages[3].default}
+                alt="GA4 and Hotjar setup evidence showing event tracking readiness and future data-driven optimization pipeline."
+                caption="Analytics stack deployed and ready for statistically valid iteration."
+              />
             )
           }
         </div>
@@ -280,74 +244,47 @@ const allImages = Object.entries(allImagesModules)
         <div class="mb-12">
           <h3>Validation & Impact</h3>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-10">
-            <div
-              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
-            >
-              <h4 class="text-3xl font-bold text-primary dark:text-accent-light mb-2">Ethical by Design</h4>
-              <p class="font-medium">Ethical UX</p>
-              <p class="text-sm text-neutral-500 mt-2">
-                Zero dark-patterns consent architecture, mobile interactions optimized
-                for Fitts's Law, and respectful analytics instrumentation.
-              </p>
-            </div>
-
-            <div
-              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
-            >
-              <h4 class="text-3xl font-bold text-primary dark:text-accent-light mb-2">Accessibility by Design</h4>
-              <p class="font-medium">100 / 100</p>
-              <p class="text-sm text-neutral-500 mt-2">
-                Semantic HTML and ARIA architecture maintain a consistent 100/100
-                Accessibility score. Dark mode contrast fluctuations are tracked as
-                controlled technical debt.
-              </p>
-            </div>
-            
-            <div
-              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
-            >
-              <h4 class="text-3xl font-bold text-primary dark:text-accent-light mb-2">100 / 100</h4>
-              <p class="font-medium">Performance & Quality</p>
-              <p class="text-sm text-neutral-500 mt-2">
-                Lighthouse reached 100/100 in SEO and Best Practices, confirming strong
-                performance governance and production quality controls.
-              </p>
-            </div>
-
-            <div
-              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
-            >
-              <h4 class="text-3xl font-bold text-primary dark:text-accent-light mb-2">0 Errors</h4>
-              <p class="font-medium">Engineering & Security</p>
-              <p class="text-sm text-neutral-500 mt-2">
-                Zero-error strict TypeScript build, Vitest contract validation, and
-                DevSecOps git-history PII purge were enforced as release gates.
-              </p>
-            </div>
-
-            
-
-            
-          </div>
+          <MetricsGrid
+            className="mt-8 mb-10"
+            items={[
+              {
+                value: "Ethical by Design",
+                label: "Ethical UX",
+                description:
+                  "Zero dark-patterns consent architecture, mobile interactions optimized for Fitts's Law, and respectful analytics instrumentation.",
+                valueSize: "lg",
+              },
+              {
+                value: "Accessibility by Design",
+                label: "100 / 100",
+                description:
+                  "Semantic HTML and ARIA architecture maintain a consistent 100/100 Accessibility score. Dark mode contrast fluctuations are tracked as controlled technical debt.",
+                valueSize: "lg",
+              },
+              {
+                value: "100 / 100",
+                label: "Performance & Quality",
+                description:
+                  "Lighthouse reached 100/100 in SEO and Best Practices, confirming strong performance governance and production quality controls.",
+                valueSize: "lg",
+              },
+              {
+                value: "0 Errors",
+                label: "Engineering & Security",
+                description:
+                  "Zero-error strict TypeScript build, Vitest contract validation, and DevSecOps git-history PII purge were enforced as release gates.",
+                valueSize: "lg",
+              },
+            ]}
+          />
 
           {
             allImages[4] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[4].default}
-                    alt="Composite proof of Lighthouse quality scores, strict build gates, contract tests, ethical consent architecture, and analytics readiness."
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Consolidated evidence of quality, engineering rigor, and ethical UX.
-                </figcaption>
-              </figure>
+              <CaptionImage
+                src={allImages[4].default}
+                alt="Composite proof of Lighthouse quality scores, strict build gates, contract tests, ethical consent architecture, and analytics readiness."
+                caption="Consolidated evidence of quality, engineering rigor, and ethical UX."
+              />
             )
           }
         </div>

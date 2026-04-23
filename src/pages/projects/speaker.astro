@@ -1,7 +1,8 @@
 ---
-import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import PageHeader from "@/components/composites/PageHeader.astro";
+import CaptionImage from "@/components/composites/CaptionImage.astro";
+import FigureGallery from "@/components/composites/FigureGallery.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
 import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
 import PostLayout from "@/layouts/PostLayout.astro";
@@ -59,24 +60,17 @@ const allImages = Object.entries(allImagesModules)
           </div>
           {
             allImages[0] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[0].default}
-                    alt="Industrial design process overview"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+              <CaptionImage
+                src={allImages[0].default}
+                alt="Industrial design process overview"
+              >
+                <span slot="caption">
                   Industrial design process overview. Image Source:
                   <a href="https://think360studio.com/blog/industrial-design">
                     Think 360
                   </a>
-                </figcaption>
-              </figure>
+                </span>
+              </CaptionImage>
             )
           }
         </div>
@@ -90,89 +84,56 @@ const allImages = Object.entries(allImagesModules)
             > via sketching to establish the product's foundational form factor.
           </p>
 
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-12 mb-12"
-          >
-            {
-              allImages[1] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                    <Image
-                      src={allImages[1].default}
-                      alt="Initial brainstorming sketches"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Brainstorming: Exploring geometric variations
-                  </figcaption>
-                </figure>
-              )
-            }
-
-            {
-              allImages[2] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                    <Image
-                      src={allImages[2].default}
-                      alt="Refined Concept Sketches"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Refining the interaction
-                  </figcaption>
-                </figure>
-              )
-            }
-
-            {
-              allImages[3] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                    <Image
-                      src={allImages[3].default}
-                      alt="Moodboard: Market Inspiration"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Moodboard: Market Insipiration
-                  </figcaption>
-                </figure>
-              )
-            }
-
-            {
-              allImages[4] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                    <Image
-                      src={allImages[4].default}
-                      alt="Final Design Proposal"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Final proposal with acoustic layout
-                  </figcaption>
-                </figure>
-              )
-            }
-          </div>
+          {
+            (allImages[1] || allImages[2] || allImages[3] || allImages[4]) && (
+              <FigureGallery
+                columns={2}
+                gridClassName="mt-8 md:mt-12 mb-12"
+                items={[
+                  ...(allImages[1]
+                    ? [
+                        {
+                          src: allImages[1].default,
+                          alt: "Initial brainstorming sketches",
+                          caption: "Brainstorming: Exploring geometric variations",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[2]
+                    ? [
+                        {
+                          src: allImages[2].default,
+                          alt: "Refined Concept Sketches",
+                          caption: "Refining the interaction",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[3]
+                    ? [
+                        {
+                          src: allImages[3].default,
+                          alt: "Moodboard: Market Inspiration",
+                          caption: "Moodboard: Market Insipiration",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[4]
+                    ? [
+                        {
+                          src: allImages[4].default,
+                          alt: "Final Design Proposal",
+                          caption: "Final proposal with acoustic layout",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        },
+                      ]
+                    : []),
+                ]}
+              />
+            )
+          }
         </div>
 
         <div class="mb-12">
@@ -184,71 +145,46 @@ const allImages = Object.entries(allImagesModules)
             design.
           </p>
 
-          <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 md:mt-12 mb-12"
-          >
-            {
-              allImages[5] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-80 md:h-80">
-                    <Image
-                      src={allImages[5].default}
-                      alt="Foam model initial volume"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Defining the base volume
-                  </figcaption>
-                </figure>
-              )
-            }
-
-            {/* Imagen 2.2: Cutting/Shaping */}
-            {
-              allImages[6] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-80 md:h-80">
-                    <Image
-                      src={allImages[6].default}
-                      alt="Shaping the foam model"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Validating internal capacity
-                  </figcaption>
-                </figure>
-              )
-            }
-
-            {/* Imagen 2.3: Final Foam Shape */}
-            {
-              allImages[7] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-80 md:h-80">
-                    <Image
-                      src={allImages[7].default}
-                      alt="Final foam ergonomic model"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Ergonomic validation
-                  </figcaption>
-                </figure>
-              )
-            }
-          </div>
+          {
+            (allImages[5] || allImages[6] || allImages[7]) && (
+              <FigureGallery
+                columns={3}
+                gridClassName="mt-8 md:mt-12 mb-12"
+                items={[
+                  ...(allImages[5]
+                    ? [
+                        {
+                          src: allImages[5].default,
+                          alt: "Foam model initial volume",
+                          caption: "Defining the base volume",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-80 md:h-80",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[6]
+                    ? [
+                        {
+                          src: allImages[6].default,
+                          alt: "Shaping the foam model",
+                          caption: "Validating internal capacity",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-80 md:h-80",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[7]
+                    ? [
+                        {
+                          src: allImages[7].default,
+                          alt: "Final foam ergonomic model",
+                          caption: "Ergonomic validation",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-80 md:h-80",
+                        },
+                      ]
+                    : []),
+                ]}
+              />
+            )
+          }
         </div>
 
         <div class="mb-12">
@@ -261,69 +197,48 @@ const allImages = Object.entries(allImagesModules)
             > to ensure a feasable assembly.
           </p>
 
-          <div
-            class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8 md:mt-12 mb-12"
-          >
-            {
-              allImages[8] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-64">
-                    <Image
-                      src={allImages[8].default}
-                      alt="Assembly technical sketch 1"
-                      class="w-full h-full  object-contain bg-white"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Assembly scheme 1
-                  </figcaption>
-                </figure>
-              )
-            }
-
-            {
-              allImages[9] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-64">
-                    <Image
-                      src={allImages[9].default}
-                      alt="Speaker Render 3D CAD Model"
-                      class="w-full h-full object-top object-contain bg-white"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Speaker render to simulate colours
-                  </figcaption>
-                </figure>
-              )
-            }
-
-            {
-              allImages[10] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-64">
-                    <Image
-                      src={allImages[10].default}
-                      alt="Assembly technical sketch 2"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Assembly scheme 2
-                  </figcaption>
-                </figure>
-              )
-            }
-          </div>
+          {
+            (allImages[8] || allImages[9] || allImages[10]) && (
+              <FigureGallery
+                columns={3}
+                gridClassName="mt-8 md:mt-12 mb-12"
+                items={[
+                  ...(allImages[8]
+                    ? [
+                        {
+                          src: allImages[8].default,
+                          alt: "Assembly technical sketch 1",
+                          caption: "Assembly scheme 1",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-64",
+                          imageClassName: "w-full h-full object-contain bg-white",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[9]
+                    ? [
+                        {
+                          src: allImages[9].default,
+                          alt: "Speaker Render 3D CAD Model",
+                          caption: "Speaker render to simulate colours",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-64",
+                          imageClassName: "w-full h-full object-top object-contain bg-white",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[10]
+                    ? [
+                        {
+                          src: allImages[10].default,
+                          alt: "Assembly technical sketch 2",
+                          caption: "Assembly scheme 2",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-64",
+                        },
+                      ]
+                    : []),
+                ]}
+              />
+            )
+          }
         </div>
 
         <div class="mb-12">
@@ -335,64 +250,44 @@ const allImages = Object.entries(allImagesModules)
             validate <strong>functionality and technical viability</strong>.
           </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
-            {
-              allImages[11] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-80">
-                    <Image
-                      src={allImages[11].default}
-                      alt="Workshop assembly process"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Assembly and fitting of printed parts
-                  </figcaption>
-                </figure>
-              )
-            }
-            {
-              allImages[12] && (
-                <figure>
-                  <picture class="picture rounded-2xl overflow-hidden block h-80">
-                    <Image
-                      src={allImages[12].default}
-                      alt="Sanding and painting process"
-                      class="w-full h-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                      quality={100}
-                    />
-                  </picture>
-                  <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                    Surface finishing (Sanding & Painting)
-                  </figcaption>
-                </figure>
-              )
-            }
-          </div>
+          {
+            (allImages[11] || allImages[12]) && (
+              <FigureGallery
+                columns={2}
+                gridClassName="mt-6 mb-8"
+                items={[
+                  ...(allImages[11]
+                    ? [
+                        {
+                          src: allImages[11].default,
+                          alt: "Workshop assembly process",
+                          caption: "Assembly and fitting of printed parts",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-80",
+                        },
+                      ]
+                    : []),
+                  ...(allImages[12]
+                    ? [
+                        {
+                          src: allImages[12].default,
+                          alt: "Sanding and painting process",
+                          caption: "Surface finishing (Sanding & Painting)",
+                          pictureClassName: "picture rounded-2xl overflow-hidden block h-80",
+                        },
+                      ]
+                    : []),
+                ]}
+              />
+            )
+          }
 
           {
             allImages[13] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[13].default}
-                    alt="Final High-Fidelity Prototype"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  The final result: A fully assembled, functional prototype.
-                </figcaption>
-              </figure>
+              <CaptionImage
+                src={allImages[13].default}
+                alt="Final High-Fidelity Prototype"
+                caption="The final result: A fully assembled, functional prototype."
+              />
             )
           }
         </div>

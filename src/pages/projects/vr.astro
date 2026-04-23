@@ -1,7 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import PageHeader from "@/components/composites/PageHeader.astro";
+import CaptionImage from "@/components/composites/CaptionImage.astro";
+import FigureGallery from "@/components/composites/FigureGallery.astro";
+import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
 import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
 import PostLayout from "@/layouts/PostLayout.astro";
@@ -48,24 +50,17 @@ const allImages = Object.values(allImagesModules) as Array<{
 
           {
             allImages[0] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[0].default}
-                    alt="Diagram of Industrial Evolution from Industry 1.0 to Industrial Metaverse"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
+              <CaptionImage
+                src={allImages[0].default}
+                alt="Diagram of Industrial Evolution from Industry 1.0 to Industrial Metaverse"
+              >
+                <span slot="caption">
                   Industrial Metaverse current paradigm. Image Source:
                   <a href="https://www.adlittle.com/en/insights/report/industrial-metaverse">
                     Arthur D. Little
                   </a>
-                </figcaption>
-              </figure>
+                </span>
+              </CaptionImage>
             )
           }
         </div>
@@ -165,91 +160,60 @@ const allImages = Object.values(allImagesModules) as Array<{
             </li>
           </ul>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 md:mt-12 mb-12">
-          {/* Image 1: Interaction Method */}
-          {
-            allImages[1] && (
-              <figure>
-                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                  <Image
-                    src={allImages[1].default}
-                    alt="Moving from Wrist Watch to Touch Environment Interaction"
-                    class="w-full h-auto object-contain "
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  UI Simplification: Removing superfluous elements
-                </figcaption>
-              </figure>
-            )
-          }
-
-          {/* Image 2: UI Change */}
-          {
-            allImages[2] && (
-              <figure>
-                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                  <Image
-                    src={allImages[2].default}
-                    alt="UI Simplification and Larger Interactable Area"
-                    class="w-full h-auto object-contain "
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Evolution: From "Wrist Watch" to "Touch Environment"
-                </figcaption>
-              </figure>
-            )
-          }
-
-          {/* Image 3: Unity Guide */}
-          {
-            allImages[3] && (
-              <figure>
-                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                  <Image
-                    src={allImages[3].default}
-                    alt="Development documentation for Unity implementation"
-                    class="w-full h-full object-cover object-top"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  Standardized UI Guidelines for Unity Developers
-                </figcaption>
-              </figure>
-            )
-          }
-
-          {/* Image 4: Teleport Guide */}
-          {
-            allImages[4] && (
-              <figure>
-                <picture class="picture rounded-2xl overflow-hidden block h-64 md:h-80">
-                  <Image
-                    src={allImages[4].default}
-                    alt="In-game movement mechanics design (Teleportation)"
-                    class="w-full h-full object-cover object-top"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  In-game movement mechanics design (Teleportation)
-                </figcaption>
-              </figure>
-            )
-          }
-        </div>
+        {
+          (allImages[1] || allImages[2] || allImages[3] || allImages[4]) && (
+            <FigureGallery
+              columns={2}
+              gridClassName="mt-8 md:mt-12 mb-12"
+              items={[
+                ...(allImages[1]
+                  ? [
+                      {
+                        src: allImages[1].default,
+                        alt: "Moving from Wrist Watch to Touch Environment Interaction",
+                        caption: "UI Simplification: Removing superfluous elements",
+                        pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        imageClassName: "w-full h-auto object-contain",
+                      },
+                    ]
+                  : []),
+                ...(allImages[2]
+                  ? [
+                      {
+                        src: allImages[2].default,
+                        alt: "UI Simplification and Larger Interactable Area",
+                        caption: 'Evolution: From "Wrist Watch" to "Touch Environment"',
+                        pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        imageClassName: "w-full h-auto object-contain",
+                      },
+                    ]
+                  : []),
+                ...(allImages[3]
+                  ? [
+                      {
+                        src: allImages[3].default,
+                        alt: "Development documentation for Unity implementation",
+                        caption: "Standardized UI Guidelines for Unity Developers",
+                        pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        imageClassName: "w-full h-full object-cover object-top",
+                      },
+                    ]
+                  : []),
+                ...(allImages[4]
+                  ? [
+                      {
+                        src: allImages[4].default,
+                        alt: "In-game movement mechanics design (Teleportation)",
+                        caption: "In-game movement mechanics design (Teleportation)",
+                        pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+                        imageClassName: "w-full h-full object-cover object-top",
+                      },
+                    ]
+                  : []),
+              ]}
+            />
+          )
+        }
 
         <div class="mb-12">
           <h3>Validation & Impact</h3>
@@ -259,46 +223,32 @@ const allImages = Object.values(allImagesModules) as Array<{
             for new operators as well as being welcomed by existing users.
           </p>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 mb-8">
-            <div
-              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
-            >
-              <h4 class="text-4xl font-bold text-primary dark:text-accent-light mb-2">94%</h4>
-              <p class="font-medium">Positive Feedback</p>
-              <p class="text-sm text-neutral-500 mt-2">
-                Combining "Excellent" (67%) and "Very Good" (27%) ratings
-                regarding the new interaction system and button design.
-              </p>
-            </div>
-            <div
-              class="p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl border border-neutral-200 dark:border-neutral-800"
-            >
-              <h4 class="text-4xl font-bold text-primary dark:text-accent-light mb-2">~100</h4>
-              <p class="font-medium">Operators Surveyed</p>
-              <p class="text-sm text-neutral-500 mt-2">
-                Validation data collected from factory employees across
-                different shifts and experience levels.
-              </p>
-            </div>
-          </div>
+          <MetricsGrid
+            className="mt-6 mb-8"
+            items={[
+              {
+                value: "94%",
+                label: "Positive Feedback",
+                description:
+                  'Combining "Excellent" (67%) and "Very Good" (27%) ratings regarding the new interaction system and button design.',
+              },
+              {
+                value: "~100",
+                label: "Operators Surveyed",
+                description:
+                  "Validation data collected from factory employees across different shifts and experience levels.",
+              },
+            ]}
+          />
 
           {
             allImages[5] && (
-              <figure class="mt-8 md:mt-12 mb-8 md:mb-12">
-                <picture class="picture rounded-2xl overflow-hidden block">
-                  <Image
-                    src={allImages[5].default}
-                    alt="Survey results showing 94% positive feedback"
-                    class="w-full h-full object-cover bg-white"
-                    loading="lazy"
-                    decoding="async"
-                    quality={100}
-                  />
-                </picture>
-                <figcaption class="text-center text-sm text-neutral-500 mt-3 italic">
-                  User feedback results: 67% Excellent, 27% Very Good
-                </figcaption>
-              </figure>
+              <CaptionImage
+                src={allImages[5].default}
+                alt="Survey results showing 94% positive feedback"
+                imageClassName="w-full h-full object-cover bg-white"
+                caption="User feedback results: 67% Excellent, 27% Very Good"
+              />
             )
           }
         </div>
