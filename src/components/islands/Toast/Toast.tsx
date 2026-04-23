@@ -16,7 +16,7 @@ export interface ToastItem {
   message?: string | undefined;
   variant?: ToastVariant;
   durationMs?: number;
-  action?: ToastAction;
+  action?: ToastAction | undefined;
 }
 
 export interface ToastProps {
