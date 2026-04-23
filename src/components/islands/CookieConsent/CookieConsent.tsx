@@ -8,6 +8,7 @@ import {
 } from "./constants";
 
 export type CookieChoice = "accepted" | "rejected";
+export type CookieDecisionSource = "manual" | "implied";
 
 export interface CookieConsentProps {
   storageKey?: string;
@@ -36,7 +37,32 @@ export function CookieConsent({
   const titleId = useId();
   const descId = useId();
 
-  const saveDecision = (choice: CookieChoice) => {
+  const dispatchDecisionToast = (choice: CookieChoice, source: CookieDecisionSource) => {
+    const title = choice === "accepted" ? "Cookies accepted" : "Cookies rejected";
+    const message =
+      choice === "accepted"
+        ? "Optional analytics cookies are enabled for this portfolio."
+        : source === "implied"
+          ? "No choice was made before navigation, so optional cookies remain disabled."
+          : "Optional analytics cookies are disabled for this portfolio.";
+
+    window.dispatchEvent(
+      new CustomEvent("ds:toast", {
+        detail: {
+          title,
+          message,
+          variant: choice === "accepted" ? "success" : "info",
+          durationMs: 6500,
+          action: {
+            label: "Undo",
+            eventName: COOKIE_CONSENT_RESET_EVENT,
+          },
+        },
+      }),
+    );
+  };
+
+  const saveDecision = (choice: CookieChoice, source: CookieDecisionSource = "manual") => {
     if (!isBrowser) return;
     try {
       window.sessionStorage.removeItem(sessionKey);
@@ -48,6 +74,7 @@ export function CookieConsent({
     setIsOpen(false);
     // Dispatch event to listeners (e.g., Analytics component)
     window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_DECISION_EVENT, { detail: { choice } }));
+    dispatchDecisionToast(choice, source);
     onDecision?.(choice);
   };
 
@@ -82,7 +109,7 @@ export function CookieConsent({
     }
 
     if (pendingPath && pendingPath !== currentPath) {
-      saveDecision("rejected");
+      saveDecision("rejected", "implied");
       return;
     }
 

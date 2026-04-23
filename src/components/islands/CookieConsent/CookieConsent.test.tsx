@@ -8,6 +8,16 @@ import { COOKIE_CONSENT_RESET_EVENT } from "./constants";
 const TEST_STORAGE_KEY = "ds.cookie-consent.test";
 const TEST_SESSION_KEY = "ds.cookie-consent.pending.test";
 
+interface ConsentToastDetail {
+  title: string;
+  message?: string;
+  variant?: "success" | "error" | "info";
+  action?: {
+    label: string;
+    eventName: string;
+  };
+}
+
 function captureConsentEvents() {
   const events: Array<CustomEvent<{ choice: CookieChoice }>> = [];
   const listener: EventListener = (event) => {
@@ -19,6 +29,20 @@ function captureConsentEvents() {
   return {
     events,
     detach: () => window.removeEventListener("cookie-consent:decision", listener),
+  };
+}
+
+function captureToastEvents() {
+  const events: Array<CustomEvent<ConsentToastDetail>> = [];
+  const listener: EventListener = (event) => {
+    events.push(event as CustomEvent<ConsentToastDetail>);
+  };
+
+  window.addEventListener("ds:toast", listener);
+
+  return {
+    events,
+    detach: () => window.removeEventListener("ds:toast", listener),
   };
 }
 
@@ -39,8 +63,9 @@ describe("CookieConsent", () => {
     expect(screen.getByRole("button", { name: "Decline" })).toBeInTheDocument();
   });
 
-  it("accepts cookies, persists the decision, and dispatches the consent event", async () => {
+  it("accepts cookies and dispatches tailored success toast feedback", async () => {
     const { events, detach } = captureConsentEvents();
+    const { events: toastEvents, detach: detachToast } = captureToastEvents();
     const onDecision = vi.fn();
 
     render(
@@ -58,12 +83,46 @@ describe("CookieConsent", () => {
 
     await waitFor(() => {
       expect(events.length).toBeGreaterThan(0);
+      expect(toastEvents.length).toBeGreaterThan(0);
     });
 
     expect(events.at(-1)?.detail).toEqual({ choice: "accepted" });
+    expect(toastEvents.at(-1)?.detail).toMatchObject({
+      title: "Cookies accepted",
+      variant: "success",
+      action: { label: "Undo", eventName: COOKIE_CONSENT_RESET_EVENT },
+    });
+    expect(toastEvents.at(-1)?.detail.message).toMatch(/enabled/i);
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 
     detach();
+    detachToast();
+  });
+
+  it("rejects cookies manually and dispatches tailored rejection toast feedback", async () => {
+    const { events, detach } = captureConsentEvents();
+    const { events: toastEvents, detach: detachToast } = captureToastEvents();
+
+    render(<CookieConsent storageKey={TEST_STORAGE_KEY} sessionKey={TEST_SESSION_KEY} />);
+
+    await userEvent.click(await screen.findByRole("button", { name: "Decline" }));
+
+    await waitFor(() => {
+      expect(events.length).toBeGreaterThan(0);
+      expect(toastEvents.length).toBeGreaterThan(0);
+    });
+
+    expect(window.localStorage.getItem(TEST_STORAGE_KEY)).toBe("rejected");
+    expect(events.at(-1)?.detail).toEqual({ choice: "rejected" });
+    expect(toastEvents.at(-1)?.detail).toMatchObject({
+      title: "Cookies rejected",
+      variant: "info",
+      action: { label: "Undo", eventName: COOKIE_CONSENT_RESET_EVENT },
+    });
+    expect(toastEvents.at(-1)?.detail.message).toMatch(/disabled/i);
+
+    detach();
+    detachToast();
   });
 
   it("stays closed on remount when a cached decision exists and re-dispatches it", async () => {
@@ -88,6 +147,7 @@ describe("CookieConsent", () => {
     window.sessionStorage.setItem(TEST_SESSION_KEY, "/first-page");
     window.history.replaceState({}, "", "/second-page");
     const { events, detach } = captureConsentEvents();
+    const { events: toastEvents, detach: detachToast } = captureToastEvents();
     const onDecision = vi.fn();
 
     render(
@@ -101,14 +161,24 @@ describe("CookieConsent", () => {
     await waitFor(() => {
       expect(window.localStorage.getItem(TEST_STORAGE_KEY)).toBe("rejected");
       expect(events.length).toBeGreaterThan(0);
+      expect(toastEvents.length).toBeGreaterThan(0);
     });
 
     expect(onDecision).toHaveBeenCalledWith("rejected");
     expect(events.at(-1)?.detail).toEqual({ choice: "rejected" });
+    expect(toastEvents.at(-1)?.detail).toMatchObject({
+      title: "Cookies rejected",
+      variant: "info",
+      action: { label: "Undo", eventName: COOKIE_CONSENT_RESET_EVENT },
+    });
+    expect(toastEvents.at(-1)?.detail.message).toContain(
+      "No choice was made before navigation",
+    );
     expect(window.sessionStorage.getItem(TEST_SESSION_KEY)).toBeNull();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 
     detach();
+    detachToast();
   });
 
   it("does not imply rejection on same-page reload", async () => {

@@ -3,12 +3,20 @@ import { useCallback, useEffect, useMemo, useState } from "preact/hooks";
 
 export type ToastVariant = "success" | "error" | "info";
 
+export interface ToastAction {
+  label: string;
+  eventName: string;
+  eventDetail?: unknown;
+  dismissOnClick?: boolean;
+}
+
 export interface ToastItem {
   id: string;
   title: string;
   message?: string | undefined;
   variant?: ToastVariant;
   durationMs?: number;
+  action?: ToastAction;
 }
 
 export interface ToastProps {
@@ -42,12 +50,24 @@ export function Toast({ items = [], maxItems = 4, onDismiss, position = "top-rig
       const detail = customEvent.detail;
       if (!detail?.title) return;
 
+      let normalizedAction: ToastAction | undefined;
+      const action = detail.action;
+      if (action && typeof action.label === "string" && typeof action.eventName === "string") {
+        normalizedAction = {
+          label: action.label,
+          eventName: action.eventName,
+          eventDetail: action.eventDetail,
+          dismissOnClick: action.dismissOnClick ?? true,
+        };
+      }
+
       const nextToast: ToastItem = {
         id: detail.id ?? `toast-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
         title: detail.title,
         message: detail.message,
         variant: detail.variant ?? "info",
         durationMs: detail.durationMs ?? 4000,
+        action: normalizedAction,
       };
 
       setInternalItems((prev) => [nextToast, ...prev].slice(0, maxItems));
@@ -79,6 +99,22 @@ export function Toast({ items = [], maxItems = 4, onDismiss, position = "top-rig
       }, 220);
     },
     [hasExternalItems, isBrowser, onDismiss],
+  );
+
+  const handleActionClick = useCallback(
+    (item: ToastItem) => {
+      if (!isBrowser || !item.action) return;
+      window.dispatchEvent(
+        new CustomEvent(item.action.eventName, {
+          detail: item.action.eventDetail,
+        }),
+      );
+
+      if (item.action.dismissOnClick ?? true) {
+        removeToast(item.id);
+      }
+    },
+    [isBrowser, removeToast],
   );
 
   useEffect(() => {
@@ -141,6 +177,16 @@ export function Toast({ items = [], maxItems = 4, onDismiss, position = "top-rig
                 <h3 class="text-sm font-semibold">{item.title}</h3>
                 {item.message ? (
                   <p class="mt-1 text-xs text-content-secondary">{item.message}</p>
+                ) : null}
+                {item.action ? (
+                  <button
+                    type="button"
+                    onClick={() => handleActionClick(item)}
+                    class="mt-2 rounded-pill border border-border-subtle bg-surface-canvas px-3 py-1 text-xs font-medium text-content-primary transition hover:bg-surface-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+                    aria-label={item.action.label}
+                  >
+                    {item.action.label}
+                  </button>
                 ) : null}
               </div>
               <button

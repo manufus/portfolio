@@ -71,3 +71,23 @@ export const ErrorState: Story = {
     />
   ),
 };
+
+export const WithAction: Story = {
+  render: () => (
+    <ToastHarness
+      initial={[
+        {
+          id: "action-1",
+          title: "Cookies rejected",
+          message: "No choice was made before navigation, so optional cookies remain disabled.",
+          variant: "info",
+          durationMs: 7000,
+          action: {
+            label: "Undo",
+            eventName: "cookie-consent:reset",
+          },
+        },
+      ]}
+    />
+  ),
+};
