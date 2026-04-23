@@ -41,10 +41,10 @@ export function CookieConsent({
     const title = choice === "accepted" ? "Cookies accepted" : "Cookies rejected";
     const message =
       choice === "accepted"
-        ? "Optional analytics cookies are enabled for this portfolio."
+        ? "Analytics cookies are running. Thanks!"
         : source === "implied"
-          ? "No choice was made before navigation, so optional cookies remain disabled."
-          : "Optional analytics cookies are disabled for this portfolio.";
+          ? "You moved to another page without choosing, so cookies are disabled. Privacy first!"
+          : "Cookies are disabled. Your visit stays totally private.";
 
     window.dispatchEvent(
       new CustomEvent("ds:toast", {
