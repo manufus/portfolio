@@ -1,7 +1,9 @@
 import { Fragment } from "preact";
 import { useEffect, useId, useState } from "preact/hooks";
 import {
+  COOKIE_CONSENT_DECISION_EVENT,
   COOKIE_CONSENT_PENDING_PATH_SESSION_KEY,
+  COOKIE_CONSENT_RESET_EVENT,
   COOKIE_CONSENT_STORAGE_KEY,
 } from "./constants";
 
@@ -45,7 +47,7 @@ export function CookieConsent({
     setDecision(choice);
     setIsOpen(false);
     // Dispatch event to listeners (e.g., Analytics component)
-    window.dispatchEvent(new CustomEvent("cookie-consent:decision", { detail: { choice } }));
+    window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_DECISION_EVENT, { detail: { choice } }));
     onDecision?.(choice);
   };
 
@@ -64,7 +66,7 @@ export function CookieConsent({
       }
       // Dispatch event for previously cached decision
       window.dispatchEvent(
-        new CustomEvent("cookie-consent:decision", { detail: { choice: saved } }),
+        new CustomEvent(COOKIE_CONSENT_DECISION_EVENT, { detail: { choice: saved } }),
       );
       return;
     }
@@ -91,6 +93,30 @@ export function CookieConsent({
     }
 
     setIsOpen(true);
+  }, [isBrowser, sessionKey, storageKey]);
+
+  useEffect(() => {
+    if (!isBrowser) return;
+
+    const onReset = () => {
+      try {
+        window.localStorage.removeItem(storageKey);
+      } catch {
+        // Ignore restricted localStorage environments.
+      }
+
+      try {
+        window.sessionStorage.removeItem(sessionKey);
+      } catch {
+        // Ignore restricted sessionStorage environments.
+      }
+
+      setDecision(null);
+      setIsOpen(true);
+    };
+
+    window.addEventListener(COOKIE_CONSENT_RESET_EVENT, onReset);
+    return () => window.removeEventListener(COOKIE_CONSENT_RESET_EVENT, onReset);
   }, [isBrowser, sessionKey, storageKey]);
 
   if (!isOpen) {

@@ -2,6 +2,10 @@
 import ToTop from "@/components/features/ToTop.astro";
 import Logo from "@/components/primitives/Logo.astro";
 import { siteConfig, socialLinks } from "@/config/site";
+import {
+  COOKIE_CONSENT_RESET_EVENT,
+  COOKIE_CONSENT_STORAGE_KEY,
+} from "@/components/islands/CookieConsent/constants";
 ---
 
 <section
@@ -31,6 +35,15 @@ import { siteConfig, socialLinks } from "@/config/site";
           title="GDPR Compliance"
         >
           Privacy Policy
+        </a>
+        &nbsp;|&nbsp;
+        <a
+          href="/privacy#cookie-preferences"
+          data-cookie-consent-manage
+          class="hover:text-primary transition-colors"
+          title="Manage cookie preferences"
+        >
+          Manage Cookies
         </a>
         &nbsp;|&nbsp;
         <a
@@ -67,6 +80,34 @@ import { siteConfig, socialLinks } from "@/config/site";
 </section>
 
 <ToTop />
+
+<script is:inline define:vars={{ COOKIE_CONSENT_STORAGE_KEY, COOKIE_CONSENT_RESET_EVENT }}>
+  (() => {
+    const trigger = document.querySelector("[data-cookie-consent-manage]");
+    if (!trigger) return;
+
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      try {
+        window.localStorage.removeItem(COOKIE_CONSENT_STORAGE_KEY);
+      } catch {
+        // Ignore restricted localStorage environments.
+      }
+
+      window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_RESET_EVENT));
+      window.dispatchEvent(
+        new CustomEvent("ds:toast", {
+          detail: {
+            title: "Cookie preferences reset",
+            message: "Please choose your cookie preferences again.",
+            variant: "info",
+          },
+        }),
+      );
+    });
+  })();
+</script>
 
 <style is:global>
   .footer-social-icon {

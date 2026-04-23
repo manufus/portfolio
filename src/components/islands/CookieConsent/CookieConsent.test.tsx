@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/vitest";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { type CookieChoice, CookieConsent } from "./CookieConsent";
+import { COOKIE_CONSENT_RESET_EVENT } from "./constants";
 
 const TEST_STORAGE_KEY = "ds.cookie-consent.test";
 const TEST_SESSION_KEY = "ds.cookie-consent.pending.test";
@@ -118,5 +119,20 @@ describe("CookieConsent", () => {
 
     expect(await screen.findByRole("dialog", { name: /cookie preferences/i })).toBeInTheDocument();
     expect(window.localStorage.getItem(TEST_STORAGE_KEY)).toBeNull();
+  });
+
+  it("reopens the dialog when a reset event is dispatched", async () => {
+    window.localStorage.setItem(TEST_STORAGE_KEY, "accepted");
+    window.sessionStorage.setItem(TEST_SESSION_KEY, "/cached-path");
+
+    render(<CookieConsent storageKey={TEST_STORAGE_KEY} sessionKey={TEST_SESSION_KEY} />);
+
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_RESET_EVENT));
+
+    expect(await screen.findByRole("dialog", { name: /cookie preferences/i })).toBeInTheDocument();
+    expect(window.localStorage.getItem(TEST_STORAGE_KEY)).toBeNull();
+    expect(window.sessionStorage.getItem(TEST_SESSION_KEY)).toBeNull();
   });
 });
