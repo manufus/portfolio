@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import Badge from "@/components/primitives/Badge.astro";
 
 export interface Props {
   name: string; // Required
@@ -110,9 +111,9 @@ const {
     {tags && tags.length > 0 && (
       <div class="flex flex-wrap gap-1.5 mb-3">
         {tags.map((tag) => (
-          <span class="inline-flex items-center rounded-full bg-primary/8 dark:bg-primary/15 px-2.5 py-0.5 text-sm font-medium text-primary-dark dark:text-primary-light border border-primary/10 dark:border-primary/20">
+          <Badge>
             {tag}
-          </span>
+          </Badge>
         ))}
       </div>
     )}

@@ -1,5 +1,6 @@
 ---
 import AnimatedText from "@/components/primitives/AnimatedText.astro";
+import Badge from "@/components/primitives/Badge.astro";
 import type { HTMLTag } from "astro/types";
 export interface Props {
   title: string;
@@ -26,9 +27,9 @@ const Element = as || "h1";
     tags && tags.length > 0 && (
       <div class="flex flex-wrap justify-center gap-2 mt-8 mb-2 ">
         {tags.map((tag) => (
-          <span class="inline-flex items-center rounded-full bg-brand/10 px-2.5 py-0.5 text-sm font-medium text-brand border border-border-subtle">
+          <Badge>
             {tag}
-          </span>
+          </Badge>
         ))}
       </div>
     )
