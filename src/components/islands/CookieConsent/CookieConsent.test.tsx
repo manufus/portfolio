@@ -171,9 +171,7 @@ describe("CookieConsent", () => {
       variant: "info",
       action: { label: "Undo", eventName: COOKIE_CONSENT_RESET_EVENT },
     });
-    expect(toastEvents.at(-1)?.detail.message).toContain(
-      "No choice was made before navigation",
-    );
+    expect(toastEvents.at(-1)?.detail.message).toContain("No choice was made before navigation");
     expect(window.sessionStorage.getItem(TEST_SESSION_KEY)).toBeNull();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 
