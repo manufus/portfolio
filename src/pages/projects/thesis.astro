@@ -1,11 +1,10 @@
 ---
 import type { ImageMetadata } from "astro";
-import PageHeader from "@/components/composites/PageHeader.astro";
 import CaptionImage from "@/components/composites/CaptionImage.astro";
 import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
-import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
 import Layout from "@/layouts/Layout.astro";
+import ProjectCaseShell from "@/components/composites/ProjectCaseShell.astro";
 
 const allImagesModules = import.meta.glob("../../assets/projects/thesis/*.{jpg,png,webp}", {
   eager: true,
@@ -21,19 +20,7 @@ const allImages = Object.values(allImagesModules) as Array<{
   keywords="Design Systems, HCID Master's Thesis, UX Research, Industrial B2B UX, Usability Optimization"
   image="/og/projects-thesis.jpg"
 >
-  <div class="work article">
-    <main class="work-wrapper">
-      <PageHeader
-        title="HCID Industrial Thesis: Design Systems for Usability Optimization"
-        tags={["UX Research", "Design Systems", "UCD"]}
-        className="mb-6 md:mb-8"
-      />
-    </main>
-    <div class="site-container m-auto">
-      <SeparatorLine />
-    </div>
-    <section class="article-content">
-      <div class="site-container mx-auto my-8 md:my-16">
+  <ProjectCaseShell title="HCID Industrial Thesis: Design Systems for Usability Optimization" tags={["UX Research", "Design Systems", "UCD"]}>
         <div class="mb-12">
           <h3>Overview: Digital Transformation in Maintenance</h3>
           <p>
@@ -193,14 +180,12 @@ const allImages = Object.values(allImagesModules) as Array<{
             </CaptionImage>
           )
         }
-      </div>
-    </section>
-  </div>
+      </ProjectCaseShell>
 </Layout>
 
 <ActionBar
   tags={[]}
-  visitLabel="See Thesis"
+  visitLabel="Read Thesis"
   url="https://urn.fi/URN:NBN:fi:aalto-202510208321"
   figma="https://www.figma.com/proto/ZAtd9QoyQshJb1s22aeh7u/Prisma-Mobile?node-id=298-15194&viewport=154%2C321%2C0.1&t=u5ZcQIFabVyS1XYl-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=298%3A15194"
 />

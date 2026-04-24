@@ -1,12 +1,11 @@
 ---
 import type { ImageMetadata } from "astro";
-import PageHeader from "@/components/composites/PageHeader.astro";
 import CaptionImage from "@/components/composites/CaptionImage.astro";
 import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
 import TechBadgeCard from "@/components/primitives/TechBadgeCard.astro";
-import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
 import Layout from "@/layouts/Layout.astro";
+import ProjectCaseShell from "@/components/composites/ProjectCaseShell.astro";
 
 const allImagesModules = import.meta.glob(
   "../../assets/projects/portfolio-architecture/*.{jpg,JPG,png,PNG,webp,WEBP}",
@@ -23,18 +22,7 @@ const allImages = Object.entries(allImagesModules)
   keywords="UX Engineering, Frontend Architecture, Design Systems, Agentic AI, Data Analytics, Accessibility, DevSecOps"
   image="/og/projects-portfolio-architecture.jpg"
 >
-  <div class="work article">
-    <div>
-      <PageHeader
-        title="UX Engineering: Frontend Architecture & Design Systems"
-        tags={["Design Systems", "Agentic AI", "Data Analytics"]}
-        className="mb-6 md:mb-8"
-      />
-    </div>
-
-    <div class="site-container m-auto">
-      <SeparatorLine />
-    </div>
+  <ProjectCaseShell title="UX Engineering: Frontend Architecture & Design Systems" tags={["Design Systems", "Agentic AI", "Data Analytics"]}>
 
     <section class="article-content">
       <div class="site-container mx-auto my-8 md:my-16">
@@ -257,9 +245,7 @@ const allImages = Object.entries(allImagesModules)
             )
           }
         </div>
-      </div>
-    </section>
-  </div>
+      </ProjectCaseShell>
 </Layout>
 
 <ActionBar

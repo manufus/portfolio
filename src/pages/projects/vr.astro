@@ -1,12 +1,11 @@
 ---
 import type { ImageMetadata } from "astro";
-import PageHeader from "@/components/composites/PageHeader.astro";
 import CaptionImage from "@/components/composites/CaptionImage.astro";
 import FigureGallery from "@/components/composites/FigureGallery.astro";
 import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
-import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
 import Layout from "@/layouts/Layout.astro";
+import ProjectCaseShell from "@/components/composites/ProjectCaseShell.astro";
 
 const allImagesModules = import.meta.glob("../../assets/projects/vr/*.{jpg,png,webp}", {
   eager: true,
@@ -22,19 +21,7 @@ const allImages = Object.values(allImagesModules) as Array<{
   keywords="Virtual Reality, Interaction Design, Immersive UX, Ergonomics, Digital Transformation"
   image="/og/projects-vr.jpg"
 >
-  <div class="work article">
-    <main class="work-wrapper">
-      <PageHeader
-        title="VR Interaction Design: Immersive UX"
-        tags={["Virtual Reality", "Interaction Design", "Industry 4.0"]}
-        className="mb-6 md:mb-8"
-      />
-    </main>
-    <div class="site-container m-auto">
-      <SeparatorLine />
-    </div>
-    <section class="article-content">
-      <div class="site-container mx-auto my-8 md:my-16">
+  <ProjectCaseShell title="VR Interaction Design: Immersive UX" tags={["Virtual Reality", "Interaction Design", "Industry 4.0"]}>
         <div class="mb-12">
           <h3>Overview: The Industrial Metaverse</h3>
           <p>
@@ -252,9 +239,7 @@ const allImages = Object.values(allImagesModules) as Array<{
             )
           }
         </div>
-      </div>
-    </section>
-  </div>
+      </ProjectCaseShell>
 </Layout>
 
 <ActionBar
