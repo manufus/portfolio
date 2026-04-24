@@ -5,7 +5,7 @@ import CaptionImage from "@/components/composites/CaptionImage.astro";
 import FigureGallery from "@/components/composites/FigureGallery.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
 import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
-import PostLayout from "@/layouts/PostLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const allImagesModules = import.meta.glob(
   "../../assets/projects/speaker/*.{jpg,JPG,png,PNG,webp,WEBP}",
@@ -16,7 +16,7 @@ const allImages = Object.entries(allImagesModules)
   .map(([_, module]) => module) as Array<{ default: ImageMetadata }>;
 ---
 
-<PostLayout
+<Layout
   title="Bluetooth Speaker Prototype | Manuel Hortelano - UX Engineer"
   description="Industrial design case study: Bluetooth speaker prototyping from concept sketching to CMF and functional assembly, validating ergonomics and internal capacity."
   keywords="Physical Product Design, Bluetooth Speaker Design, Industrial Design, Hardware UX, Physical Interaction Design, Product Ergonomics, CMF (Color, Material, Finish), Design Process"
@@ -294,7 +294,7 @@ const allImages = Object.entries(allImagesModules)
       </div>
     </section>
   </div>
-</PostLayout>
+</Layout>
 
 <ActionBar
   tags={[]}

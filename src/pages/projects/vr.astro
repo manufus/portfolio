@@ -6,7 +6,7 @@ import FigureGallery from "@/components/composites/FigureGallery.astro";
 import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
 import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
-import PostLayout from "@/layouts/PostLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const allImagesModules = import.meta.glob("../../assets/projects/vr/*.{jpg,png,webp}", {
   eager: true,
@@ -16,7 +16,7 @@ const allImages = Object.values(allImagesModules) as Array<{
 }>;
 ---
 
-<PostLayout
+<Layout
   title="VR Interaction Design | Manuel Hortelano - UX Engineer"
   description="VR UX redesign for automotive training: contextual inquiry and operator testing replaced wrist-watch UI with touch interaction, driving 94% positive feedback."
   keywords="Virtual Reality, Interaction Design, Immersive UX, Ergonomics, Digital Transformation"
@@ -255,7 +255,7 @@ const allImages = Object.values(allImagesModules) as Array<{
       </div>
     </section>
   </div>
-</PostLayout>
+</Layout>
 
 <ActionBar
   tags={[]}

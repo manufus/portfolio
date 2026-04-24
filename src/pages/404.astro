@@ -2,14 +2,14 @@
 import PageHeader from "@/components/composites/PageHeader.astro";
 import Button from "@/components/primitives/Button.astro";
 import { siteConfig } from "@/config/site";
-import PageLayout from "@/layouts/PageLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const title = "404 Page Not Found | Manuel Hortelano - UX Engineer";
 const description =
   "The page you requested was not found. Explore Manuel Hortelano's UX engineering and frontend architecture portfolio from the homepage.";
 ---
 
-<PageLayout title={title} description={description}>
+<Layout title={title} description={description}>
   <section
     class="site-container m-auto min-h-[50vh] flex flex-col items-center justify-center"
   >
@@ -30,4 +30,4 @@ const description =
       </Button>
     </div>
   </section>
-</PageLayout>
+</Layout>

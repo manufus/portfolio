@@ -6,7 +6,7 @@ import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
 import TechBadgeCard from "@/components/primitives/TechBadgeCard.astro";
 import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
-import PostLayout from "@/layouts/PostLayout.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const allImagesModules = import.meta.glob(
   "../../assets/projects/portfolio-architecture/*.{jpg,JPG,png,PNG,webp,WEBP}",
@@ -17,20 +17,20 @@ const allImages = Object.entries(allImagesModules)
   .map(([_, module]) => module) as Array<{ default: ImageMetadata }>;
 ---
 
-<PostLayout
+<Layout
   title="UX Engineering: Frontend Architecture & Design Systems"
   description="A pragmatic UX engineering case study on rebuilding this portfolio with Dual-Agent orchestration, Storybook in production, strict TypeScript, and measurable quality controls."
   keywords="UX Engineering, Frontend Architecture, Design Systems, Agentic AI, Data Analytics, Accessibility, DevSecOps"
   image="/og/projects-portfolio-architecture.jpg"
 >
   <div class="work article">
-    <main class="work-wrapper">
+    <div>
       <PageHeader
         title="UX Engineering: Frontend Architecture & Design Systems"
         tags={["Design Systems", "Agentic AI", "Data Analytics"]}
         className="mb-6 md:mb-8"
       />
-    </main>
+    </div>
 
     <div class="site-container m-auto">
       <SeparatorLine />
@@ -260,7 +260,7 @@ const allImages = Object.entries(allImagesModules)
       </div>
     </section>
   </div>
-</PostLayout>
+</Layout>
 
 <ActionBar
   tags={[]}
