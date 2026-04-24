@@ -1,5 +1,5 @@
 import { Fragment } from "preact";
-import { useEffect, useId, useState } from "preact/hooks";
+import { useCallback, useEffect, useId, useState } from "preact/hooks";
 import {
   COOKIE_CONSENT_DECISION_EVENT,
   COOKIE_CONSENT_PENDING_PATH_SESSION_KEY,
@@ -37,46 +37,52 @@ export function CookieConsent({
   const titleId = useId();
   const descId = useId();
 
-  const dispatchDecisionToast = (choice: CookieChoice, source: CookieDecisionSource) => {
-    const title = choice === "accepted" ? "Cookies accepted" : "Cookies rejected";
-    const message =
-      choice === "accepted"
-        ? "Analytics cookies are running. Thanks!"
-        : source === "implied"
-          ? "You moved to another page without choosing, so cookies are disabled. Privacy first!"
-          : "Cookies are disabled. Your visit stays totally private.";
+  const dispatchDecisionToast = useCallback(
+    (choice: CookieChoice, source: CookieDecisionSource) => {
+      const title = choice === "accepted" ? "Cookies accepted" : "Cookies rejected";
+      const message =
+        choice === "accepted"
+          ? "Analytics cookies are running. Thanks!"
+          : source === "implied"
+            ? "You moved to another page without choosing, so cookies are disabled. Privacy first!"
+            : "Cookies are disabled. Your visit stays totally private.";
 
-    window.dispatchEvent(
-      new CustomEvent("ds:toast", {
-        detail: {
-          title,
-          message,
-          variant: choice === "accepted" ? "success" : "info",
-          durationMs: 6500,
-          action: {
-            label: "Undo",
-            eventName: COOKIE_CONSENT_RESET_EVENT,
+      window.dispatchEvent(
+        new CustomEvent("ds:toast", {
+          detail: {
+            title,
+            message,
+            variant: choice === "accepted" ? "success" : "info",
+            durationMs: 6500,
+            action: {
+              label: "Undo",
+              eventName: COOKIE_CONSENT_RESET_EVENT,
+            },
           },
-        },
-      }),
-    );
-  };
+        }),
+      );
+    },
+    [],
+  );
 
-  const saveDecision = (choice: CookieChoice, source: CookieDecisionSource = "manual") => {
-    if (!isBrowser) return;
-    try {
-      window.sessionStorage.removeItem(sessionKey);
-    } catch {
-      // Ignore restricted sessionStorage environments.
-    }
-    window.localStorage.setItem(storageKey, choice);
-    setDecision(choice);
-    setIsOpen(false);
-    // Dispatch event to listeners (e.g., Analytics component)
-    window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_DECISION_EVENT, { detail: { choice } }));
-    dispatchDecisionToast(choice, source);
-    onDecision?.(choice);
-  };
+  const saveDecision = useCallback(
+    (choice: CookieChoice, source: CookieDecisionSource = "manual") => {
+      if (!isBrowser) return;
+      try {
+        window.sessionStorage.removeItem(sessionKey);
+      } catch {
+        // Ignore restricted sessionStorage environments.
+      }
+      window.localStorage.setItem(storageKey, choice);
+      setDecision(choice);
+      setIsOpen(false);
+      // Dispatch event to listeners (e.g., Analytics component)
+      window.dispatchEvent(new CustomEvent(COOKIE_CONSENT_DECISION_EVENT, { detail: { choice } }));
+      dispatchDecisionToast(choice, source);
+      onDecision?.(choice);
+    },
+    [dispatchDecisionToast, isBrowser, onDecision, sessionKey, storageKey],
+  );
 
   useEffect(() => {
     if (!isBrowser) return;
@@ -120,7 +126,7 @@ export function CookieConsent({
     }
 
     setIsOpen(true);
-  }, [isBrowser, sessionKey, storageKey]);
+  }, [isBrowser, saveDecision, sessionKey, storageKey]);
 
   useEffect(() => {
     if (!isBrowser) return;
