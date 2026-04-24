@@ -1,0 +1,26 @@
+---
+import PageHeader from "@/components/composites/PageHeader.astro";
+import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
+
+export interface Props {
+  title: string;
+  tags?: string[];
+  class?: string;
+}
+
+const { title, tags = [], class: className = "" } = Astro.props as Props;
+---
+
+<div class={`work article ${className}`.trim()}>
+  <div>
+    <PageHeader title={title} tags={tags} className="mb-6 md:mb-8" />
+  </div>
+  <div class="site-container m-auto">
+    <SeparatorLine />
+  </div>
+  <section class="article-content">
+    <div class="site-container mx-auto my-8 md:my-16">
+      <slot />
+    </div>
+  </section>
+</div>
