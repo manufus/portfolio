@@ -1,10 +1,10 @@
 ---
 import type { ImageMetadata } from "astro";
-import { Icon } from "astro-icon/components";
 import PageHeader from "@/components/composites/PageHeader.astro";
 import CaptionImage from "@/components/composites/CaptionImage.astro";
 import MetricsGrid from "@/components/composites/MetricsGrid.astro";
 import ActionBar from "@/components/features/ActionBar.astro";
+import TechBadgeCard from "@/components/primitives/TechBadgeCard.astro";
 import SeparatorLine from "@/components/primitives/SeparatorLine.astro";
 import PostLayout from "@/layouts/PostLayout.astro";
 
@@ -180,41 +180,10 @@ const allImages = Object.entries(allImagesModules)
           </ul>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 mb-10">
-            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-              <Icon
-                name="astro"
-                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
-                aria-hidden="true"
-              />
-              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Astro</p>
-            </div>
-
-            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-              <Icon
-                name="preact"
-                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
-                aria-hidden="true"
-              />
-              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Preact</p>
-            </div>
-
-            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-              <Icon
-                name="typescript"
-                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
-                aria-hidden="true"
-              />
-              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">TypeScript</p>
-            </div>
-
-            <div class="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 flex flex-col items-center text-center">
-              <Icon
-                name="vitest"
-                class="w-12 h-12 mb-3 text-neutral-800 dark:text-neutral-200"
-                aria-hidden="true"
-              />
-              <p class="mt-3 mb-3 text-sm font-medium text-neutral-700 dark:text-neutral-200">Vitest</p>
-            </div>
+            <TechBadgeCard icon="astro" label="Astro" />
+            <TechBadgeCard icon="preact" label="Preact" />
+            <TechBadgeCard icon="typescript" label="TypeScript" />
+            <TechBadgeCard icon="vitest" label="Vitest" />
           </div>
         </div>
 
