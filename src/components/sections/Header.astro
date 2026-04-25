@@ -39,15 +39,7 @@ import { siteConfig } from "@/config/site";
           aria-controls="menu"
           class="flex items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90"
         >
-          <svg
-            class="w-7 h-7 text-content-primary"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"><path d="M4 8h16M4 16h16"></path></svg
-          >
+          <Icon name="lucide:menu" class="w-6 h-6 text-content-primary" />
         </button>
 
         <button
@@ -56,17 +48,9 @@ import { siteConfig } from "@/config/site";
           aria-label="Close menu"
           aria-expanded="true"
           aria-controls="menu"
-          class="hidden items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90"
+          class="hidden flex items-center justify-center w-10 h-10 cursor-pointer transition-transform duration-200 active:scale-90"
         >
-          <svg
-            class="w-6 h-6 text-content-secondary"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg
-          >
+          <Icon name="lucide:x" class="w-6 h-6 text-content-primary" />
         </button>
 
         <ThemeToggle client:load />
@@ -135,28 +119,10 @@ import { siteConfig } from "@/config/site";
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Ensure mobile menu doesn't stick to edges */
-  @media (max-width: 639px) {
-    #menu {
-      max-width: calc(100vw - 24px); /* 12px margin on each side */
-    }
-  }
+  
 
-  /* Mobile menu animation */
-  @media (max-width: 639px) {
-    #menu {
-      transform: translateY(-10px);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
 
-    #menu:not(.hidden) {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
+   
 
   /* Menu item hover effect optimization */
   nav a {
@@ -190,12 +156,7 @@ import { siteConfig } from "@/config/site";
     }
   }
 
-  /* Dark mode toggle button optimization */
-  #darkToggle,
-  #darkToggleMobile {
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
+ 
 
   /* Mobile menu background blur effect enhancement */
   @supports (backdrop-filter: blur(12px)) {
@@ -203,11 +164,7 @@ import { siteConfig } from "@/config/site";
       backdrop-filter: blur(12px);
     }
 
-    @media (max-width: 639px) {
-      #menu > div > div {
-        backdrop-filter: blur(16px);
-      }
-    }
+    
   }
 
   /* Ensure Logo doesn't shrink on mobile */
@@ -252,14 +209,7 @@ import { siteConfig } from "@/config/site";
     }
   }
 
-  /* Ensure mobile menu has good shadow */
-  @media (max-width: 639px) {
-    #menu > div > div {
-      box-shadow:
-        0 10px 25px -5px rgba(var(--color-brand-rgb), 0.18),
-        0 8px 10px -6px rgba(var(--color-brand-rgb), 0.12);
-    }
-  }
+  
 </style>
 
 
