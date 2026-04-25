@@ -1,0 +1,132 @@
+---
+title: "VR Interaction Design: Immersive UX"
+description: "VR UX redesign for automotive training: contextual inquiry and operator testing replaced wrist-watch UI with touch interaction, driving 94% positive feedback."
+keywords: "Virtual Reality, Interaction Design, Immersive UX, Ergonomics, Digital Transformation"
+image: "../../assets/projects/vr/01_context.jpg"
+tags:
+  - "Virtual Reality"
+  - "Interaction Design"
+  - "Industry 4.0"
+isShow: true
+featured: false
+order: 0
+primaryAction:
+  label: "View Demo"
+  url: "https://youtu.be/cWiwj5zPlao"
+secondaryActions:
+  - icon: "lucide:external-link"
+    url: "https://www.fdiformacion.com/elevando-la-seguridad-en-el-trabajo-con-formacion-inmersiva-en-realidad-virtual/"
+    ariaLabel: "View FDI Formacion Case Study"
+---
+
+import CaptionImage from "../../components/composites/CaptionImage.astro";
+import FigureGallery from "../../components/composites/FigureGallery.astro";
+import MetricsGrid from "../../components/composites/MetricsGrid.astro";
+import img0 from "../../assets/projects/vr/01_context.jpg";
+import img1 from "../../assets/projects/vr/02_ui.jpg";
+import img2 from "../../assets/projects/vr/03_interaction.jpg";
+import img3 from "../../assets/projects/vr/04_unity.jpg";
+import img4 from "../../assets/projects/vr/05_teleport.jpg";
+import img5 from "../../assets/projects/vr/06_results.png";
+
+### Overview: The Industrial Metaverse
+
+During my job at a **Global Automotive OEM**, I served as the sole Designer responsible for the UX strategy for their immersive training ecosystem. The main goal was to use **Virtual Reality (VR)** to train assembly line operators on unreleased vehicle models using simulations. This approach advanced the training timeline by months, allowing operators to learn assembly processes before the first physical prototype was built, drastically reducing time-to-market.
+
+<CaptionImage src={img0} alt="Diagram of Industrial Evolution from Industry 1.0 to Industrial Metaverse">
+  <span slot="caption">
+    Industrial Metaverse current paradigm. Image Source:
+    <a href="https://www.adlittle.com/en/insights/report/industrial-metaverse">
+      Arthur D. Little
+    </a>
+  </span>
+</CaptionImage>
+
+### The Challenge: The Digital Gap
+
+Implementing VR in a factory setting presented a unique friction point: the target users were specialized operators, often with **low digital affinity** and limited gaming experience. The main area to improve was usability, since the existing system used resulted in:
+
+- **Cognitive Overload:** Complex inputs led to frustration where the existing gaming interaction models failed to align with the operators' industrial mental models.
+- **Physical Strain:** The existing interaction method often required operators to hold their arms up for extended periods to read instructions, leading to fatigue.
+- **Perception:** The exisiting design was perceived as unpleasant, which, combined with poor interaction ergonomics, resulted in low perceived quality.
+
+### Methodology: Contextual Research in the Immersive Environment
+
+To build a tool that operators would actually adopt, I applied rigorous UX methodologies adapted for 3D environments, grounding the redesign in observed operator behavior and ergonomic realities:
+
+- **Contextual Inquiry:** Conducted ethnographic studies by observing operator behavior during VR training sessions. This allowed me to understand the ergonomic constrains and mental models as they interacted with the digital prototypes.
+- **Prototyping Strategy:** Moved from paper sketches to Adobe XD for creating spatial mockups and defining the UI logic/flow. This was essential for visualizing the layout and testing UI placement and readability in 2D before being implemented in the VR engine.
+- **Dev Collaboration:** Worked daily with Game Developers (Unity) to ensure design feasibility and accurate implementation of the interaction logic.
+
+### Solution: Spatial UX Redesign and Touch Environment Interaction
+
+The core of the solution was the redesign of the fundamental interaction model to eliminate physical strain and cognitive friction while improving visual aesthetics using:
+
+- **UI Design Simplification:** The design prioritized a Task-Oriented visual approach that maintained corporate seriousness while eliminating a "gaming" aesthetic. This involved removing superfluous elements, utilizing a simple and clear font, and enabling a larger interactable area to ensure better precision and overall usability in the virtual environment.
+- **Touch Environment Interaction:** We replaced the demanding "Wrist Watch Interaction" with a new system where the information poster became a static element of the environment. This allows the user to simply reach out to interact, mirroring real-world behaviour and eliminating the need to hold their arm up for extended periods to read assembly instructions.
+- **Development Guidance (Unity):** Created clear development guidelines for Unity developers to ensure accurate and consistent implementation of the new interaction and design across the system, unifiying styles.
+- **New Movement System (Teleportation):** A new in-game movement system (teleportation) was designed and introduced to mitigate motion sickness and improve overall user comfort within the virtual environment.
+
+<FigureGallery
+  columns={2}
+  gridClassName="mt-8 md:mt-12 mb-12"
+  items={[
+    {
+      src: img1,
+      alt: "Moving from Wrist Watch to Touch Environment Interaction",
+      caption: "UI Simplification: Removing superfluous elements",
+      pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+      imageClassName: "w-full h-auto object-contain",
+    },
+    {
+      src: img2,
+      alt: "UI Simplification and Larger Interactable Area",
+      caption: 'Evolution: From "Wrist Watch" to "Touch Environment"',
+      pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+      imageClassName: "w-full h-auto object-contain",
+    },
+    {
+      src: img3,
+      alt: "Development documentation for Unity implementation",
+      caption: "Standardized UI Guidelines for Unity Developers",
+      pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+      imageClassName: "w-full h-full object-cover object-top",
+    },
+    {
+      src: img4,
+      alt: "In-game movement mechanics design (Teleportation)",
+      caption: "In-game movement mechanics design (Teleportation)",
+      pictureClassName: "picture rounded-2xl overflow-hidden block h-64 md:h-80",
+      imageClassName: "w-full h-full object-cover object-top",
+    },
+  ]}
+/>
+
+### Validation & Impact
+
+The new interaction system was validated through rigorous testing sessions. The new interface significantly reduced the learning curve for new operators as well as being welcomed by existing users.
+
+<MetricsGrid
+  className="mt-6 mb-8"
+  items={[
+    {
+      value: "94%",
+      label: "Positive Feedback",
+      description:
+        'Combining "Excellent" (67%) and "Very Good" (27%) ratings regarding the new interaction system and button design.',
+    },
+    {
+      value: "~100",
+      label: "Operators Surveyed",
+      description:
+        "Validation data collected from factory employees across different shifts and experience levels.",
+    },
+  ]}
+/>
+
+<CaptionImage
+  src={img5}
+  alt="Survey results showing 94% positive feedback"
+  imageClassName="w-full h-full object-cover bg-white"
+  caption="User feedback results: 67% Excellent, 27% Very Good"
+/>
