@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import ToTop from "@/components/features/ToTop.astro";
 import {
   COOKIE_CONSENT_RESET_EVENT,
@@ -70,7 +71,7 @@ import { siteConfig, socialLinks } from "@/config/site";
           >
             <span class="sr-only">{social.name}</span>
             <div class="footer-social-icon text-content-secondary">
-              <Fragment set:html={social.icon} />
+              <Icon name={social.icon} class="w-5 h-5" aria-hidden="true" />
             </div>
           </a>
         ))
