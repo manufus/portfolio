@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
 
 // Define properties accepted by the component
 export interface Props {
@@ -63,21 +64,7 @@ const Element = hasLink ? "a" : "div";
   }
 
   <div class="cursor-indicator">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="arrow-icon"
-    >
-      <line x1="7" y1="17" x2="17" y2="7"></line>
-      <polyline points="7 7 17 7 17 17"></polyline>
-    </svg>
+    <Icon name="lucide:arrow-up-right" width="28" height="28" class="arrow-icon" />
   </div>
 </div>
 
