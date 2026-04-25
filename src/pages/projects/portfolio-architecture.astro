@@ -249,10 +249,15 @@ const allImages = Object.entries(allImagesModules)
 </Layout>
 
 <ActionBar
-  tags={[]}
-  visitLabel="View Repository"
-  url="https://github.com/manufus/portfolio"
-  secondaryUrl="https://ds.manuelhortelano.com"
-  secondaryLabel=""
-  secondaryIcon="storybook"
+  primaryAction={{
+    label: "View Repository",
+    url: "https://github.com/manufus/portfolio",
+  }}
+  secondaryActions={[
+    {
+      icon: "simple-icons:storybook",
+      url: "https://ds.manuelhortelano.com",
+      ariaLabel: "View Storybook Design System",
+    },
+  ]}
 />

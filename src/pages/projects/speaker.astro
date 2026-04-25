@@ -282,8 +282,15 @@ const allImages = Object.entries(allImagesModules)
 </Layout>
 
 <ActionBar
-  tags={[]}
-  visitLabel="Watch Testing"
-  url="https://youtube.com/shorts/8PASm5wKtmo"
-  secondaryUrl="https://dibujo.webs.upv.es/taller-de-modelos-y-prototipos/"
+  primaryAction={{
+    label: "Watch Testing",
+    url: "https://youtube.com/shorts/8PASm5wKtmo",
+  }}
+  secondaryActions={[
+    {
+      icon: "lucide:external-link",
+      url: "https://dibujo.webs.upv.es/taller-de-modelos-y-prototipos/",
+      ariaLabel: "View Academic Project details",
+    },
+  ]}
 />

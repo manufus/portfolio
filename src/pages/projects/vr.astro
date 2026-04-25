@@ -243,8 +243,15 @@ const allImages = Object.values(allImagesModules) as Array<{
 </Layout>
 
 <ActionBar
-  tags={[]}
-  visitLabel="View Demo"
-  url="https://youtu.be/cWiwj5zPlao"
-  secondaryUrl="https://www.fdiformacion.com/elevando-la-seguridad-en-el-trabajo-con-formacion-inmersiva-en-realidad-virtual/"
+  primaryAction={{
+    label: "View Demo",
+    url: "https://youtu.be/cWiwj5zPlao",
+  }}
+  secondaryActions={[
+    {
+      icon: "lucide:external-link",
+      url: "https://www.fdiformacion.com/elevando-la-seguridad-en-el-trabajo-con-formacion-inmersiva-en-realidad-virtual/",
+      ariaLabel: "View FDI Formacion Case Study",
+    },
+  ]}
 />

@@ -184,8 +184,15 @@ const allImages = Object.values(allImagesModules) as Array<{
 </Layout>
 
 <ActionBar
-  tags={[]}
-  visitLabel="Read Thesis"
-  url="https://urn.fi/URN:NBN:fi:aalto-202510208321"
-  figma="https://www.figma.com/proto/ZAtd9QoyQshJb1s22aeh7u/Prisma-Mobile?node-id=298-15194&viewport=154%2C321%2C0.1&t=u5ZcQIFabVyS1XYl-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=298%3A15194"
+  primaryAction={{
+    label: "Read Thesis",
+    url: "https://urn.fi/URN:NBN:fi:aalto-202510208321",
+  }}
+  secondaryActions={[
+    {
+      icon: "simple-icons:figma",
+      url: "https://www.figma.com/proto/ZAtd9QoyQshJb1s22aeh7u/Prisma-Mobile?node-id=298-15194&viewport=154%2C321%2C0.1&t=u5ZcQIFabVyS1XYl-0&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=298%3A15194",
+      ariaLabel: "View Figma Prototype",
+    },
+  ]}
 />
