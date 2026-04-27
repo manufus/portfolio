@@ -1,34 +1,29 @@
 ---
-import { getCollection } from 'astro:content'
-import Button from '@/components/primitives/Button.astro'
-import WorkCard from '@/components/composites/WorkCard.astro'
+import { getCollection } from "astro:content";
+import WorkCard from "@/components/composites/WorkCard.astro";
+import Button from "@/components/primitives/Button.astro";
 
 export interface Props {
-    limit?: number
-    featuredOnly?: boolean
-    showViewAll?: boolean
-    layout?: 'grid' | 'list'
+  limit?: number;
+  featuredOnly?: boolean;
+  showViewAll?: boolean;
+  layout?: "grid" | "list";
 }
 
-const {
-    limit,
-    featuredOnly = false,
-    showViewAll = false,
-    layout = 'list',
-} = Astro.props as Props
+const { limit, featuredOnly = false, showViewAll = false, layout = "list" } = Astro.props as Props;
 
-let projects = await getCollection('projects')
+let projects = await getCollection("projects");
 
-projects = projects.filter((project) => project.data.isShow !== false)
+projects = projects.filter((project) => project.data.isShow !== false);
 
 if (featuredOnly) {
-    projects = projects.filter((project) => project.data.featured === true)
+  projects = projects.filter((project) => project.data.featured === true);
 }
 
-projects.sort((a, b) => a.data.order - b.data.order)
+projects.sort((a, b) => a.data.order - b.data.order);
 
 if (limit !== undefined) {
-    projects = projects.slice(0, limit)
+  projects = projects.slice(0, limit);
 }
 ---
 

@@ -1,33 +1,33 @@
 ---
-import { Image } from 'astro:assets'
-import type { ImageMetadata } from 'astro'
-import { Icon } from 'astro-icon/components'
-import Badge from '@/components/primitives/Badge.astro'
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+import Badge from "@/components/primitives/Badge.astro";
 
 export interface Props {
-  name: string // Required
-  image: ImageMetadata // Required
-  url: string // Required
-  description?: string | undefined // Optional
-  tags?: string[] | undefined // Optional
-  isShow?: boolean | undefined // Optional, default true
-  layout?: 'featured' | 'grid' | 'list' // featured/list are full width, grid is two columns
-  index?: number
-  target?: string // Optional, default "_self"
+  name: string; // Required
+  image: ImageMetadata; // Required
+  url: string; // Required
+  description?: string | undefined; // Optional
+  tags?: string[] | undefined; // Optional
+  isShow?: boolean | undefined; // Optional, default true
+  layout?: "featured" | "grid" | "list"; // featured/list are full width, grid is two columns
+  index?: number;
+  target?: string; // Optional, default "_self"
 }
 
 const {
   name,
-  description = '',
+  description = "",
   url,
   image,
   tags = [],
-  layout = 'grid',
+  layout = "grid",
   index = 0,
-  target = '_self',
-} = Astro.props as Props
+  target = "_self",
+} = Astro.props as Props;
 
-const isFeaturedLike = layout === 'featured' || layout === 'list'
+const isFeaturedLike = layout === "featured" || layout === "list";
 ---
 
 <article
