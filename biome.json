@@ -47,7 +47,8 @@
         "node_modules/**",
         ".astro/**",
         ".storybook/**",
-        "storybook-static/**"
+        "storybook-static/**",
+        "**/*.mdx"
       ],
       "linter": { "enabled": false },
       "formatter": { "enabled": false }
