@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content'
+import Button from '@/components/primitives/Button.astro'
+import WorkCard from '@/components/composites/WorkCard.astro'
+
+export interface Props {
+    limit?: number
+    featuredOnly?: boolean
+    showViewAll?: boolean
+    layout?: 'grid' | 'list'
+}
+
+const {
+    limit,
+    featuredOnly = false,
+    showViewAll = false,
+    layout = 'list',
+} = Astro.props as Props
+
+let projects = await getCollection('projects')
+
+projects = projects.filter((project) => project.data.isShow !== false)
+
+if (featuredOnly) {
+    projects = projects.filter((project) => project.data.featured === true)
+}
+
+projects.sort((a, b) => a.data.order - b.data.order)
+
+if (limit !== undefined) {
+    projects = projects.slice(0, limit)
+}
+---
+
+<div
+    class={layout === 'grid'
+        ? 'grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-12 md:gap-y-16 mt-12'
+        : 'space-y-8 md:space-y-10'}
+>
+    {
+        projects.map((project, index) => (
+            <WorkCard
+                name={project.data.title}
+                description={project.data.description}
+                image={project.data.image}
+                url={`/projects/${project.id}`}
+                tags={project.data.tags}
+                isShow={project.data.isShow}
+                layout={layout}
+                index={index}
+            />
+        ))
+    }
+</div>
+
+{
+    showViewAll && (
+        <div class="flex items-center justify-center pt-8">
+            <Button
+                url="/projects"
+                type="fill"
+                className="justify-center w-full sm:w-auto min-w-40 flex items-center gap-2"
+            >
+                See all projects
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                </svg>
+            </Button>
+        </div>
+    )
+}

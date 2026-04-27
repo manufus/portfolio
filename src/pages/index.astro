@@ -1,15 +1,16 @@
 ---
-import { Icon } from "astro-icon/components";
-import heroPortrait from "@/assets/home/manuelhr.jpg";
-import HeroCard from "@/components/composites/HeroCard.astro";
-import AnimatedText from "@/components/primitives/AnimatedText.astro";
-import { siteConfig } from "@/config/site";
-import Layout from "@/layouts/Layout.astro";
-import FeaturedWork from "../components/sections/FeaturedWork.astro";
+import { Icon } from 'astro-icon/components'
+import heroPortrait from '@/assets/home/manuelhr.jpg'
+import HeroCard from '@/components/composites/HeroCard.astro'
+import SectionHeader from '@/components/composites/SectionHeader.astro'
+import AnimatedText from '@/components/primitives/AnimatedText.astro'
+import ProjectGrid from '@/components/sections/ProjectGrid.astro'
+import { siteConfig } from '@/config/site'
+import Layout from '@/layouts/Layout.astro'
 
-const title = "Manuel Portfolio - UX Engineer and Interaction Designer";
+const title = 'Manuel Portfolio - UX Engineer and Interaction Designer'
 const description =
-  "UX Engineer portfolio focused on user-centered interaction design, accessibility, and measurable performance outcomes.";
+  'UX Engineer portfolio focused on user-centered interaction design, accessibility, and measurable performance outcomes.'
 ---
 
 <Layout
@@ -47,7 +48,6 @@ const description =
           />
         </div>
 
-        
         <!-- Buttons - AOS animation -->
         <div
           class="flex flex-col sm:flex-row gap-4 mt-6"
@@ -56,7 +56,6 @@ const description =
           data-aos-duration="500"
           data-aos-once="true"
         >
-        
         </div>
       </div>
 
@@ -68,11 +67,7 @@ const description =
         data-aos-duration="800"
         data-aos-once="true"
       >
-        <HeroCard
-          image={heroPortrait}
-          title="About me"
-          link="/about"
-        />
+        <HeroCard image={heroPortrait} title="About me" link="/about" />
       </div>
     </div>
 
@@ -84,23 +79,20 @@ const description =
       data-aos-duration="600"
       data-aos-once="true"
     >
-      <Icon name="lucide:arrow-down" class="w-6 h-6 text-neutral-800 dark:text-neutral-200 animate-bounce" />
+      <Icon
+        name="lucide:arrow-down"
+        class="w-6 h-6 text-neutral-800 dark:text-neutral-200 animate-bounce"
+      />
     </div>
   </div>
 
-  <section
-    class="mt-26 mb-12"
-    data-aos="fade-up-sm"
-    data-aos-delay="100"
-    data-aos-duration="600"
-    data-aos-once="true"
-    role="main"
-  >
-    <FeaturedWork
-      title="Key Projects ↓"
-      description="Discover how I combine Engineering and Design to create user-centered solutions."
-      limit={3}
+  <section class="site-container mx-auto py-16 md:py-24" role="main">
+    <SectionHeader
+      title="Key Projects"
+      description="A selection of projects I've worked on, ranging from mobile applications to physical products."
+      data-aos="fade-up-sm"
+      data-aos-once="true"
     />
+    <ProjectGrid featuredOnly={true} showViewAll={true} layout="list" />
   </section>
-
 </Layout>

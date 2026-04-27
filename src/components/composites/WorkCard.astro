@@ -1,37 +1,39 @@
 ---
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
-import { Icon } from "astro-icon/components";
-import Badge from "@/components/primitives/Badge.astro";
+import { Image } from 'astro:assets'
+import type { ImageMetadata } from 'astro'
+import { Icon } from 'astro-icon/components'
+import Badge from '@/components/primitives/Badge.astro'
 
 export interface Props {
-  name: string; // Required
-  image: ImageMetadata; // Required
-  url: string; // Required
-  description?: string | undefined; // Optional
-  tags?: string[] | undefined; // Optional
-  isShow?: boolean | undefined; // Optional, default true
-  layout?: "featured" | "grid"; // featured is full width, grid is two columns
-  index?: number;
-  target?: string; // Optional, default "_self"
+  name: string // Required
+  image: ImageMetadata // Required
+  url: string // Required
+  description?: string | undefined // Optional
+  tags?: string[] | undefined // Optional
+  isShow?: boolean | undefined // Optional, default true
+  layout?: 'featured' | 'grid' | 'list' // featured/list are full width, grid is two columns
+  index?: number
+  target?: string // Optional, default "_self"
 }
 
 const {
   name,
-  description = "",
+  description = '',
   url,
   image,
   tags = [],
-  layout = "grid",
+  layout = 'grid',
   index = 0,
-  target = "_self",
-} = Astro.props as Props;
+  target = '_self',
+} = Astro.props as Props
+
+const isFeaturedLike = layout === 'featured' || layout === 'list'
 ---
 
 <article
   class:list={[
-    "group relative overflow-hidden transition-all duration-500 mb-8 bg-white/85 p-5 dark:bg-bg-secondary-dark border-[.75px] border-solid border-primary/15 rounded-2xl backdrop-blur-sm",
-    layout === 'featured' ? "" : ""
+    'group relative overflow-hidden transition-all duration-500 mb-8 bg-white/85 p-5 dark:bg-bg-secondary-dark border-[.75px] border-solid border-primary/15 rounded-2xl backdrop-blur-sm',
+    isFeaturedLike ? '' : '',
   ]}
   data-aos="fade-up"
   data-aos-duration="500"
@@ -49,68 +51,86 @@ const {
     />
 
     <!-- Gradient overlay shown on hover -->
-    <div class="absolute inset-0 bg-linear-to-t from-black/25 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-t from-black/25 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"
+    >
+    </div>
 
     <!-- Link button shown on hover -->
-    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-      <div class="flex items-center justify-center w-14 h-14 rounded-full bg-white/95 backdrop-blur-sm shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 group-hover:scale-110">
+    <div
+      class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500"
+    >
+      <div
+        class="flex items-center justify-center w-14 h-14 rounded-full bg-white/95 backdrop-blur-sm shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 group-hover:scale-110"
+      >
         <Icon name="lucide:arrow-up-right" class="text-primary w-5 h-5" />
       </div>
     </div>
   </div>
 
   <!-- Content area -->
-  <div class:list={[
-    "px-1 pt-6 pb-2",
-    layout === 'featured' ? "md:px-1 md:pt-6 md:pb-2" : ""
-  ]}>
+  <div
+    class:list={[
+      'px-1 pt-6 pb-2',
+      isFeaturedLike ? 'md:px-1 md:pt-6 md:pb-2' : '',
+    ]}
+  >
     <!-- Title and link icon -->
     <div class="flex items-start justify-between gap-3 mb-3">
-      <h3 class:list={[
-        "text-neutral-900 dark:text-white leading-tight font-brand transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light",
-        layout === 'featured' ? "text-2xl md:text-3xl" : "text-2xl"
-      ]}>
+      <h3
+        class:list={[
+          'text-neutral-900 dark:text-white leading-tight font-brand transition-colors duration-300 group-hover:text-primary dark:group-hover:text-primary-light',
+          isFeaturedLike ? 'text-2xl md:text-3xl' : 'text-2xl',
+        ]}
+      >
         {name}
       </h3>
 
       <!-- Link icon -->
       <div class="shrink-0 mt-1">
-        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 dark:bg-brand-strong/10 text-primary dark:text-primary-light transition-all duration-300 group-hover:bg-primary dark:group-hover:bg-primary-light group-hover:text-white dark:group-hover:text-neutral-900 group-hover:rotate-45">
+        <div
+          class="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 dark:bg-brand-strong/10 text-primary dark:text-primary-light transition-all duration-300 group-hover:bg-primary dark:group-hover:bg-primary-light group-hover:text-white dark:group-hover:text-neutral-900 group-hover:rotate-45"
+        >
           <Icon name="lucide:arrow-up-right" class="w-5 h-5" />
         </div>
       </div>
     </div>
 
     <!-- Tags -->
-    {tags && tags.length > 0 && (
-      <div class="flex flex-wrap gap-1.5 mb-3">
-        {tags.map((tag) => (
-          <Badge>
-            {tag}
-          </Badge>
-        ))}
-      </div>
-    )}
+    {
+      tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mb-3">
+          {tags.map((tag) => (
+            <Badge>{tag}</Badge>
+          ))}
+        </div>
+      )
+    }
 
     <!-- Description -->
-    {description && (
-      <p class:list={[
-        "text-neutral-600 dark:text-neutral-400 leading-relaxed",
-        layout === 'featured' ? "text-base md:text-lg line-clamp-2" : "text-sm line-clamp-2"
-      ]}>
-        {description}
-      </p>
-    )}
+    {
+      description && (
+        <p
+          class:list={[
+            'text-neutral-600 dark:text-neutral-400 leading-relaxed',
+            isFeaturedLike
+              ? 'text-base md:text-lg line-clamp-2'
+              : 'text-sm line-clamp-2',
+          ]}
+        >
+          {description}
+        </p>
+      )
+    }
   </div>
 
   <!-- Link overlay for entire card -->
   <a
     href={url}
     target={target}
-    rel={target === "_blank" ? "noopener noreferrer" : undefined}
+    rel={target === '_blank' ? 'noopener noreferrer' : undefined}
     class="absolute inset-0 z-10"
   >
     <span class="sr-only">View {name}</span>
   </a>
 </article>
-
