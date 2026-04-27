@@ -1,27 +1,27 @@
 ---
-import type { GetStaticPaths } from 'astro'
-import { getCollection, render } from 'astro:content'
-import type { CollectionEntry } from 'astro:content'
-import ProjectCaseShell from '@/components/composites/ProjectCaseShell.astro'
-import ActionBar from '@/components/features/ActionBar.astro'
-import { siteConfig } from '@/config/site'
-import Layout from '@/layouts/Layout.astro'
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import ProjectCaseShell from "@/components/composites/ProjectCaseShell.astro";
+import ActionBar from "@/components/features/ActionBar.astro";
+import { siteConfig } from "@/config/site";
+import Layout from "@/layouts/Layout.astro";
 
 interface Props {
-    entry: CollectionEntry<'projects'>
+  entry: CollectionEntry<"projects">;
 }
 
 export const getStaticPaths = (async () => {
-    const entries = await getCollection('projects')
+  const entries = await getCollection("projects");
 
-    return entries.map((entry) => ({
-        params: { slug: entry.id },
-        props: { entry },
-    }))
-}) satisfies GetStaticPaths
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
 
-const { entry } = Astro.props as Props
-const { Content } = await render(entry)
+const { entry } = Astro.props as Props;
+const { Content } = await render(entry);
 ---
 
 <Layout
