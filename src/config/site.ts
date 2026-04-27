@@ -27,6 +27,7 @@ interface SocialConfig {
 export interface SiteConfig {
   title: string;
   author: string;
+  role: string;
   url: string;
   mail: string;
   resume: string;
@@ -44,6 +45,7 @@ export interface SocialLink {
 export const siteConfig: SiteConfig = {
   title: "Manuel Hortelano",
   author: "Manuel Hortelano Rodriguez",
+  role: "UX Engineer",
   url: SITE_URL,
   mail: "manuel.hortelano.rodriguez@gmail.com",
   // Resume from path
