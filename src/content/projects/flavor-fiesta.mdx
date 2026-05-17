@@ -1,0 +1,169 @@
+---
+title: "Flavor Fiesta: Social Food Discovery in Spain"
+description: "HCI case study for a social food discovery platform, shaped by contextual research, personas, and usability testing with a SUS score of 73.75."
+keywords: "HCI, Food Discovery, Social UX, Mobile UX, Usability Testing, SUS, UEQ, Figma, Balsamiq"
+image: "../../assets/projects/flavor-fiesta.jpg"
+tags:
+  - "UX Research"
+  - "Usability Testing"
+  - "Mobile Development"
+isShow: true
+featured: false
+order: 4
+primaryAction:
+  label: "View Project Repo"
+  url: "https://github.com/manufus/flavorfiestaApp"
+secondaryActions:
+  - icon: "simple-icons:canva"
+    url: "https://www.canva.com/design/DAGQ2KPH6AA/Wf5AQG6TRAghDL4DVDCDSA/view?utm_content=DAGQ2KPH6AA&utm_campaign=designshare&utm_medium=link&utm_source=editor"
+    ariaLabel: "View Presentation"
+---
+
+import CaptionImage from "../../components/composites/CaptionImage.astro";
+import FigureGallery from "../../components/composites/FigureGallery.astro";
+import MetricsGrid from "../../components/composites/MetricsGrid.astro";
+import imgResearch from "../../assets/projects/flavor-fiesta/01_user-research-sessions.jpg";
+import imgAnalysis from "../../assets/projects/flavor-fiesta/02_user-analysis.jpg";
+import imgLowfiVideo from "../../assets/projects/flavor-fiesta/03_lowfi-video.jpg";
+import imgHifi1 from "../../assets/projects/flavor-fiesta/04_hifi-01.png";
+import imgHifi2 from "../../assets/projects/flavor-fiesta/05_hifi-02.png";
+import imgHifi3 from "../../assets/projects/flavor-fiesta/06_hifi-03.png";
+import imgHifi4 from "../../assets/projects/flavor-fiesta/07_hifi-04.png";
+import imgHifi5 from "../../assets/projects/flavor-fiesta/08_hifi-05.png";
+import imgHifi6 from "../../assets/projects/flavor-fiesta/09_hifi-06.png";
+import imgImpactMistakes from "../../assets/projects/flavor-fiesta/10_impact-mistakes.jpg";
+import imgImpactTime from "../../assets/projects/flavor-fiesta/11_impact-time.jpg";
+import imgImpactSus from "../../assets/projects/flavor-fiesta/12_impact-sus.jpg";
+import imgImpactUeq from "../../assets/projects/flavor-fiesta/13_impact-ueq.jpg";
+
+### Overview: User-Centered Food Discovery
+
+Flavor Fiesta is a system designed for food enthusiasts exploring Spain. The platform helps people discover local restaurants, markets, and cooking classes while encouraging social interaction and shared experiences. This project was completed in collaboration with Alex Debertolis and Kristina Todorova as part of a Human-Computer Interaction course, following a **user-centered design** process from research to validation.
+
+### User Research
+
+We interviewed seven users, observed four individuals in context, and ran a cooking workshop with eight participants. The focus was to understand how short-term tourists and long-term residents make food decisions and how they trust recommendations.
+
+Read the full research report in the <a href="https://docs.google.com/document/d/10W2LutQaj3qYOjpr7g3JQTNAOm_SB5Ur/edit?usp=sharing&ouid=102013905540377462225&rtpof=true&sd=true" class="underline hover:text-primary transition-colors">Word document</a>.
+
+<CaptionImage
+  src={imgResearch}
+  alt="Research session table with dates, locations, and methods"
+  caption="Research sessions conducted across interviews, observations, and workshop activities."
+/>
+
+### User Analysis
+
+Insights were synthesized into personas and empathy mapping. The analysis highlights actions, motivations, pains, and values that shaped the experience for Chiara (long-term student) and Emily (short-term tourist).
+
+<CaptionImage
+  src={imgAnalysis}
+  alt="Empathy map capturing actions, motivations, pains, and values"
+  caption="Empathy mapping used to translate research into design priorities."
+/>
+
+### Low-Fi Prototypes
+
+Low-fidelity prototypes in Balsamiq defined the IA and interaction flow before moving into visual design.
+
+See the <a href="https://docs.google.com/document/d/1DKPAqDqckN5R-ILufpt8vLgdyJnFpbxO/edit?usp=sharing&ouid=102013905540377462225&rtpof=true&sd=true" class="underline hover:text-primary transition-colors">low-fi report</a> and the <a href="https://youtu.be/SuipdG2z_yY" class="underline hover:text-primary transition-colors">prototype walkthrough video</a>.
+
+<a href="https://youtu.be/SuipdG2z_yY" class="block">
+  <CaptionImage
+    src={imgLowfiVideo}
+    alt="Low-fi prototype walkthrough preview"
+    caption="Low-fi prototype walkthrough (YouTube)"
+  />
+</a>
+
+### Hi-Fi Prototype: One Task Flow
+
+The hi-fi prototype focuses on a single task flow, moving from discovery to selection and detail inspection.
+
+<FigureGallery
+  columns={3}
+  gridClassName="mt-8 md:mt-12 mb-10"
+  items={[
+    {
+      src: imgHifi1,
+      alt: "Hi-fi task flow step 1",
+      caption: "Step 1",
+    },
+    {
+      src: imgHifi2,
+      alt: "Hi-fi task flow step 2",
+      caption: "Step 2",
+    },
+    {
+      src: imgHifi3,
+      alt: "Hi-fi task flow step 3",
+      caption: "Step 3",
+    },
+    {
+      src: imgHifi4,
+      alt: "Hi-fi task flow step 4",
+      caption: "Step 4",
+    },
+    {
+      src: imgHifi5,
+      alt: "Hi-fi task flow step 5",
+      caption: "Step 5",
+    },
+    {
+      src: imgHifi6,
+      alt: "Hi-fi task flow step 6",
+      caption: "Step 6",
+    },
+  ]}
+/>
+
+### Impact & Validation
+
+Usability testing on the high-fidelity prototypes resulted in a SUS score of 73.75, indicating good usability with clear opportunities for refinement. UEQ feedback was positive overall, while highlighting design consistency and interactive clarity as improvement areas.
+
+<MetricsGrid
+  className="mt-8 mb-8"
+  items={[
+    {
+      value: "73.75",
+      label: "SUS score",
+      description:
+        "Usability rated as good, with room to reach excellent standards.",
+    },
+    {
+      value: "UEQ feedback",
+      label: "Positive experience",
+      description:
+        "Strong overall UX with noted issues in design consistency and feature clarity.",
+    },
+  ]}
+/>
+
+Validation details are documented in the <a href="https://docs.google.com/document/d/1ihKWitrmzHhV4adC1yzMgbGGjzobnvPj/edit?usp=sharing&ouid=102013905540377462225&rtpof=true&sd=true" class="underline hover:text-primary transition-colors">usability report</a>.
+
+<FigureGallery
+  columns={2}
+  gridClassName="mt-8 md:mt-10 mb-4"
+  items={[
+    {
+      src: imgImpactMistakes,
+      alt: "Mistakes per task chart",
+      caption: "Mistakes per task",
+    },
+    {
+      src: imgImpactTime,
+      alt: "Time per task and participant chart",
+      caption: "Time per task",
+    },
+    {
+      src: imgImpactSus,
+      alt: "SUS questionnaire results table",
+      caption: "SUS questionnaire results",
+    },
+    {
+      src: imgImpactUeq,
+      alt: "UEQ results chart",
+      caption: "UEQ results",
+    },
+  ]}
+/>
