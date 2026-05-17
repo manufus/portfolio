@@ -1,16 +1,16 @@
 ---
-import { Icon } from "astro-icon/components";
-import heroPortrait from "@/assets/home/manuelhr.jpg";
-import HeroCard from "@/components/composites/HeroCard.astro";
-import SectionHeader from "@/components/composites/SectionHeader.astro";
-import AnimatedText from "@/components/primitives/AnimatedText.astro";
-import ProjectGrid from "@/components/sections/ProjectGrid.astro";
-import { siteConfig } from "@/config/site";
-import Layout from "@/layouts/Layout.astro";
+import { Icon } from 'astro-icon/components'
+import heroPortrait from '@/assets/home/manuelhr.jpg'
+import HeroCard from '@/components/composites/HeroCard.astro'
+import SectionHeader from '@/components/composites/SectionHeader.astro'
+import AnimatedText from '@/components/primitives/AnimatedText.astro'
+import ProjectGrid from '@/components/sections/ProjectGrid.astro'
+import { siteConfig } from '@/config/site'
+import Layout from '@/layouts/Layout.astro'
 
-const title = "Manuel Portfolio - UX Engineer and Interaction Designer";
+const title = 'Manuel Portfolio - UX Engineer and Interaction Designer'
 const description =
-  "UX Engineer portfolio focused on user-centered interaction design, accessibility, and measurable performance outcomes.";
+  'UX Engineer portfolio focused on user-centered interaction design, accessibility, and measurable performance outcomes.'
 ---
 
 <Layout
@@ -20,10 +20,10 @@ const description =
   image="/og/home.jpg"
 >
   <div
-    class="relative site-container z-20 w-full mx-auto mt-16 px-4 md:mt-18 lg:mt-20 xl:px-0"
+    class="relative site-container z-20 w-full mx-auto mt-10 px-4 md:mt-18 lg:mt-20 xl:px-0"
   >
     <div
-      class="relative w-full px-4 flex flex-col items-center gap-2 md:gap-0 md:justify-between md:flex-row mb-2"
+      class="relative w-full px-4 flex flex-col items-center gap-2 md:gap-0 md:justify-between md:flex-row"
     >
       <div class="relative w-full md:max-w-[420px] md:w-1/2 text-left sm:-mt-8">
         <!-- Title - AnimatedText animation -->
@@ -61,7 +61,7 @@ const description =
 
       <!-- HeroCard - AOS animation -->
       <div
-        class="relative justify-end w-full mt-16 md:flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0"
+        class="relative justify-end w-full mt-6 md:flex md:pl-10 md:w-1/2 md:mt-0 md:translate-y-4 xl:translate-y-0"
         data-aos="fade-left-sm"
         data-aos-delay="300"
         data-aos-duration="800"
